@@ -68,13 +68,19 @@ expect_neet.list <- function(thing_to_test){
   expect_gt(thing_to_test %>% length(), 0)
 }
 
+#' @export
+
 expect_neet.character <- function(thing_to_test){
   expect_gt(thing_to_test %>% stringr::str_length(), 0)
 }
 
+#' @export
+
 expect_neet.rma <- function(thing_to_test) {
   expect_is(thing_to_test, "rma")
 }
+
+#' @export
 
 expect_neet.ggplot <- function(thing_to_test) {
   TRUE

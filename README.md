@@ -52,7 +52,6 @@ library(neet)
 
 expect_neet(3) # test numeric
 expect_neet("cat") # test character string
-#> [1] "no neet test for this object"
 expect_neet(mtcars) # test data frame
 
  
