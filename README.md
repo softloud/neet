@@ -38,12 +38,13 @@ a test-driven research data analyses. I have some of analyses to
 complete for the doctorate, but it can feel overwhelming as to where to
 start and where it will end, with reproducible computing.
 
-I also see the same patterns play out in Reproducibility Team for The
-repliCATS Project where I am research assisting while I complete my phd.
-How do we collaborate and communitcate with each other in a way that
-reduces anxiety, makes us feel we are on the same page? How do we feel
-*safe* to share code? I think test-driven development is a key component
-of the *collaborative* nature of research software engineering.
+I also see the same patterns play out in Reproducibility Team for [The
+repliCATS Project](https://replicats.research.unimelb.edu.au/) where I
+am research assisting while I complete my phd. How do we collaborate and
+communitcate with each other in a way that reduces anxiety, makes us
+feel we are on the same page? How do we feel *safe* to share code? I
+think test-driven development is a key component of the *collaborative*
+nature of research software engineering.
 
 This is largely drawn from Greg Wilson’s primers, R Packages, and,
 hopefully, some practicing researchers who implement automated tests at
@@ -64,7 +65,7 @@ in-development analyses. I’d be interested to hear from people who have
 written more complex tests.
 
 I will list everyone who contributes as an author on the paper, if they
-wish to acknowledged a such. I do not profess to be the all-knowing
+wish to acknowledged as such. I do not profess to be the all-knowing
 expert of testing, I do not have the experience.
 
 Best, Charles
