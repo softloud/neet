@@ -39,7 +39,7 @@ Scientific errors that are inadvertently introduced by faulty workflow are chara
 
 One way to characterise automated tests is to consider them part of a suite of methodologies that are being developed to mitigate _questionable research practices_ [@fraser_questionable_2018]. For social scientists and ecologists, a literature is emerging on how our methodologies inadvertently lead to errors in scientific reasoning, $p$-hacking, altering a statistical model to achieve a desired outcome. But there are others, too, *HARKing*, hypothesising after the fact, where the question is changed to achieve a desired outcome from the model, and *cherry picking*, leaving out troublesome aspects of the analysis that don't fit a desired narrative. 
 
-Gould is extending these ideas to an examination of the workflow of ecological models. 
+Gould is extending these ideas to an examination of the workflow of ecological models, adapting Gelman and [todo]  
 
 [todo: gould extension bridge to computing]
 
@@ -51,16 +51,19 @@ In this manuscript add to this litearature by focussing on workflows for automat
 
 In this section we now consider the practicality of implementing tests through a *toolchain walkthrough*, an opinionated documetation of a scientific workflow , towards a measure of `code::proof`, confidence in the algorithm implemented [@grayCodeProofPrepare2019]. In particular, a toolchain walkthrough is a reflection of *one* workflow, whilst others, indeed, better, workflows might exist. This is in contrast to a comprehensive review of tools. 
 
-Toolchain walkthroughs aim to identify obstacles and advantages in implementation of scientific workflows.
+Toolchain walkthroughs aim to identify obstacles and advantages in implementation of scientific workflows. By necessity, a toolchain walkthrough is language specific, but, ideally, observations emerge that are useful for any appropriate language employed for data analysis, such as Python. 
 
 ## Objective of this toolchain walkthrough
 
-This toolchain walkthrough aims to provide guidance on implementing a test-driven workflow for an in-development analysis. Many analyses begin as scripts that develop [todo find blog post on this]
+This toolchain walkthrough aims to provide guidance on implementing a test-driven workflow for an in-development analysis. Many analyses begin as scripts that develop [todo find blog post on this]. The central question of this manuscript is what constitutes a minimal level of testing for in-development analysis, where code is still being written and features implemented. 
 
+This is a first effort in identifying the fundamentals of automated testing for the collaborative process of developing an analysis in R. Analgous to Riederer's *RMarkdown-driven development* [@riederer_rmarkdowndrivendevelopment_2019], which deconstructs the workflow of developing an analysis from .Rmd notebook-style reports to packaged analyses, we consider a set a computational tools that form a workflow to assist in the coherent development of automated tests for data analysis.   
 
 ## Devops and assumed expertise
 
+This toolchain walkthrough
 
+## 
 
 
 # References
