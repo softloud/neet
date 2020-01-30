@@ -1,6 +1,8 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+# interested in co-authoring?
+
 # neet
 
 <!-- badges: start -->
@@ -50,9 +52,9 @@ This is a basic example which shows you how to solve a common problem:
 library(neet)
 ## basic example code
 
-expect_neet(3) # test numeric
-expect_neet("cat") # test character string
-expect_neet(mtcars) # test data frame
+expect_neet(3, "numeric") # test numeric
+expect_neet("cat", "character") # test character string
+expect_neet(mtcars, "data.frame") # test data frame
 
  
 ```

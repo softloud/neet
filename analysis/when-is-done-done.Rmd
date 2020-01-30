@@ -1,8 +1,9 @@
 ---
-title: "When is done *done*? Fundamentals of automated testing for collaborative data analysis development"
+title: "When is done *done*? Towards the fundamentals of automated testing for collaborative data analysis development"
 author: "Charles T. Gray, Daniel Fryer, Elise Gould, and Aaron todo"
 bibliography: references.bib
 output: html_document
+# output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
@@ -45,11 +46,11 @@ Gould is extending these ideas to an examination of the workflow of ecological m
 
 As researcher software engineers, it behoves us to consider what are questionable research practices in software produced for data analyses. Version control and open code sharing via a platform such as GitHub, is one way to mitigate questionable research practices in scientific computing [@Bryan2017ExcuseMD]. There is also a growing literature on reproducible research compendia via packaged analyses [@marwick_packaging_2018; @wilson_good_2017].     
 
-In this manuscript add to this litearature by focussing on workflows for automated tests that assist the developer communicate what they have coded to others and their future self, as a means of mitigating questionable research practices in scientific computing. 
+This manuscript contributes to this literature by focussing on workflows for automated tests that assist the developer communicate what they have coded to others and their future self, as a means of mitigating questionable research practices in scientific computing. 
 
 # A test-driven toolchain walkthrough for an in-development analysis
 
-In this section we now consider the practicality of implementing tests through a *toolchain walkthrough*, an opinionated documetation of a scientific workflow , towards a measure of `code::proof`, confidence in the algorithm implemented [@grayCodeProofPrepare2019]. In particular, a toolchain walkthrough is a reflection of *one* workflow, whilst others, indeed, better, workflows might exist. This is in contrast to a comprehensive review of tools. 
+In this section we now consider the practicality of implementing tests through a *toolchain walkthrough*, an opinionated documetation of a scientific workflow , towards a measure of `code::proof`, confidence in the algorithm implemented [@grayCodeProofPrepare2019]. In particular, a toolchain walkthrough is a reflection of *one* workflow, whilst others, indeed, better, workflows might exist. This is in contrast to a comprehensive review of tools. Instead, a toolchain walkthrough ruminates on considerations *after* a set of tools have been chosen.
 
 Toolchain walkthroughs aim to identify obstacles and advantages in implementation of scientific workflows. By necessity, a toolchain walkthrough is language specific, but, ideally, observations emerge that are useful for any appropriate language employed for data analysis, such as Python. This toolchain walkthrough examines the *process*, analogous to piano *practice*, of implementing tests, as opposed to defining comprehensively the nature of *good enough* tests, analogous to guidance on pianistic technique.
 
@@ -61,10 +62,9 @@ This is a first effort in identifying the fundamentals of automated testing for 
 
 ## Devops and assumed expertise
 
-This toolchain walkthrough
+This toolchain walkthrough assumes a knowledge of R advanced enough to be using the language to be answering scientific research claims.
 
 ## 
-
 
 # References
 

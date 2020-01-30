@@ -1,0 +1,324 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={When is done done? Towards the fundamentals of automated testing for collaborative data analysis development},
+  pdfauthor={Charles T. Gray, Daniel Fryer, Elise Gould, and Aaron todo},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newenvironment{cslreferences}%
+  {\setlength{\parindent}{0pt}%
+  \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces}%
+  {\par}
+
+\title{When is done \emph{done}? Towards the fundamentals of automated
+testing for collaborative data analysis development}
+\author{Charles T. Gray, Daniel Fryer, Elise Gould, and Aaron todo}
+\date{}
+
+\begin{document}
+\maketitle
+
+\hypertarget{fundamentals}{%
+\section{Fundamentals}\label{fundamentals}}
+
+In Chuang C. Chang's \emph{Fundamentals of Piano Practice} the author
+sets out to address a gap in piano pedagogy (Chang 2009). A similar gap
+exists in the implementation of \emph{good enough} practices (Wilson et
+al. 2017), which is to say, what we might reasonably expect of a
+analyst, in reproducible computing for research data analyses. The
+objective is different from advanced pianism, however, in this
+manuscript we shall chracterise this gap by considering automated
+testing workflow in research data analysis through piano pedgogy.
+Through attempting to identify the fundamentals of automated testing for
+collaborative data analysis development, this manuscript aims to
+articulate the gap in understanding automated testing implementation for
+analysts.
+
+As Chang notes, whilst there a rich history of technical pedagogy, there
+is a dearth of guidance for pianists on \emph{learning} the technique
+(Chang 2009). There are many canonical texts of pianistic technique
+pedagogy. Bach provides a pathway from small canons {[}todo: cite{]}, to
+two-part inventions{[}todo: cite{]}, three-part sinfonia, and the
+challenge of \emph{The Well-Tempered Clavier} and \emph{The Art of
+Fugue}. Bartok provides the \emph{Mikrokosmos} {[}todo: {]}, and
+Czerny's \emph{School of Velocity} {[}to do{]}. In each case technical
+exercises of increasing difficulty are provided. In piano pedagogy, a
+\emph{technical} exercise isolates a particular aspect of pianistic
+technique {[}todo examples{]}. For example, {[}todo Czerny staccato{]}.
+Or, {[}todo voicing technique{]}.
+
+The dearth that Chang attempts to address is in pianistic
+\emph{practice} habits that will lead to succesful adoption of these
+techniques. In science, we might call this \emph{work flow} {[}todo
+cite{]}.
+
+\begin{quote}
+.. practically every piano learning method consists of showing students
+what to practice, and what kinds of techniques (runs, arpeggios, legato,
+staccato, trills, etc.) are needed. There are few instructions on how to
+practice order to be able to play them, which is mostly left to the
+student and endless repetitions (Chang 2009).
+\end{quote}
+
+Wilson et al.~followed their work on \emph{best practices} in scientific
+computing (Wilson et al. 2014), with a reflection on \emph{good enough}
+practices (Wilson et al. 2017), in recognition that we must account for
+what we might reasonably request of practitioners of data analysis. In
+this manuscript, we consider one component of \emph{good enough}
+practice in data analysis: \emph{automated testing}.
+
+Automated tests are a formalised way of implementing checks that inputs
+and outputs of algorithsms are as expected (Wickham 2015). Informative
+messages are output that assist the developer in identifying where code
+is not performing as expected.
+
+\hypertarget{collaboration-via-automated-testing}{%
+\subsection{Collaboration via automated
+testing}\label{collaboration-via-automated-testing}}
+
+At heart, automated tests are collaborative. This may be with others,
+but applies at least as much to a analyst approaching their own past
+work with which they have become unfamiliar. Automated tests provide an
+efficient way of returning to and extending an analysis.
+
+Reproducible research compendia provide a means by which analysts can
+share their work so that it may be extended by others, and automated
+tests provide \texttt{code::proof} (Gray 2019), a measure of confidence
+in the algorithm for others. Hayes expresses concern about using
+algorithms published without automated tests (Hayes 2019). However, only
+one quarter of the largest repository of R packages,
+\href{https://cran.r-project.org/}{The Comprehensive R Archive Network},
+have any automated tests (Hester 2016), highlighting that, despite
+testing identified as a `vital' part of data analysis (Wickham 2015),
+automated testing is yet to be widely adopted.
+
+Indeed, as noted in Wilson's testing primers (in development) for
+\href{https://rstudio.cloud/learn/primers}{RStudio} (``RStudio Cloud,''
+n.d.),
+
+\begin{quote}
+Almost all (92\%) of the catastrophic system failures are the result of
+incorrect handling of non-fatal errors explicitly signaled in software.
+In 58\% of the catastrophic failures, the underlying faults could easily
+have been detected through simple testing of error handling code (Yuan
+et al. 2014).
+\end{quote}
+
+Scientific errors that are inadvertently introduced by faulty workflow
+are characterised in metascience as \emph{questionable research
+practices}.
+
+\hypertarget{questionable-research-practices-in-scientific-computing}{%
+\subsection{Questionable research practices in scientific
+computing}\label{questionable-research-practices-in-scientific-computing}}
+
+One way to characterise automated tests is to consider them part of a
+suite of methodologies that are being developed to mitigate
+\emph{questionable research practices} (Fraser et al. 2018). For social
+scientists and ecologists, a literature is emerging on how our
+methodologies inadvertently lead to errors in scientific reasoning,
+\(p\)-hacking, altering a statistical model to achieve a desired
+outcome. But there are others, too, \emph{HARKing}, hypothesising after
+the fact, where the question is changed to achieve a desired outcome
+from the model, and \emph{cherry picking}, leaving out troublesome
+aspects of the analysis that don't fit a desired narrative.
+
+Gould is extending these ideas to an examination of the workflow of
+ecological models, adapting Gelman and {[}todo{]}
+
+{[}todo: gould extension bridge to computing{]}
+
+As researcher software engineers, it behoves us to consider what are
+questionable research practices in software produced for data analyses.
+Version control and open code sharing via a platform such as GitHub, is
+one way to mitigate questionable research practices in scientific
+computing (Bryan 2017). There is also a growing literature on
+reproducible research compendia via packaged analyses (Marwick,
+Boettiger, and Mullen 2018; Wilson et al. 2017).
+
+This manuscript contributes to this literature by focussing on workflows
+for automated tests that assist the developer communicate what they have
+coded to others and their future self, as a means of mitigating
+questionable research practices in scientific computing.
+
+\hypertarget{a-test-driven-toolchain-walkthrough-for-an-in-development-analysis}{%
+\section{A test-driven toolchain walkthrough for an in-development
+analysis}\label{a-test-driven-toolchain-walkthrough-for-an-in-development-analysis}}
+
+In this section we now consider the practicality of implementing tests
+through a \emph{toolchain walkthrough}, an opinionated documetation of a
+scientific workflow , towards a measure of \texttt{code::proof},
+confidence in the algorithm implemented (Gray 2019). In particular, a
+toolchain walkthrough is a reflection of \emph{one} workflow, whilst
+others, indeed, better, workflows might exist. This is in contrast to a
+comprehensive review of tools. Instead, a toolchain walkthrough
+ruminates on considerations \emph{after} a set of tools have been
+chosen.
+
+Toolchain walkthroughs aim to identify obstacles and advantages in
+implementation of scientific workflows. By necessity, a toolchain
+walkthrough is language specific, but, ideally, observations emerge that
+are useful for any appropriate language employed for data analysis, such
+as Python. This toolchain walkthrough examines the \emph{process},
+analogous to piano \emph{practice}, of implementing tests, as opposed to
+defining comprehensively the nature of \emph{good enough} tests,
+analogous to guidance on pianistic technique.
+
+\hypertarget{objective-of-this-toolchain-walkthrough}{%
+\subsection{Objective of this toolchain
+walkthrough}\label{objective-of-this-toolchain-walkthrough}}
+
+This toolchain walkthrough aims to provide guidance on implementing a
+test-driven workflow for an in-development analysis. Many analyses begin
+as scripts that develop {[}todo find blog post on this{]}. The central
+question of this manuscript is what constitutes a minimal level of
+testing for in-development analysis, where code is still being written
+and features implemented.
+
+This is a first effort in identifying the fundamentals of automated
+testing for the collaborative process of developing an analysis in R.
+Analgous to Riederer's \emph{RMarkdown-driven development} (Riederer
+2019), which deconstructs the workflow of developing an analysis from
+.Rmd notebook-style reports to packaged analyses, we consider a set a
+computational tools that form a workflow to assist in the coherent
+development of automated tests for data analysis. This is an extension
+of the workflow suggestions provided in \emph{R Packages}, with a
+specific focus on collaborative workflows in research.
+
+\hypertarget{devops-and-assumed-expertise}{%
+\subsection{Devops and assumed
+expertise}\label{devops-and-assumed-expertise}}
+
+This toolchain walkthrough assumes a knowledge of R advanced enough to
+be using the language to be answering scientific research claims.
+
+\hypertarget{section}{%
+\subsection{}\label{section}}
+
+\hypertarget{references}{%
+\section*{References}\label{references}}
+\addcontentsline{toc}{section}{References}
+
+\hypertarget{refs}{}
+\begin{cslreferences}
+\leavevmode\hypertarget{ref-Bryan2017ExcuseMD}{}%
+Bryan, Jennifer. 2017. ``Excuse Me, Do You Have a Moment to Talk About
+Version Control?'' \emph{PeerJ PrePrints} 5: e3159.
+
+\leavevmode\hypertarget{ref-chang_fundamentalspianopractice_2009a}{}%
+Chang, Chuan C. 2009. \emph{Fundamentals of Piano Practice}.
+
+\leavevmode\hypertarget{ref-fraser_questionable_2018}{}%
+Fraser, Hannah, Tim Parker, Shinichi Nakagawa, Ashley Barnett, and Fiona
+Fidler. 2018. ``Questionable Research Practices in Ecology and
+Evolution.'' \emph{PLOS ONE} 13 (7): e0200303.
+\url{https://doi.org/10.1371/journal.pone.0200303}.
+
+\leavevmode\hypertarget{ref-grayCodeProofPrepare2019}{}%
+Gray, Charles T. 2019. ``Code::Proof: Prepare for Most Weather
+Conditions.'' In \emph{Statistics and Data Science}, edited by Hien
+Nguyen, 22--41. Communications in Computer and Information Science.
+Singapore: Springer. \url{https://doi.org/10.1007/978-981-15-1960-4_2}.
+
+\leavevmode\hypertarget{ref-hayes_testing_2019}{}%
+Hayes, Alex. 2019. ``Testing Statistical Software - Aleatoric.'' Blog.
+
+\leavevmode\hypertarget{ref-hester_covr_2016}{}%
+Hester, Jim. 2016. ``Covr: Bringing Test Coverage to R.''
+
+\leavevmode\hypertarget{ref-marwick_packaging_2018}{}%
+Marwick, Ben, Carl Boettiger, and Lincoln Mullen. 2018. ``Packaging Data
+Analytical Work Reproducibly Using R (and Friends).'' e3192v2. PeerJ
+Inc. \url{https://doi.org/10.7287/peerj.preprints.3192v2}.
+
+\leavevmode\hypertarget{ref-riederer_rmarkdowndrivendevelopment_2019}{}%
+Riederer, Emily. 2019. ``RMarkdown Driven Development (RmdDD).''
+\emph{Emily Riederer}.
+
+\leavevmode\hypertarget{ref-_rstudiocloud_}{}%
+``RStudio Cloud.'' n.d. https://rstudio.cloud/learn/primers.
+
+\leavevmode\hypertarget{ref-wickham_r_2015}{}%
+Wickham, H. 2015. \emph{R Packages: Organize, Test, Document, and Share
+Your Code}. O'Reilly Media.
+
+\leavevmode\hypertarget{ref-wilson_best_2014}{}%
+Wilson, Greg, D. A. Aruliah, C. Titus Brown, Neil P. Chue Hong, Matt
+Davis, Richard T. Guy, Steven H. D. Haddock, et al. 2014. ``Best
+Practices for Scientific Computing.'' Edited by Jonathan A. Eisen.
+\emph{PLoS Biology} 12 (1): e1001745.
+\url{https://doi.org/10.1371/journal.pbio.1001745}.
+
+\leavevmode\hypertarget{ref-wilson_good_2017}{}%
+Wilson, Greg, Jennifer Bryan, Karen Cranston, Justin Kitzes, Lex
+Nederbragt, and Tracy K. Teal. 2017. ``Good Enough Practices in
+Scientific Computing.'' Edited by Francis Ouellette. \emph{PLOS
+Computational Biology} 13 (6): e1005510.
+\url{https://doi.org/10.1371/journal.pcbi.1005510}.
+
+\leavevmode\hypertarget{ref-yuan_simpletestingcan_2014}{}%
+Yuan, Ding, Yu Luo, Xin Zhuang, Guilherme Renna Rodrigues, Xu Zhao,
+Yongle Zhang, Pranay U. Jain, and Michael Stumm. 2014. ``Simple Testing
+Can Prevent Most Critical Failures: An Analysis of Production Failures
+in Distributed Data-Intensive Systems.'' In \emph{Proceedings of the
+11th USENIX Conference on Operating Systems Design and Implementation},
+249--65. OSDI'14. Broomfield, CO: USENIX Association.
+\end{cslreferences}
+
+\end{document}

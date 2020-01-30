@@ -31,7 +31,7 @@
 
 expect_neet <- function(thing_to_test, expected_type) {
   expect_is(thing_to_test, expected_type)
-  expect_neet(thing_to_test)
+  expect_nonempty(thing_to_test)
 }
 
 #' @export
