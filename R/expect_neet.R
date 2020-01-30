@@ -1,5 +1,9 @@
 #' Test for non-empty thing of expected type
 #'
+#' @param thing_to_test An object to test, such as a numeric, character, list,
+#' etc.
+#' @param expected_type Expected output of `class(thing_to_test)`.
+#'
 #' A *neet test* tests for **non-empty** thing of **expected type**. This
 #' is what is referred to as a *boundary condition* test in RStudio's primers
 #' (todo: citation).
@@ -25,29 +29,36 @@
 #'
 #' @export
 
+expect_neet <- function(thing_to_test, expected_type) {
+  expect_is(thing_to_test, expected_type)
+  expect_neet(thing_to_test)
+}
+
+#' @export
+
 # generic function
-expect_neet <- function(thing_to_test) {
-  UseMethod("expect_neet")
+expect_nonempty <- function(thing_to_test) {
+  UseMethod("expect_nonempty")
 }
 
 #' @export
 
 # default neet
-expect_neet.default <-
+expect_nonempty.default <-
   function(thing_to_test) {
     "no neet test for this object"
   }
 
 #' @export
 
-expect_neet.data.frame <-
+expect_nonempty.data.frame <-
   function(thing_to_test) {
     expect_gt(thing_to_test %>% nrow(), 0)
   }
 
 #' @export
 
-expect_neet.numeric <-
+expect_nonempty.numeric <-
   function(thing_to_test, positive_only = FALSE) {
 
     # test to see if na
@@ -64,24 +75,24 @@ expect_neet.numeric <-
 
 #' @export
 
-expect_neet.list <- function(thing_to_test){
+expect_nonempty.list <- function(thing_to_test){
   expect_gt(thing_to_test %>% length(), 0)
 }
 
 #' @export
 
-expect_neet.character <- function(thing_to_test){
+expect_nonempty.character <- function(thing_to_test){
   expect_gt(thing_to_test %>% stringr::str_length(), 0)
 }
 
 #' @export
 
-expect_neet.rma <- function(thing_to_test) {
+expect_nonempty.rma <- function(thing_to_test) {
   expect_is(thing_to_test, "rma")
 }
 
 #' @export
 
-expect_neet.ggplot <- function(thing_to_test) {
+expect_nonempty.ggplot <- function(thing_to_test) {
   TRUE
 }

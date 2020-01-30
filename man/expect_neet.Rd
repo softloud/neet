@@ -4,14 +4,18 @@
 \alias{expect_neet}
 \title{Test for non-empty thing of expected type}
 \usage{
-expect_neet(thing_to_test)
+expect_neet(thing_to_test, expected_type)
 }
-\description{
+\arguments{
+\item{thing_to_test}{An object to test, such as a numeric, character, list,
+etc.}
+
+\item{expected_type}{Expected output of \code{class(thing_to_test)}.
+
 A \emph{neet test} tests for \strong{non-empty} thing of \strong{expected type}. This
 is what is referred to as a \emph{boundary condition} test in RStudio's primers
 (todo: citation).
-}
-\details{
+
 These expectations are intended to integrate into minimal testing workflow
 \emph{for development} of data analyses. When developing a function, we will change parameters,
 and structure of the pipeline. These tests
@@ -27,5 +31,8 @@ A `list`` is checked for being of length > 1.
 
 A \code{data.frame} is checked for having at least one row.
 
-A \code{ggplot} object is checked for successfully running.
+A \code{ggplot} object is checked for successfully running.}
+}
+\description{
+Test for non-empty thing of expected type
 }
