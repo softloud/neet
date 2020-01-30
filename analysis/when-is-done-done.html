@@ -391,7 +391,7 @@ summary {
 
 <div id="fundamentals" class="section level1">
 <h1>Fundamentals</h1>
-<p>In Chuang C. Chang’s <em>Fundamentals of Piano Practice</em> the author sets out to address a gap in piano pedagogy <span class="citation">(Chang 2009)</span>. A similar gap exists in the implementation of <em>good enough</em> practices <span class="citation">(Wilson et al. 2017)</span>, which is to say, what we might reasonably expect of a researcher, in reproducible computing for research data analyses. The objective is different from advanced pianism, however, in this manuscript we shall chracterise this gap by considering automated testing workflow in research data analysis through piano pedgogy. Through attempting to identify the fundamentals of automated testing for collaborative data analysis development, this manuscript aims to articulate the gap in understanding automated testing implementation for researchers.</p>
+<p>In Chuang C. Chang’s <em>Fundamentals of Piano Practice</em> the author sets out to address a gap in piano pedagogy <span class="citation">(Chang 2009)</span>. A similar gap exists in the implementation of <em>good enough</em> practices <span class="citation">(Wilson et al. 2017)</span>, which is to say, what we might reasonably expect of a analyst, in reproducible computing for research data analyses. The objective is different from advanced pianism, however, in this manuscript we shall chracterise this gap by considering automated testing workflow in research data analysis through piano pedgogy. Through attempting to identify the fundamentals of automated testing for collaborative data analysis development, this manuscript aims to articulate the gap in understanding automated testing implementation for analysts.</p>
 <p>As Chang notes, whilst there a rich history of technical pedagogy, there is a dearth of guidance for pianists on <em>learning</em> the technique <span class="citation">(Chang 2009)</span>. There are many canonical texts of pianistic technique pedagogy. Bach provides a pathway from small canons [todo: cite], to two-part inventions[todo: cite], three-part sinfonia, and the challenge of <em>The Well-Tempered Clavier</em> and <em>The Art of Fugue</em>. Bartok provides the <em>Mikrokosmos</em> [todo: ], and Czerny’s <em>School of Velocity</em> [to do]. In each case technical exercises of increasing difficulty are provided. In piano pedagogy, a <em>technical</em> exercise isolates a particular aspect of pianistic technique [todo examples]. For example, [todo Czerny staccato]. Or, [todo voicing technique].</p>
 <p>The dearth that Chang attempts to address is in pianistic <em>practice</em> habits that will lead to succesful adoption of these techniques. In science, we might call this <em>work flow</em> [todo cite].</p>
 <blockquote>
@@ -401,8 +401,19 @@ summary {
 <p>Automated tests are a formalised way of implementing checks that inputs and outputs of algorithsms are as expected <span class="citation">(Wickham 2015)</span>. Informative messages are output that assist the developer in identifying where code is not performing as expected.</p>
 <div id="collaboration-via-automated-testing" class="section level2">
 <h2>Collaboration via automated testing</h2>
-<p>At heart, automated tests are collaborative. This may be with others, but applies at least as much to a researcher approaching their own past work with which they have become unfamiliar. Automated tests provide an efficient way of returning to an analysis.</p>
-<p>Reproducible analyses provide a means by which researchers can share their work so that it may be extended by others, and automated tests provide <code>code::proof</code> <span class="citation">(Gray 2019)</span>, a measure of confidence in the algorithm for others. Hayes expresses concern about using algorithms published without automated tests <span class="citation">(Hayes 2019)</span>, but only one quarter of the largest repository of R packages, <a href="https://cran.r-project.org/">The Comprehensive R Archive Network</a>, have any automated tests <span class="citation">(Hester 2016)</span>.</p>
+<p>At heart, automated tests are collaborative. This may be with others, but applies at least as much to a analyst approaching their own past work with which they have become unfamiliar. Automated tests provide an efficient way of returning to and extending an analysis.</p>
+<p>Reproducible research compendia provide a means by which analysts can share their work so that it may be extended by others, and automated tests provide <code>code::proof</code> <span class="citation">(Gray 2019)</span>, a measure of confidence in the algorithm for others. Hayes expresses concern about using algorithms published without automated tests <span class="citation">(Hayes 2019)</span>. However, only one quarter of the largest repository of R packages, <a href="https://cran.r-project.org/">The Comprehensive R Archive Network</a>, have any automated tests <span class="citation">(Hester 2016)</span>, highlighting that, despite testing identified as a ‘vital’ part of data analysis <span class="citation">(Wickham 2015)</span>, automated testing is yet to be widely adopted.</p>
+<p>Indeed, as noted in Wilson’s testing primers (in development) for <a href="https://rstudio.cloud/learn/primers">RStudio</a> <span class="citation">(“RStudio Cloud,” n.d.)</span>,</p>
+<blockquote>
+<p>Almost all (92%) of the catastrophic system failures are the result of incorrect handling of non-fatal errors explicitly signaled in software. In 58% of the catastrophic failures, the underlying faults could easily have been detected through simple testing of error handling code <span class="citation">(Yuan et al. 2014)</span>.</p>
+</blockquote>
+<p>Scientific errors that are inadvertently introduced by faulty workflow are characterised in metascience as <em>questionable research practices</em>.</p>
+</div>
+<div id="questionable-research-practices-in-scientific-computing" class="section level2">
+<h2>Questionable research practices in scientific computing</h2>
+<p>One way to characterise automated tests is to consider them part of a suite of methodologies that are being developed to mitigate <em>questionable research practices</em> <span class="citation">(Fraser et al. 2018)</span>. For social scientists and ecologists, a literature is emerging on how our methodologies inadvertently lead to errors in scientific reasoning, <span class="math inline">\(p\)</span>-hacking, altering a statistical model to achieve a desired outcome. But there are others, too, <em>HARKing</em>, hypothesising after the fact, where the question is changed to achieve a desired outcome from the model, and <em>cherry picking</em>, leaving out troublesome aspects of the analysis that don’t fit a desired narrative.</p>
+<p>Gould is extending these ideas to an examination of the workflow of ecological models.</p>
+<p>[todo: gould extension bridge to computing]</p>
 </div>
 </div>
 <div id="references" class="section level1 unnumbered">
@@ -410,6 +421,9 @@ summary {
 <div id="refs" class="references hanging-indent">
 <div id="ref-chang_fundamentalspianopractice_2009a">
 <p>Chang, Chuan C. 2009. <em>Fundamentals of Piano Practice</em>.</p>
+</div>
+<div id="ref-fraser_questionable_2018">
+<p>Fraser, Hannah, Tim Parker, Shinichi Nakagawa, Ashley Barnett, and Fiona Fidler. 2018. “Questionable Research Practices in Ecology and Evolution.” <em>PLOS ONE</em> 13 (7): e0200303. <a href="https://doi.org/10.1371/journal.pone.0200303">https://doi.org/10.1371/journal.pone.0200303</a>.</p>
 </div>
 <div id="ref-grayCodeProofPrepare2019">
 <p>Gray, Charles T. 2019. “Code::Proof: Prepare for Most Weather Conditions.” In <em>Statistics and Data Science</em>, edited by Hien Nguyen, 22–41. Communications in Computer and Information Science. Singapore: Springer. <a href="https://doi.org/10.1007/978-981-15-1960-4_2">https://doi.org/10.1007/978-981-15-1960-4_2</a>.</p>
@@ -420,6 +434,9 @@ summary {
 <div id="ref-hester_covr_2016">
 <p>Hester, Jim. 2016. “Covr: Bringing Test Coverage to R.”</p>
 </div>
+<div id="ref-_rstudiocloud_">
+<p>“RStudio Cloud.” n.d. https://rstudio.cloud/learn/primers.</p>
+</div>
 <div id="ref-wickham_r_2015">
 <p>Wickham, H. 2015. <em>R Packages: Organize, Test, Document, and Share Your Code</em>. O’Reilly Media.</p>
 </div>
@@ -428,6 +445,9 @@ summary {
 </div>
 <div id="ref-wilson_good_2017">
 <p>Wilson, Greg, Jennifer Bryan, Karen Cranston, Justin Kitzes, Lex Nederbragt, and Tracy K. Teal. 2017. “Good Enough Practices in Scientific Computing.” Edited by Francis Ouellette. <em>PLOS Computational Biology</em> 13 (6): e1005510. <a href="https://doi.org/10.1371/journal.pcbi.1005510">https://doi.org/10.1371/journal.pcbi.1005510</a>.</p>
+</div>
+<div id="ref-yuan_simpletestingcan_2014">
+<p>Yuan, Ding, Yu Luo, Xin Zhuang, Guilherme Renna Rodrigues, Xu Zhao, Yongle Zhang, Pranay U. Jain, and Michael Stumm. 2014. “Simple Testing Can Prevent Most Critical Failures: An Analysis of Production Failures in Distributed Data-Intensive Systems.” In <em>Proceedings of the 11th USENIX Conference on Operating Systems Design and Implementation</em>, 249–65. OSDI’14. Broomfield, CO: USENIX Association.</p>
 </div>
 </div>
 </div>
