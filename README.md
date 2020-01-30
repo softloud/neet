@@ -63,6 +63,10 @@ that I have been playing around with is boundary tests for
 in-development analyses. I’d be interested to hear from people who have
 written more complex tests.
 
+I will list everyone who contributes as an author on the paper, if they
+wish to acknowledged a such. I do not profess to be the all-knowing
+expert of testing, I do not have the experience.
+
 Best, Charles
 
 # neet
