@@ -414,11 +414,28 @@ summary {
 <p>One way to characterise automated tests is to consider them part of a suite of methodologies that are being developed to mitigate <em>questionable research practices</em> <span class="citation">(Fraser et al. 2018)</span>. For social scientists and ecologists, a literature is emerging on how our methodologies inadvertently lead to errors in scientific reasoning, <span class="math inline">\(p\)</span>-hacking, altering a statistical model to achieve a desired outcome. But there are others, too, <em>HARKing</em>, hypothesising after the fact, where the question is changed to achieve a desired outcome from the model, and <em>cherry picking</em>, leaving out troublesome aspects of the analysis that don’t fit a desired narrative.</p>
 <p>Gould is extending these ideas to an examination of the workflow of ecological models.</p>
 <p>[todo: gould extension bridge to computing]</p>
+<p>As researcher software engineers, it behoves us to consider what are questionable research practices in software produced for data analyses. Version control and open code sharing via a platform such as GitHub, is one way to mitigate questionable research practices in scientific computing <span class="citation">(Bryan 2017)</span>. There is also a growing literature on reproducible research compendia via packaged analyses <span class="citation">(Marwick, Boettiger, and Mullen 2018; Wilson et al. 2017)</span>.</p>
+<p>In this manuscript add to this litearature by focussing on workflows for automated tests that assist the developer communicate what they have coded to others and their future self, as a means of mitigating questionable research practices in scientific computing.</p>
+</div>
+</div>
+<div id="a-test-driven-toolchain-walkthrough-for-an-in-development-analysis" class="section level1">
+<h1>A test-driven toolchain walkthrough for an in-development analysis</h1>
+<p>In this section we now consider the practicality of implementing tests through a <em>toolchain walkthrough</em>, an opinionated documetation of a scientific workflow , towards a measure of <code>code::proof</code>, confidence in the algorithm implemented <span class="citation">(Gray 2019)</span>. In particular, a toolchain walkthrough is a reflection of <em>one</em> workflow, whilst others, indeed, better, workflows might exist. This is in contrast to a comprehensive review of tools.</p>
+<p>Toolchain walkthroughs aim to identify obstacles and advantages in implementation of scientific workflows.</p>
+<div id="objective-of-this-toolchain-walkthrough" class="section level2">
+<h2>Objective of this toolchain walkthrough</h2>
+<p>This toolchain walkthrough aims to provide guidance on implementing a test-driven workflow for an in-development analysis. Many analyses begin as scripts that develop [todo find blog post on this]</p>
+</div>
+<div id="devops-and-assumed-expertise" class="section level2">
+<h2>Devops and assumed expertise</h2>
 </div>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1 class="unnumbered">References</h1>
 <div id="refs" class="references hanging-indent">
+<div id="ref-Bryan2017ExcuseMD">
+<p>Bryan, Jennifer. 2017. “Excuse Me, Do You Have a Moment to Talk About Version Control?” <em>PeerJ PrePrints</em> 5: e3159.</p>
+</div>
 <div id="ref-chang_fundamentalspianopractice_2009a">
 <p>Chang, Chuan C. 2009. <em>Fundamentals of Piano Practice</em>.</p>
 </div>
@@ -433,6 +450,9 @@ summary {
 </div>
 <div id="ref-hester_covr_2016">
 <p>Hester, Jim. 2016. “Covr: Bringing Test Coverage to R.”</p>
+</div>
+<div id="ref-marwick_packaging_2018">
+<p>Marwick, Ben, Carl Boettiger, and Lincoln Mullen. 2018. “Packaging Data Analytical Work Reproducibly Using R (and Friends).” e3192v2. PeerJ Inc. <a href="https://doi.org/10.7287/peerj.preprints.3192v2">https://doi.org/10.7287/peerj.preprints.3192v2</a>.</p>
 </div>
 <div id="ref-_rstudiocloud_">
 <p>“RStudio Cloud.” n.d. https://rstudio.cloud/learn/primers.</p>

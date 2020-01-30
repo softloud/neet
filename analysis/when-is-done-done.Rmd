@@ -39,9 +39,27 @@ Scientific errors that are inadvertently introduced by faulty workflow are chara
 
 One way to characterise automated tests is to consider them part of a suite of methodologies that are being developed to mitigate _questionable research practices_ [@fraser_questionable_2018]. For social scientists and ecologists, a literature is emerging on how our methodologies inadvertently lead to errors in scientific reasoning, $p$-hacking, altering a statistical model to achieve a desired outcome. But there are others, too, *HARKing*, hypothesising after the fact, where the question is changed to achieve a desired outcome from the model, and *cherry picking*, leaving out troublesome aspects of the analysis that don't fit a desired narrative. 
 
-Gould is extending these ideas to an examination of the workflow of ecological models.
+Gould is extending these ideas to an examination of the workflow of ecological models. 
 
 [todo: gould extension bridge to computing]
+
+As researcher software engineers, it behoves us to consider what are questionable research practices in software produced for data analyses. Version control and open code sharing via a platform such as GitHub, is one way to mitigate questionable research practices in scientific computing [@Bryan2017ExcuseMD]. There is also a growing literature on reproducible research compendia via packaged analyses [@marwick_packaging_2018; @wilson_good_2017].     
+
+In this manuscript add to this litearature by focussing on workflows for automated tests that assist the developer communicate what they have coded to others and their future self, as a means of mitigating questionable research practices in scientific computing. 
+
+# A test-driven toolchain walkthrough for an in-development analysis
+
+In this section we now consider the practicality of implementing tests through a *toolchain walkthrough*, an opinionated documetation of a scientific workflow , towards a measure of `code::proof`, confidence in the algorithm implemented [@grayCodeProofPrepare2019]. In particular, a toolchain walkthrough is a reflection of *one* workflow, whilst others, indeed, better, workflows might exist. This is in contrast to a comprehensive review of tools. 
+
+Toolchain walkthroughs aim to identify obstacles and advantages in implementation of scientific workflows.
+
+## Objective of this toolchain walkthrough
+
+This toolchain walkthrough aims to provide guidance on implementing a test-driven workflow for an in-development analysis. Many analyses begin as scripts that develop [todo find blog post on this]
+
+
+## Devops and assumed expertise
+
 
 
 
