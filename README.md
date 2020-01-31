@@ -66,7 +66,9 @@ written more complex tests.
 
 I will list everyone who contributes as an author on the paper, if they
 wish to acknowledged as such. I do not profess to be the all-knowing
-expert of testing, I do not have the experience.
+expert of testing, I do not have the experience. I am writing this as a
+rumination on the *practice* of automated testing for myself, and for
+the projects I collaborate on with others.
 
 Best, Charles
 
