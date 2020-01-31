@@ -25,9 +25,9 @@ think test-driven development is a key component of the *collaborative*
 nature of research software engineering.
 
 This is largely drawn from Greg Wilson’s primers, R Packages, and,
-hopefully, some practicing researchers who implement automated tests at
-rstudo::conf. This manuscript is intended to be a roadmap to completion
-of research software engineering projects for myself and my team.
+hopefully, some practicing researchers who implement automated tests.
+This manuscript is intended to be a roadmap to completion of research
+software engineering projects for myself and my team.
 
 By stating what we intend our function to do, and how we test it, we
 provide a transparency that helps others catch inadvertent *questionable

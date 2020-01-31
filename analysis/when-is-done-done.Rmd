@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # Fundamentals of practice
-o
+
 Chuang C. Chang's _Fundamentals of Piano Practice_ sets out to address a gap in piano pedagogy [@chang_fundamentalspianopractice_2009a]. A similar gap exists in the implementation of *good enough* practices [@wilson_good_2017], which is to say, what we might reasonably expect of a analyst, in reproducible computing for research data analyses. The objective is different from advanced pianism, but we characterise testing *practice*, as opposed to *techique*, analogous to how Change delineates between  *piano* practice and technique. Through attempting to identify the fundamentals of automated testing for collaborative data analysis development, this manuscript aims to articulate the gap in understanding automated testing implementation for analysts. 
 
 As Chang notes, whilst there a rich history of technical pedagogy, there is a dearth of guidance for pianists on _learning_ the technique [@chang_fundamentalspianopractice_2009a]. There are many canonical texts of pianistic technique pedagogy. Bach provides a pathway from small canons [todo: cite], to two-part inventions[todo: cite], three-part sinfonia, and the challenge of *The Well-Tempered Clavier* and *The Art of Fugue*. Bartok provides the *Mikrokosmos* [todo: ], and Czerny's *School of Velocity* [to do]. In each case, technical exercises of increasing difficulty are provided. In piano pedagogy, a _technical_ exercise isolates a particular aspect of pianistic technique [todo examples]. For example, [todo Czerny staccato]. Or, [todo voicing technique].

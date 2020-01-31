@@ -25,7 +25,7 @@ The objective of this paper is to provide a *toolchain walkthrough* for  a test-
 
 I also see the same patterns play out in Reproducibility Team for [The repliCATS Project](https://replicats.research.unimelb.edu.au/) where I am research assisting while I complete my phd. How do we collaborate and communitcate with each other in a way that reduces anxiety, makes us feel we are on the same page? How do we feel *safe* to share code? I think test-driven development is a key component of the *collaborative* nature of research software engineering. 
 
-This is largely drawn from Greg Wilson's primers, R Packages, and, hopefully, some practicing researchers who implement automated tests at rstudo::conf. This manuscript is intended to be a roadmap to completion of research software engineering projects for myself and my team. 
+This is largely drawn from Greg Wilson's primers, R Packages, and, hopefully, some practicing researchers who implement automated tests. This manuscript is intended to be a roadmap to completion of research software engineering projects for myself and my team. 
 
 By stating what we intend our function to do, and how we test it, we provide a transparency that helps others catch inadvertent *questionable research practices* to which we all fall prey. 
 
