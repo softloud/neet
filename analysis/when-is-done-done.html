@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Charles T. Gray, Daniel Fryer, Elise Gould, and Aaron todo" />
+<meta name="author" content="Charles T. Gray, Emily Riederer, Daniel Fryer, and Elise Gould" />
 
 
 <title>When is done done? Towards the fundamentals of automated testing for collaborative data analysis development</title>
@@ -384,14 +384,14 @@ summary {
 
 
 <h1 class="title toc-ignore">When is done <em>done</em>? Towards the fundamentals of automated testing for collaborative data analysis development</h1>
-<h4 class="author">Charles T. Gray, Daniel Fryer, Elise Gould, and Aaron todo</h4>
+<h4 class="author">Charles T. Gray, Emily Riederer, Daniel Fryer, and Elise Gould</h4>
 
 </div>
 
 
-<div id="fundamentals" class="section level1">
-<h1>Fundamentals</h1>
-<p>Chuang C. Chang’s <em>Fundamentals of Piano Practice</em> sets out to address a gap in piano pedagogy <span class="citation">(Chang 2009)</span>. A similar gap exists in the implementation of <em>good enough</em> practices <span class="citation">(Wilson et al. 2017)</span>, which is to say, what we might reasonably expect of a analyst, in reproducible computing for research data analyses. The objective is different from advanced pianism, but we characterise testing <em>practice</em>, as opposed to <em>techique</em>, analogous to how Change delineates between <em>piano</em> practice and technique. Through attempting to identify the fundamentals of automated testing for collaborative data analysis development, this manuscript aims to articulate the gap in understanding automated testing implementation for analysts.</p>
+<div id="fundamentals-of-practice" class="section level1" number="1">
+<h1 number="1"><span class="header-section-number">1</span> Fundamentals of practice</h1>
+<p>o Chuang C. Chang’s <em>Fundamentals of Piano Practice</em> sets out to address a gap in piano pedagogy <span class="citation">(Chang 2009)</span>. A similar gap exists in the implementation of <em>good enough</em> practices <span class="citation">(Wilson et al. 2017)</span>, which is to say, what we might reasonably expect of a analyst, in reproducible computing for research data analyses. The objective is different from advanced pianism, but we characterise testing <em>practice</em>, as opposed to <em>techique</em>, analogous to how Change delineates between <em>piano</em> practice and technique. Through attempting to identify the fundamentals of automated testing for collaborative data analysis development, this manuscript aims to articulate the gap in understanding automated testing implementation for analysts.</p>
 <p>As Chang notes, whilst there a rich history of technical pedagogy, there is a dearth of guidance for pianists on <em>learning</em> the technique <span class="citation">(Chang 2009)</span>. There are many canonical texts of pianistic technique pedagogy. Bach provides a pathway from small canons [todo: cite], to two-part inventions[todo: cite], three-part sinfonia, and the challenge of <em>The Well-Tempered Clavier</em> and <em>The Art of Fugue</em>. Bartok provides the <em>Mikrokosmos</em> [todo: ], and Czerny’s <em>School of Velocity</em> [to do]. In each case, technical exercises of increasing difficulty are provided. In piano pedagogy, a <em>technical</em> exercise isolates a particular aspect of pianistic technique [todo examples]. For example, [todo Czerny staccato]. Or, [todo voicing technique].</p>
 <p>The dearth that Chang attempts to address is in pianistic <em>practice</em> habits that will lead to succesful adoption of these techniques. In science, we might call this <em>work flow</em> [todo cite].</p>
 <blockquote>
@@ -399,8 +399,8 @@ summary {
 </blockquote>
 <p>Wilson et al. followed their work on <em>best practices</em> in scientific computing <span class="citation">(Wilson et al. 2014)</span>, with a reflection on <em>good enough</em> practices <span class="citation">(Wilson et al. 2017)</span>, in recognition that we must account for what we might reasonably request of practitioners of data analysis. In this manuscript, we consider one component of <em>good enough</em> practice in data analysis: <em>automated testing</em>.</p>
 <p>Automated tests are a formalised way of implementing checks that inputs and outputs of algorithsms are as expected <span class="citation">(Wickham 2015)</span>. Informative messages are output that assist the developer in identifying where code is not performing as expected.</p>
-<div id="collaboration-via-automated-testing" class="section level2">
-<h2>Collaboration via automated testing</h2>
+<div id="collaboration-via-automated-testing" class="section level2" number="1.1">
+<h2 number="1.1"><span class="header-section-number">1.1</span> Collaboration via automated testing</h2>
 <p>At heart, automated tests are collaborative. This may be with others, but applies at least as much to a analyst approaching their own past work with which they have become unfamiliar. Automated tests provide an efficient way of returning to and extending an analysis.</p>
 <p>Reproducible research compendia provide a means by which analysts can share their work so that it may be extended by others, and automated tests provide <code>code::proof</code> <span class="citation">(Gray 2019)</span>, a measure of confidence in the algorithm for others. Hayes expresses concern about using algorithms published without automated tests <span class="citation">(Hayes 2019)</span>. However, only one quarter of the largest repository of R packages, <a href="https://cran.r-project.org/">The Comprehensive R Archive Network</a>, have any automated tests <span class="citation">(Hester 2016)</span>, highlighting that, despite testing identified as a ‘vital’ part of data analysis <span class="citation">(Wickham 2015)</span>, automated testing is yet to be widely adopted.</p>
 <p>Indeed, as noted in Wilson’s testing primers (in development) for <a href="https://rstudio.cloud/learn/primers">RStudio</a> <span class="citation">(“RStudio Cloud,” n.d.)</span>,</p>
@@ -409,8 +409,8 @@ summary {
 </blockquote>
 <p>Scientific errors that are inadvertently introduced by faulty workflow are characterised in metascience as <em>questionable research practices</em>.</p>
 </div>
-<div id="questionable-research-practices-in-scientific-computing" class="section level2">
-<h2>Questionable research practices in scientific computing</h2>
+<div id="questionable-research-practices-in-scientific-computing" class="section level2" number="1.2">
+<h2 number="1.2"><span class="header-section-number">1.2</span> Questionable research practices in scientific computing</h2>
 <p>One way to characterise automated tests is to consider them part of a suite of methodologies that are being developed to mitigate <em>questionable research practices</em> <span class="citation">(Fraser et al. 2018)</span>. For social scientists and ecologists, a literature is emerging on how our methodologies inadvertently lead to errors in scientific reasoning, <span class="math inline">\(p\)</span>-hacking, altering a statistical model to achieve a desired outcome. But there are others, too, <em>HARKing</em>, hypothesising after the fact, where the question is changed to achieve a desired outcome from the model, and <em>cherry picking</em>, leaving out troublesome aspects of the analysis that don’t fit a desired narrative.</p>
 <p>Gould is extending these ideas to an examination of the workflow of ecological models, adapting Gelman and [todo]</p>
 <p>[todo: gould extension bridge to computing]</p>
@@ -418,25 +418,25 @@ summary {
 <p>This manuscript contributes to this literature by focussing on workflows for automated tests that assist the developer communicate what they have coded to others and their future self, as a means of mitigating questionable research practices in scientific computing.</p>
 </div>
 </div>
-<div id="a-test-driven-toolchain-walkthrough-for-an-in-development-analysis" class="section level1">
-<h1>A test-driven toolchain walkthrough for an in-development analysis</h1>
+<div id="a-test-driven-toolchain-walkthrough-for-an-in-development-analysis" class="section level1" number="2">
+<h1 number="2"><span class="header-section-number">2</span> A test-driven toolchain walkthrough for an in-development analysis</h1>
 <p>In this section we now consider the practicality of implementing tests through a <em>toolchain walkthrough</em>, an opinionated documetation of a scientific workflow , towards a measure of <code>code::proof</code>, confidence in the algorithm implemented <span class="citation">(Gray 2019)</span>. In particular, a toolchain walkthrough is a reflection of <em>one</em> workflow, whilst others, indeed, better, workflows might exist. This is in contrast to a comprehensive review of tools. Instead, a toolchain walkthrough ruminates on considerations <em>after</em> a set of tools have been chosen.</p>
 <p>Toolchain walkthroughs aim to identify obstacles and advantages in implementation of scientific workflows. By necessity, a toolchain walkthrough is language specific, but, ideally, observations emerge that are useful for any appropriate language employed for data analysis, such as Python. This toolchain walkthrough examines the <em>process</em>, analogous to piano <em>practice</em>, of implementing tests, as opposed to defining comprehensively the nature of <em>good enough</em> tests, analogous to guidance on pianistic technique.</p>
-<div id="objective-of-this-toolchain-walkthrough" class="section level2">
-<h2>Objective of this toolchain walkthrough</h2>
-<p>This toolchain walkthrough aims to provide guidance on implementing a test-driven workflow for an in-development analysis. Many analyses begin as scripts that develop [todo find blog post on this]. The central question of this manuscript is what constitutes a minimal level of testing for in-development analysis, where code is still being written and features implemented. Automated tests assist in time-consuming debugging tasks <span class="citation">(Wickham 2015)</span>, but also in providing information with a developer who is unfamiliar with the code.</p>
+<div id="objective-of-this-toolchain-walkthrough" class="section level2" number="2.1">
+<h2 number="2.1"><span class="header-section-number">2.1</span> Objective of this toolchain walkthrough</h2>
+<p>This toolchain walkthrough aims to provide guidance on implementing a test-driven workflow for an in-development analysis. Many analyses begin as scripts that develop [todo expan] <span class="citation">(Riederer 2019)</span>. The central question of this manuscript is what constitutes a minimal level of testing for in-development analysis, where code is still being written and features implemented. Automated tests assist in time-consuming debugging tasks <span class="citation">(Wickham 2015)</span>, but also in providing information with a developer who is unfamiliar with the code.</p>
 <p>This is a first effort in identifying the fundamentals of automated testing for the collaborative process of developing an analysis in R. Analgous to Riederer’s <em>RMarkdown-driven development</em> <span class="citation">(Riederer 2019)</span>, which deconstructs the workflow of developing an analysis from .Rmd notebook-style reports to packaged analyses, we consider a set a computational tools that form a workflow to assist in the coherent development of automated tests for data analysis. This is an extension of the workflow suggestions provided in <em>R Packages</em>, with a specific focus on collaborative workflows in research.</p>
 </div>
-<div id="devops-and-assumed-expertise" class="section level2">
-<h2>Devops and assumed expertise</h2>
+<div id="devops-and-assumed-expertise" class="section level2" number="2.2">
+<h2 number="2.2"><span class="header-section-number">2.2</span> Devops and assumed expertise</h2>
 <p>This toolchain walkthrough assumes a knowledge of R advanced enough to be using the language to be answering scientific research claims.</p>
 </div>
-<div id="section" class="section level2">
-<h2></h2>
+<div id="section" class="section level2" number="2.3">
+<h2 number="2.3"><span class="header-section-number">2.3</span> </h2>
 </div>
 </div>
-<div id="references" class="section level1 unnumbered">
-<h1 class="unnumbered">References</h1>
+<div id="references" class="section level1 unnumbered" number>
+<h1 class="unnumbered" number>References</h1>
 <div id="refs" class="references hanging-indent">
 <div id="ref-Bryan2017ExcuseMD">
 <p>Bryan, Jennifer. 2017. “Excuse Me, Do You Have a Moment to Talk About Version Control?” <em>PeerJ PrePrints</em> 5: e3159.</p>

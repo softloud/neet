@@ -5,33 +5,11 @@
 
 > interested in contributing to authorship? read on.
 
-Hi there, friends at rstudio::conf.
+Hi there,
 
 I am writing a
 [manuscript](https://github.com/softloud/neet/blob/master/analysis/when-is-done-done.Rmd)
-about piano practice and automated tests for my doctorate. And, after a
-delightful chat on twitter,
-
-<blockquote class="twitter-tweet">
-
-<p lang="en" dir="ltr">
-
-This sounds very interesting\! I'd love to get involved. What's the best
-Slack to reach you on?
-
-</p>
-
-— Emily Riederer @ \#rstudioconf (@EmilyRiederer)
-<a href="https://twitter.com/EmilyRiederer/status/1222914433980211203?ref_src=twsrc%5Etfw">January
-30, 2020</a>
-
-</blockquote>
-
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-it occurs to me what with rstudio::conf on and all, I might be able to
-mine some of the finest minds in reproducible computing for data
-analysis in R.
+about piano practice and automated tests for my doctorate.
 
 The objective of this paper is to provide a *toolchain walkthrough* for
 a test-driven research data analyses. I have some of analyses to
@@ -64,11 +42,12 @@ that I have been playing around with is boundary tests for
 in-development analyses. I’d be interested to hear from people who have
 written more complex tests.
 
-I will list everyone who contributes as an author on the paper, if they
-wish to acknowledged as such. I do not profess to be the all-knowing
-expert of testing, I do not have the experience. I am writing this as a
-rumination on the *practice* of automated testing for myself, and for
-the projects I collaborate on with others.
+I will list everyone who contributes to discussion as an author on the
+paper, if they wish to acknowledged as such, or an acknowledgement. I do
+not profess to be the all-knowing expert of testing, I do not have the
+experience. I am writing this as a rumination on the *practice* of
+automated testing for myself, and for the projects I collaborate on with
+others.
 
 Best, Charles
 
