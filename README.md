@@ -42,12 +42,11 @@ that I have been playing around with is boundary tests for
 in-development analyses. I’d be interested to hear from people who have
 written more complex tests.
 
-I will list everyone who contributes to discussion as an author on the
-paper, if they wish to acknowledged as such, or an acknowledgement. I do
-not profess to be the all-knowing expert of testing, I do not have the
-experience. I am writing this as a rumination on the *practice* of
-automated testing for myself, and for the projects I collaborate on with
-others.
+I am happy for people to co-author and contribute to content, indeed,
+I’d welcome it. I do not profess to be the all-knowing expert of
+testing, I do not have the experience. I am writing this as a rumination
+on the *practice* of automated testing for myself, and for the projects
+I collaborate on with others.
 
 Best, Charles
 
