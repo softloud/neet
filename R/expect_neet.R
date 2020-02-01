@@ -25,10 +25,16 @@
 #'
 #' A `ggplot` object is checked for successfully running.
 #'
-#' @import testthat
 #'
-#' @export
+#' [assert_neet] tests the input is non-empty and of expected type, and
+#' [expect_neet] is an expectation for [test_that] that checks the output is
+#' non-empty and of expected type
+#' [test_neet] is a test for [testthat]
+#'
+#' @import testthat
+#' @import assertthat
 
+#' @export
 expect_neet <- function(thing_to_test, expected_type) {
   # we expect non-empty
   expect_nonempty(thing_to_test)
@@ -36,65 +42,4 @@ expect_neet <- function(thing_to_test, expected_type) {
   expect_is(thing_to_test, expected_type)
 }
 
-#' @export
 
-# generic function
-expect_nonempty <- function(thing_to_test) {
-  UseMethod("expect_nonempty")
-}
-
-#' @export
-
-# default neet
-expect_nonempty.default <-
-  function(thing_to_test) {
-    "no neet test for this object"
-  }
-
-#' @export
-
-expect_nonempty.data.frame <-
-  function(thing_to_test) {
-    expect_gt(thing_to_test %>% nrow(), 0)
-  }
-
-#' @export
-
-expect_nonempty.numeric <-
-  function(thing_to_test, positive_only = FALSE) {
-
-    # test to see if na
-    expect_false(any(is.na(thing_to_test)))
-    expect_false(is.null(thing_to_test))
-
-    # infs
-    expect_false(
-      any(abs(as.numeric(thing_to_test)) == Inf))
-
-    # non-empty
-    expect_true(length(thing_to_test) > 0)
-  }
-
-#' @export
-
-expect_nonempty.list <- function(thing_to_test){
-  expect_gt(thing_to_test %>% length(), 0)
-}
-
-#' @export
-
-expect_nonempty.character <- function(thing_to_test){
-  expect_gt(thing_to_test %>% stringr::str_length(), 0)
-}
-
-#' @export
-
-expect_nonempty.rma <- function(thing_to_test) {
-  expect_is(thing_to_test, "rma")
-}
-
-#' @export
-
-expect_nonempty.ggplot <- function(thing_to_test) {
-  TRUE
-}
