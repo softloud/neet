@@ -124,6 +124,8 @@ The `covr::` function `package_coverage` provides the percentage of the lines of
 
 The Center for Open Science recommend preregistering research hypotheses before testing them as one safeguard against inadvertent questionable research practices. Analogously, we might think of preregistering our code as providing some `code::proof` of the implementation of our algorithm.
 
+
+
 To preregister a function:
 
 ### On a piece of paper.
@@ -140,11 +142,116 @@ To preregister a function:
 
 - ggplot picture of function? use vis thingy from drake?
 
-```{r message=FALSE}
+
+
+```{r message=FALSE, fig.width=15, echo=FALSE}
 library(tidyverse)
+
+library(ggraph)
+library(tidygraph)
+
+nodes <- tribble(
+  ~node, ~state,
+  "a", "input",
+  "b", "input",
+  "q1", "input",
+  "q2", "input",
+    "m", "input",
+  "n","input",
+  "hozo", "estimator",
+  "pren_c3", "estimator",
+  "pren_c1", "estimator",
+  "bland", "estimator",
+  "wan_c1", "estimator",
+  "wan_c2", "estimator",
+  "wan_c3", "estimator",
+  "se_median", "output",
+  "mean", "output",
+  "sd", "output"
+) %>% 
+  mutate(state = fct_relevel(state, "input"))
+
+edges <- tribble(
+  ~from, ~to,
+  # hozo estimator
+  5,7, 
+  6,7,
+  1,7,
+  2,7,
+  7,15,
+  7,16,
+
+  # wan1 estimator
+5,11, 
+6,11,
+1,11,
+2,11,
+11,15,
+11,16,
+  
+  # pren1 estimator
+5,9, 
+6,9,
+1,9,
+2,9,
+9,14,
+  
+  # bland estimator
+  5,10,
+  6,10,
+  1,10,
+  2,10,
+  3,10,
+  4,10,
+  10,15,
+  10,16,
+  
+# wan2 estimator
+5,12,
+6,12,
+1,12,
+2,12,
+3,12,
+4,12,
+12,15,
+12,16,
+
+  # wan3 estimator
+5,13, 
+6,13,
+3,13,
+4,13,
+13,15,
+13,16,
+
+# pren3
+5,8, 
+6,8,
+3,8,
+4,8,
+8,14
+)
+
+graph <- tbl_graph(nodes, edges)
+
+graph %>% 
+  ggraph() +
+  geom_edge_link(arrow = arrow(20), colour = "lightgrey") + 
+  geom_node_label(aes(label = node, colour = state),  
+                  size = 6,
+                  fill = "lightgrey",
+                  alpha = 0.6) +
+  theme_graph() +
+  hrbrthemes::scale_color_ipsum() +
+  theme(legend.position = "none")
+  
+
+```
+
+```{r message=FALSE}
 library(igraph)
 
-make_graph(~ 
+mygraph <- make_graph(~ 
 a-+hozo, b-+hozo, m-+hozo, n-+hozo, hozo-+s, hozo-+mean,
 a-+wan1, b-+wan1, m-+wan1, n-+wan1, wan1-+s, wan1-+mean,
 a-+pren, b-+pren, m-+pren, n-+pren, pren-+s,
@@ -152,9 +259,9 @@ q1-+wan3, q3-+wan3, m-+wan3, n-+wan3, wan3-+s, wan3-+s,
 q1-+pren, q3-+pren, m-+pren, n-+pren, pren-+s,
 a-+wan2, b-+wan2, q1-+wan2, q3-+wan2, m-+wan2, n-+wan2, wan2-+s, wan2-+mean,
 a-+bland, b-+bland, q1-+bland, q3-+bland, m-+bland, n-+bland, bland-+s, bland-+mean
+           ) 
 
-
-           ) %>% plot(
+mygraph %>% plot(
              vertex.color = "grey",
              vertex.frame.color = "darkgrey",
              vertex.size = 10,
@@ -165,66 +272,6 @@ a-+bland, b-+bland, q1-+bland, q3-+bland, m-+bland, n-+bland, bland-+s, bland-+m
 
 ```
 
-```{r}
-tribble(
-  ~x, ~y, ~f, 
-"input", "a", "hozo", 
-"input", "a", "bland",
-"input", "a", "wan1",
-"input", "a", "pren",
-
-"input", "b", "hozo",
-"input", "b", "bland",
-"input", "b", "wan1",
-"input", "b", "pren",
-
-"function", "hozo", "hozo",
-"function", "bland", "bland",
-"function", "wan1", "wan1",
-"function", "pren", "pren",
-
-"output", "sd", "hozo",
-"output", "sd", "bland",
-"output", "sd", "wan1",
-"output", "se", "pren",
-
-"input", "q1", "bland",
-"input", "q1", "wan2",
-"input", "q1", "pren",
-
-"input", "q3", "bland",
-"input", "q3", "wan2",
-"input", "q3", "pren"
-
-) %>% 
-  mutate(x = fct_relevel(x, "input"),
-         estimator = map2_chr(y, f, function(y, f) {
-         } paste(y, f, collapse = "|")),
-         y_coord = case_when(
-           y == "a" ~ 0,
-           y == "b" ~ 1,
-           y == "q1" ~ 0.25,
-           y == "q3" ~ 0.75,
-           y == "m" ~ 0.5,
-           y == "mean" ~ 0.25,
-           y == "se" ~ 0.75,
-           y == "hozo" ~ 0,
-           y == "wan1" ~ 1/6,
-           y == "pren" ~ 3/6,
-           y == "wan2" ~ 2/6,
-           y == "bland" ~ 4/6,
-           y == "wan3" ~ 5/6,
-           y == "sd" ~ 0.5
-         )) %>% 
-  ggplot(aes(x = x, y = y_coord)) +
-  geom_point() +
-  geom_line(aes(group = estimator)) +
-  labs(
-    x = "algorithm state"
-  )
-
-
-```
 
 
 ## `neet` test the inputs and outputs
