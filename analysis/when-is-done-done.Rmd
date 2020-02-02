@@ -24,15 +24,23 @@ This manuscript will go through three phases:
 
 # Coding to doneness 
 
-Musicians, similarly, athletes, do not see themselves as having mastered a skill, but active practitioners of a craft [@galway_flute_1990]. To be a flautist is to practice, and to be athlete is to train. Algorithms are coded by people who practice code, and significant problems emerge when algorithms are treated as fixed artifacts, rather than one of the tools utilised by those who *practice* code. 
+Contrapunctus I is rarely learnt in one sitting, indeed, for most pianists, to even play the piece is the result of many months' diligent work. For the student of this opening work of Bach's *The Art of Fugue*, the time at the keyboard spent to play through a three-minute piece of music can seem immeasurable. To play well, a diligent pianist must employ technqiue. But *how* a pianist is to achieve the desired technique is not clear [@chang_fundamentalspianopractice_2009a]. 
 
-In Australia, a heartbreakingly-ongoing example of this kind of problem with the income-reporting data analyis algorithm that assesses if income welfare recipients have been overpaid entitlements due to working. Crude averaging calculations have lead to ongoing incorrect debt notices issued, such as 20,000 people receiving "robodebt" notices for debts they did not owe [@mcilroy201720]. Problems like this have real impacts on every day lives. Perhaps, if the algorithm were considered a workflow practiced and monitored by a team of data scientists, rather than a static object, problems would not be persisting to this day. 
+For a researcher performing an analysis using a computational tool such as R, it can be unclear when an analysis is *done*. And, while there are technical guides on *good enough* practice, it can feel overwhelming as to what to adopt and where. Particularly for an in-development algorithm, which is to say, an algorithm with scripts already started, and some results explored. 
 
-We might view this as a computational instantiation of what Fraser *et al.* denoted as *questionable research practices* (QRPs). The QRPs Fraser *et al.* provide a taxonomy for refer to various practices in scientific reasoning found in ecology and evolution, such as $p$-hacking, adjusting a model's specification to achieve a desired $p$-value, or *cherry picking*, failing to report variables or results that do not fit a desired narrative. QRPs are, importantly, often not a result of scientific malpractice, but a question of discipline-specific conventions established in bygone eras not translating well to data-driven research [@fraser_questionable_2018]. In scientific computing, as the robodebt example illustrates, similar and overlapping errors may occur. 
+This manuscript picks up from where Riederer left off with *RMarkdown-driven development* and suggests a  *coderegistering test-driven workflow* for coding to doneness. This workflow provides a roadmap to completion for a packaged analysis with `code::proof`ed the manuscript [@gray2019textttcodeproof], provided measures of confidence in the implementaiton of the algorithm.   
+
+Musicians and, similarly, athletes, do not see themselves as having mastered a skill, but active practitioners of a craft [@galway_flute_1990]. To be a flautist is to practice, and to be athlete is to train. 
+
+# Questionable research practices in scientific computing
+
+Algorithms are coded by people who practice code, and significant problems emerge when algorithms are treated as fixed artifacts, rather than one of the tools utilised by those who *practice* code. In Australia, a heartbreakingly-ongoing example of this kind of problem with the income-reporting data analyis algorithm that assesses if income welfare recipients have been overpaid entitlements due to working. Crude averaging calculations have lead to ongoing incorrect debt notices issued, such as 20,000 people receiving "robodebt" notices for debts they did not owe [@mcilroy201720]. Problems in data analysis have real impacts on real people's lives. Perhaps, if the algorithm were considered a workflow practiced and monitored by a team of data scientists, rather than a static object, problems would not be persisting to this day [@karp_robodebtfederalcourt_2019]. 
+
+We might view this as a computational instantiation of what Fraser *et al.* denote *questionable research practices* (QRPs). The QRPs Fraser *et al.* provide a taxonomy for refer to various practices in scientific methodology found in ecology and evolution, such as $p$-hacking, adjusting a model's specification to achieve a desired $p$-value, or *cherry picking*, failing to report variables or results that do not fit a desired narrative. QRPs are, importantly, often not a result of scientific malpractice, but a question of discipline-specific conventions established in bygone eras not translating well to data-driven research [@fraser_questionable_2018]. In scientific computing, as the robodebt example illustrates, similar and overlapping errors may occur. 
 
 A consideration when providing recommendations of best practice is what me might reasonably expect of a researcher. Indeed, it is likely unrealistic to expect *best practices* in scientific computing [@wilson_best_2014], perhaps we would be better off asking for *good enough* practices [@wilson_good_2017] in scientific computing. For while researchers use computational algorithms in science every day, most of them are not trained in computational science. Even mathematicians and statisticians do a great deal of training at the blackboard, rather than the computer.    
 
-
+# Practice fundamentals
 
 
 Key arguments to keep in mind:
@@ -189,22 +197,22 @@ For this coderegistration, we  To coderegister an algorithm:
   
 ### On a piece of paper.
   
-  1. Draw a diagram of the inputs and outputs of a algorithm.
+1. Draw a diagram of the inputs and outputs of the algorithm.
 2. Draw where this algorithm fits in the pipeline of the package, if appropriate.
 
 ### In an issue on GitHub:
 
 1. Describe the algorithm's intended purpose.
-2. Describe as explicitly as possible the input parameters and how they will be tested.
-3. Describe as explicitly as possible the output parameters and how they will be tested.
+2. Describe the input parameters and how they will be tested.
+3. Describe the output parameters and how they will be tested.
 
-Update 
+Update the coderegistration as needed. 
 
 ### Sketch-diagram 
 
-If possible, include image of diagram if not burdonsomely time consuming (but this often is).
+An image or diagram is very help, if not burdonsomely time consuming (but it often is).
 
-For those comfortable with *graphs* understood as mathematical objects as a set of vertices from $V$, and a set of edges $V \times V$. There are a few options. 
+For those comfortable with *graphs* understood as mathematical objects as a set of vertices from $V$, and a set of edges $V \times V$. There are visualisation optionss where the vertices can be tagged with attributes.  
 
 ```{r message=FALSE}
 library(igraph)
@@ -402,10 +410,7 @@ graph %>%
   scale_y_reverse() + 
   coord_flip() 
   
-
 ```
-
-
 
 
 ## `neet` test the inputs and outputs
