@@ -42,4 +42,17 @@ expect_neet <- function(thing_to_test, expected_type) {
   expect_is(thing_to_test, expected_type)
 }
 
+#' @export
+test_neet <- function(thing_to_test, expected_type) {
+  expect_neet(thing_to_test, expected_type)
+}
+
+#' @export
+assert_neet <- function(thing_to_test, expected_type) {
+  # we expect non-empty
+  notempty(thing_to_test)
+  # thing of expected type
+  assert_that(class(thing_to_test) == expected_type)
+}
+
 

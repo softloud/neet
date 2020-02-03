@@ -31,7 +31,12 @@ A `list`` is checked for being of length > 1.
 
 A \code{data.frame} is checked for having at least one row.
 
-A \code{ggplot} object is checked for successfully running.}
+A \code{ggplot} object is checked for successfully running.
+
+\link{assert_neet} tests the input is non-empty and of expected type, and
+\link{expect_neet} is an expectation for \link{test_that} that checks the output is
+non-empty and of expected type
+\link{test_neet} is a test for \link{testthat}}
 }
 \description{
 Test for non-empty thing of expected type
