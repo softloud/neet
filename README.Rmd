@@ -13,30 +13,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-# When is done *done*? Towards the fundamentals of automated testing for collaborative data analysis development
-
-> interested in contributing to authorship? read on.
-
-Hi there,  
-
-I am writing a [manuscript](https://github.com/softloud/neet/blob/master/analysis/when-is-done-done.Rmd) about piano practice and automated tests for my doctorate. 
-
-The objective of this paper is to provide a *toolchain walkthrough* for  a test-driven research data analyses. I have some of analyses to complete for the doctorate, but it can feel overwhelming as to where to start and where it will end, with reproducible computing. 
-
-I also see the same patterns play out in Reproducibility Team for [The repliCATS Project](https://replicats.research.unimelb.edu.au/) where I am research assisting while I complete my phd. How do we collaborate and communitcate with each other in a way that reduces anxiety, makes us feel we are on the same page? How do we feel *safe* to share code? I think test-driven development is a key component of the *collaborative* nature of research software engineering. 
-
-This is largely drawn from Greg Wilson's primers, R Packages, and, hopefully, some practicing researchers who implement automated tests. This manuscript is intended to be a roadmap to completion of research software engineering projects for myself and my team. 
-
-By stating what we intend our function to do, and how we test it, we provide a transparency that helps others catch inadvertent *questionable research practices* to which we all fall prey. 
-
-I have created some [issues](https://github.com/softloud/neet/issues) with questions about workflow and *doneness*. You can also hit me up on r-ladies slack or the openevisynth slack (hit me up for an invite). 
-   
-Me, I would describe myself as an automated testing beginner. Something that I have been playing around with is boundary tests for in-development analyses. I'd be interested to hear from people who have written more complex tests. 
-
-I am happy for people to co-author and contribute to content, indeed, I'd welcome it. I do not profess to be the all-knowing expert of testing, I do not have the experience. I am writing this as a rumination on the *practice* of automated testing for myself, and for the projects  I collaborate on with others.  
-
-Best, 
-Charles
 
 # neet
 
@@ -89,5 +65,33 @@ expect_neet(3, "numeric") # test numeric
 expect_neet("cat", "character") # test character string
 expect_neet(mtcars, "data.frame") # test data frame
 
- 
+assert_neet(3, "numeric") # test numeric
+assert_neet("cat", "character") # test character string
+assert_neet(mtcars, "data.frame") # test data frame
+
 ```
+
+# When is done *done*? Towards the fundamentals of automated testing for collaborative data analysis development
+
+> interested in contributing to authorship? read on.
+
+Hi there,  
+
+I am writing a [manuscript](https://github.com/softloud/neet/blob/master/analysis/when-is-done-done.Rmd) about piano practice and automated tests for my doctorate. 
+
+The objective of this paper is to provide a *toolchain walkthrough* for  a test-driven research data analyses. I have some of analyses to complete for the doctorate, but it can feel overwhelming as to where to start and where it will end, with reproducible computing. 
+
+I also see the same patterns play out in Reproducibility Team for [The repliCATS Project](https://replicats.research.unimelb.edu.au/) where I am research assisting while I complete my phd. How do we collaborate and communitcate with each other in a way that reduces anxiety, makes us feel we are on the same page? How do we feel *safe* to share code? I think test-driven development is a key component of the *collaborative* nature of research software engineering. 
+
+This is largely drawn from Greg Wilson's primers, R Packages, and, hopefully, some practicing researchers who implement automated tests. This manuscript is intended to be a roadmap to completion of research software engineering projects for myself and my team. 
+
+By stating what we intend our function to do, and how we test it, we provide a transparency that helps others catch inadvertent *questionable research practices* to which we all fall prey. 
+
+I have created some [issues](https://github.com/softloud/neet/issues) with questions about workflow and *doneness*. You can also hit me up on r-ladies slack or the openevisynth slack (hit me up for an invite). 
+   
+Me, I would describe myself as an automated testing beginner. Something that I have been playing around with is boundary tests for in-development analyses. I'd be interested to hear from people who have written more complex tests. 
+
+I am happy for people to co-author and contribute to content, indeed, I'd welcome it. I do not profess to be the all-knowing expert of testing, I do not have the experience. I am writing this as a rumination on the *practice* of automated testing for myself, and for the projects  I collaborate on with others.  
+
+Best, 
+Charles
