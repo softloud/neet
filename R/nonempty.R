@@ -74,6 +74,12 @@ expect_nonempty.numeric <-
     expect_true(length(thing_to_test) > 0)
   }
 
+
+assert_neet.numeric <-
+  function(thing_to_test) {
+
+}
+
 #' @export
 
 expect_nonempty.list <- function(thing_to_test){
