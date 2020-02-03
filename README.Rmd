@@ -61,10 +61,12 @@ This is a basic example which shows you how to solve a common problem:
 library(neet)
 ## basic example code
 
+# expectations check output of code in testthat files
 expect_neet(3, "numeric") # test numeric
 expect_neet("cat", "character") # test character string
 expect_neet(mtcars, "data.frame") # test data frame
 
+# assertions check inputs of code in function scripts
 assert_neet(3, "numeric") # test numeric
 assert_neet("cat", "character") # test character string
 assert_neet(mtcars, "data.frame") # test data frame
