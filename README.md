@@ -32,7 +32,7 @@ A `ggplot` object is checked for successfully running.
 
 # Installation
 
-You can install the released version of neet from GitHub with:
+You can install the released version of `neet` from GitHub with:
 
 ``` r
 # install devtools
@@ -47,7 +47,9 @@ devtools::install_github("softloud/neet")
 This is a basic example which shows you how to solve a common problem:
 
 ``` r
+library(testthat)
 library(neet)
+
 ## basic example code
 
 # expectations check output of code in testthat files
@@ -64,51 +66,184 @@ assert_neet(mtcars, "data.frame") # test data frame
 #> [1] TRUE
 ```
 
-# When is done *done*? Towards the fundamentals of automated testing for collaborative data analysis development
+# Workflow
 
-> interested in contributing to authorship? read on.
+The `neet::` package supports a coding workflow.
 
-Hi there,
+``` r
+workflow(0)
+```
 
-I am writing a
-[manuscript](https://github.com/softloud/neet/blob/master/analysis/when-is-done-done.Rmd)
-about piano practice and automated tests for my doctorate.
+<img src="man/figures/README-unnamed-chunk-2-1.png" width="50%" style="display: block; margin: auto 0 auto auto;" />
 
-The objective of this paper is to provide a *toolchain walkthrough* for
-a test-driven research data analyses. I have some of analyses to
-complete for the doctorate, but it can feel overwhelming as to where to
-start and where it will end, with reproducible computing.
+This section describes the test-driven workflow presented above as a
+`code::proof`ed coding to doneness.
 
-I also see the same patterns play out in Reproducibility Team for [The
-repliCATS Project](https://replicats.research.unimelb.edu.au/) where I
-am research assisting while I complete my phd. How do we collaborate and
-communitcate with each other in a way that reduces anxiety, makes us
-feel we are on the same page? How do we feel *safe* to share code? I
-think test-driven development is a key component of the *collaborative*
-nature of research software engineering.
+The model workflow includes three stages, repeated three times, before
+returning to the start, the `code::registration`. We use *model* to
+suggest the workflow may be adapted for different use-cases.
 
-This is largely drawn from Greg Wilson’s primers, R Packages, and,
-hopefully, some practicing researchers who implement automated tests.
-This manuscript is intended to be a roadmap to completion of research
-software engineering projects for myself and my team.
+Each phase consists of:
 
-By stating what we intend our function to do, and how we test it, we
-provide a transparency that helps others catch inadvertent *questionable
-research practices* to which we all fall prey.
+1.  `code::registration`
+2.  tests
+3.  code
 
-I have created some [issues](https://github.com/softloud/neet/issues)
-with questions about workflow and *doneness*. You can also hit me up on
-r-ladies slack or the openevisynth slack (hit me up for an invite).
+## `code::proof` workflow for coding to doneness
 
-Me, I would describe myself as an automated testing beginner. Something
-that I have been playing around with is boundary tests for
-in-development analyses. I’d be interested to hear from people who have
-written more complex tests.
+The tests vary each time in complexity, so that the complete model cycle
+consists of ten phases of work:
 
-I am happy for people to co-author and contribute to content, indeed,
-I’d welcome it. I do not profess to be the all-knowing expert of
-testing, I do not have the experience. I am writing this as a rumination
-on the *practice* of automated testing for myself, and for the projects
-I collaborate on with others.
+1.  `code::registration`
 
-Best, Charles
+<!-- end list -->
+
+``` r
+workflow(1)
+#> geom_path: Each group consists of only one observation. Do you need to adjust
+#> the group aesthetic?
+```
+
+<img src="man/figures/README-unnamed-chunk-3-1.png" width="50%" style="display: block; margin: auto 0 auto auto;" />
+
+In an issue on GitHub:
+
+1.  Describe the algorithm’s intended purpose.
+2.  Describe the input parameters and how they will be tested.
+3.  Describe the output parameters and how they will be tested.
+
+## purpose
+
+A `duck` that `"quack"`s.
+
+## input
+
+Nothing.
+
+## output
+
+  - [ ] one neet
+  - [ ] all neets
+  - [ ] and the rest
+
+Character string “quack”.
+
+2.  `neet` tests, one per function
+
+<!-- end list -->
+
+``` r
+workflow(2)
+```
+
+<img src="man/figures/README-unnamed-chunk-4-1.png" width="50%" style="display: block; margin: auto 0 auto auto;" />
+
+Write a test to check the duck quacks at all. This test currently fails,
+because I have not written the code to make it pass, yet.
+
+``` r
+test_that(expect_match(duck(), "quack"))
+#> Error in duck(): could not find function "duck"
+```
+
+3.  code
+
+<!-- end list -->
+
+``` r
+workflow(3)
+```
+
+<img src="man/figures/README-unnamed-chunk-6-1.png" width="50%" style="display: block; margin: auto 0 auto auto;" />
+
+Write code to make the test pass.
+
+``` r
+# write function
+duck <- function() {"quack!"}
+```
+
+And now no error message is returned.
+
+``` r
+test_that(expect_match(duck(), "quack"))
+#> Error in duck(): could not find function "duck"
+```
+
+4.  `code::registration`
+
+Either update or rewrite the `code::registration`. It becomes more
+obvious what code needs to be written once the developer has spent some
+time again with the function.
+
+  - [x] one neet
+  - [ ] all neets
+  - [ ] and the rest
+
+<!-- end list -->
+
+5.  `neet` tests, for all inputs for each function
+
+<!-- end list -->
+
+``` r
+workflow(5)
+```
+
+<img src="man/figures/README-unnamed-chunk-9-1.png" width="50%" style="display: block; margin: auto 0 auto auto;" />
+
+Now consider all inputs. Since we have nothing, we might consider the
+case where there is something, and write a test that expects an error.
+
+``` r
+test_that("function fails with input", {
+  expect_error(duck(3))
+})
+```
+
+6.  code
+
+The duck quacks sufficiently. No more code required\!
+
+7.  `code::registration`
+
+<!-- end list -->
+
+``` r
+workflow(7)
+```
+
+<img src="man/figures/README-unnamed-chunk-11-1.png" width="50%" style="display: block; margin: auto 0 auto auto;" />
+
+Either update or rewrite the `code::registration`.
+
+  - [x] one neet
+  - [x] all neets
+  - [ ] and the rest
+
+<!-- end list -->
+
+8.  tests, and the rest, i.e., any other cases to test for
+
+I am satisified with the test coverage.
+
+9.  code
+
+The duck quacks sufficiently.
+
+7.  `code::registration`
+
+<!-- end list -->
+
+``` r
+workflow(10)
+```
+
+<img src="man/figures/README-unnamed-chunk-12-1.png" width="50%" style="display: block; margin: auto 0 auto auto;" />
+
+  - [x] one neet
+  - [x] all neets
+  - [x] and the rest
+
+For the final `code::registration`, update the document for your future
+self with details you may need when implementing new features.

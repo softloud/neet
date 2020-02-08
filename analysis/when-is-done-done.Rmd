@@ -200,9 +200,9 @@ An excellent way to arrive at *done* for an algorithm is to define, even if only
 
 # Code with intent
 
-When we think of an algorithm, it's easy to feel overwhelmed by the complexity. Here are the relationships between inputs, and just some of the estimators, and outputs in `varameta`, presented as a randomised *graph*, a visual representation of a set of nodes, $V$, and the edges, $V \times V$, between them.
+When we think of an algorithm, it's easy to feel overwhelmed by the complexity. Here are the relationships between inputs, and just some of the estimators, and outputs in `varameta`, presented as a randomised *graph*, a visual representation of a set of nodes, $V$, and the edges, $V \times V$, between them. We understand each function's inputs and outputs, but understanding the way they relate to each other, is often muddled with out planning. Our `code::brain`, the way we conceptualise the code, is disorganised.
 
-```{r codebrain,echo=FALSE,message=FALSE,fig.height=5,fig.cap="code::brain before coderegistration."}
+```{r codebrain,echo=FALSE,message=FALSE,fig.height=5,fig.cap="`code::brain` before `code::registration`."}
 library(igraph)
 
 confusing_relationships <- make_graph(~ 
@@ -256,9 +256,9 @@ Update the coderegistration as needed.
 
 ### Sketch-diagram 
 
-An image or diagram is very help, if not burdonsomely time consuming (but it often is).
+An image or diagram is very help, if not burdonsomely time consuming (but it often is). This section is only useful for those who enjoy graph theory and visualisation, and is not essential. 
 
-For those comfortable with *graphs* understood as mathematical objects as a set of vertices from $V$, and a set of edges $V \times V$. There are visualisation options where the vertices can be tagged with attributes. The code for constructing the following `nodes` and `edges` dataframes has been omitted for brevity, but all code can be found in this manuscript's associated repository [`neet`](https://github.com/softloud/neet) on GitHub.     
+For those comfortable with *graphs* understood as mathematical objects as a set of vertices from $V$, and a set of edges $V \times V$, there are visualisation options where the vertices can be tagged with attributes. The code for constructing the following `nodes` and `edges` dataframes has been omitted for brevity, but all code can be found in this manuscript's associated repository [`neet`](https://github.com/softloud/neet) on GitHub.     
 
 ```{r load graphing pkgs, message=FALSE}
 library(tidyverse)
@@ -446,7 +446,7 @@ graph <- tbl_graph(nodes, edges)
 
 These can be 
 
-```{r message=FALSE, fig.width=15, fig.height=5, fig.cap="Codebrain after coderegistration."}
+```{r message=FALSE, fig.width=15, fig.height=5, fig.cap="`code::brain` after `code::registration`."}
 
 
 graph %>% 
@@ -510,8 +510,6 @@ We use *model* cycle to denote the workflow may be adapted for different use-cas
 workflow(1)
 
 ```
-
-
 
 ### At least one `neet` test per function
 
