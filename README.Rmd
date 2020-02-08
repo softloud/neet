@@ -94,13 +94,13 @@ Each phase consists of:
 2. tests
 3. code
 
-## `code::proof` workflow for coding to doneness
+## coding to `code::proof` workflow
 
 The tests vary each time in complexity, so that the complete model cycle consists of ten phases of work:
 
 1. `code::registration`
 
-```{r}
+```{r message=FALSE}
 workflow(1)
 ```
 

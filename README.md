@@ -89,7 +89,7 @@ Each phase consists of:
 2.  tests
 3.  code
 
-## `code::proof` workflow for coding to doneness
+## coding to `code::proof` workflow
 
 The tests vary each time in complexity, so that the complete model cycle
 consists of ten phases of work:
@@ -100,8 +100,6 @@ consists of ten phases of work:
 
 ``` r
 workflow(1)
-#> geom_path: Each group consists of only one observation. Do you need to adjust
-#> the group aesthetic?
 ```
 
 <img src="man/figures/README-unnamed-chunk-3-1.png" width="50%" style="display: block; margin: auto 0 auto auto;" />
