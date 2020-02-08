@@ -1,5 +1,5 @@
 ---
-title: "When is done *done*? Practice fundamentals of automated testing for collaborative data analysis development"
+title: "Coding to `code::proof`: Practice fundamentals of automated testing for collaborative data analysis development"
 subtitle: "How to go from no tests, to *whoa* tests!"
 author: "sketch-draft by lead author, Charles T. Gray"
 bibliography: references.bib
@@ -7,11 +7,18 @@ output:
   html_document:
     number_sections: true
     code_folding: hide
-# output: pdf_document
+# output: 
+#   pdf_document:
+#     number_sections: true
+
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE,
+                      fig.height = 2.3,
+                      fig.width = 5,
+                      fig.align = "center",
+                      message=FALSE)
 ```
 
 ## Version of this manuscript
@@ -22,9 +29,13 @@ This manuscript will go through three phases:
 2. Implementation with the reproducibiliity team for [The repliCATS Project](https://replicats.research.unimelb.edu.au/) & version listing any team members who wish to co-author. 
 3. Implementation of repliCATS procedures, explicitly, after we need not blind the algorithms for experimental ingegrity. Invitation for external co-authors to contribute and extend the content, review, and final submission. Possibly for useR2020. 
 
+### Acknowledgments
+
+People who have contributed feedback or assisted, some of whom might be co-authors on later drafts: Danielle Navarro, Elise Gould, Hannah Fraser, Aaron 
+
 # Coding to doneness 
 
-Contrapunctus I is rarely learnt in one sitting, indeed, for most pianists, to even play the piece is the result of many months' diligent work, and still it will never feel *done*. For the student of this opening work of Bach's *The Art of Fugue*, the time at the keyboard spent to play through a three-minute piece of music can seem immeasurable.  To play well, a diligent pianist must employ technqiue. But *how* a pianist is to achieve the desired technique is not clear [@chang_fundamentalspianopractice_2009a]. 
+J. S. Bach's Contrapunctus I is not learnt in one sitting [todo: citation]. Indeed, for most pianists, to play the three-minute piece is the result of many months' diligent work, and still it will never feel *done*. To play well, a pianist must employ technqiue. But *how* a pianist is to achieve the desired technique is not clear [@chang_fundamentalspianopractice_2009a]. 
 
 For a researcher performing an analysis using a computational tool such as R, it can be unclear when an analysis is *done*. And, while there are technical guides on *good enough* practice, it can feel overwhelming as to what to adopt and where. Particularly for an in-development algorithm, which is to say, an algorithm with scripts already started, and some results explored. 
 
@@ -67,7 +78,7 @@ At heart, automated tests are collaborative. This may be with others, but applie
 
 Reproducible research compendia provide a means by which analysts can share their work so that it may be extended by others, and automated tests provide `code::proof` [@grayCodeProofPrepare2019], a measure of confidence in the algorithm for others. Hayes expresses concern about using algorithms published without automated tests [@hayes_testing_2019]. However, only one quarter of the largest repository of R packages, [The Comprehensive R Archive Network](https://cran.r-project.org/), have any automated tests [@hester_covr_2016], highlighting that, despite testing identified as a 'vital' part of data analysis [@wickham_r_2015], automated testing is yet to be widely adopted.
 
-# A test-driven toolchain walkthrough for an in-development analysis
+# A test-driven toolchain walkthrough for in-development analyses
 
 In this section we now consider the practicality of implementing tests through a *toolchain walkthrough*, an opinionated documetation of a scientific workflow , towards a measure of `code::proof`, confidence in the algorithm implemented [@grayCodeProofPrepare2019]. In particular, a toolchain walkthrough is a reflection of *one* workflow, whilst others, indeed, better, workflows might exist. This is in contrast to a comprehensive review of tools. Instead, a toolchain walkthrough ruminates on considerations *after* a set of tools have been chosen.
 
@@ -87,6 +98,10 @@ This toolchain walkthrough assumes a knowledge of R advanced enough to be using 
 - GitHub
 
 ## Case study
+
+### `varameta::`
+
+The `varameta::` package is in-development analysis support software for a forthcoming manuscript, Meta-analysis of Medians. 
 
 ## Get an overview with `covr::`
 
@@ -124,7 +139,7 @@ An excellent way to arrive at *done* for an algorithm is to define, even if only
 
 When we think of an algorithm, it's easy to feel overwhelmed by the complexity. Here are the relationships between inputs, and just some of the estimators, and outputs in `varameta`, presented as a randomised *graph*, a visual representation of a set of nodes, $V$, and the edges, $V \times V$, between them.
 
-```{r message=FALSE}
+```{r codebrain,echo=FALSE,message=FALSE,fig.height=5,fig.cap="code::brain before coderegistration."}
 library(igraph)
 
 confusing_relationships <- make_graph(~ 
@@ -140,6 +155,7 @@ a-+bland, b-+bland, q1-+bland, q3-+bland, m-+bland, n-+bland, bland-+s, bland-+m
 confusing_relationships %>% plot(
              vertex.color = "grey",
              vertex.frame.color = "darkgrey",
+             alpha=0.3,
              vertex.size = 10,
              vertex.label.cex = 0.8,
              edge.arrow.size = 0.4
@@ -152,14 +168,10 @@ confusing_relationships %>% plot(
 The Center for Open Science recommend *preregistering* an experiment, stating what the hypothesis is and how the analyst intends to assess the hypothesis as one safeguard against inadvertent questionable research practices. Analogously, we might think of preregistering our code as providing some `code::proof` of the implementation of our algorithm. In this manuscript, we will think of *coderegistration*, stating what the intention of an algorithm is, as - todo: complete
 
 To coderegister an algorithm:
-  
-## On a piece of paper.
-  
-1. Draw a diagram of the inputs and outputs of the algorithm.
-2. Draw where this algorithm fits in the pipeline of the package, if appropriate.
 
+## `code::registration`
 
-## In an issue on GitHub:
+In an issue on GitHub:
 
 1. Describe the algorithm's intended purpose.
 2. Describe the input parameters and how they will be tested.
@@ -167,12 +179,24 @@ To coderegister an algorithm:
 
 Update the coderegistration as needed. 
 
+## For complex projects
 
-## Sketch-diagram 
+### On a piece of paper.
+  
+1. Draw a diagram of the inputs and outputs of the algorithm.
+2. Draw where this algorithm fits in the pipeline of the package, if appropriate.
+
+### Write issue
+
+1. Describe the algorithm's intended purpose.
+2. Describe the input parameters and how they will be tested.
+3. Describe the output parameters and how they will be tested.
+
+### Sketch-diagram 
 
 An image or diagram is very help, if not burdonsomely time consuming (but it often is).
 
-For those comfortable with *graphs* understood as mathematical objects as a set of vertices from $V$, and a set of edges $V \times V$. There are visualisation options where the vertices can be tagged with attributes.  
+For those comfortable with *graphs* understood as mathematical objects as a set of vertices from $V$, and a set of edges $V \times V$. There are visualisation options where the vertices can be tagged with attributes. The code for constructing the following `nodes` and `edges` dataframes has been omitted for brevity, but all code can be found in this manuscript's associated repository [`neet`](https://github.com/softloud/neet) on GitHub.     
 
 ```{r load graphing pkgs, message=FALSE}
 library(tidyverse)
@@ -183,8 +207,8 @@ library(tidygraph)
 
 By tagging the nodes in this graph with the attribute `state` in the algorithm: starting with `input` for the estimators, sample quartiles (which we denote $a, q1, m, q3, b$, in order from smallest to largest); `estimator`, a collection of functions that provide statistical methods for preparing summary medians for meta-analysis; and the `output` of the estimator.
 
-```{r nodes}
-(
+```{r nodes,echo=FALSE}
+
   nodes <- tribble(
   ~node, ~state,
   "a", "input",
@@ -213,17 +237,20 @@ By tagging the nodes in this graph with the attribute `state` in the algorithm: 
   "g_lnorm_c3", "estimator"
 ) %>% 
   mutate(state = fct_relevel(state, "input"))
-)
+
 
 ```
 
+```{r}
+nodes
+```
+
+
 Edges are specified by a two-column dataframe, `edges`, where each row contains a `to` and `from` vertex identifier, the row number of the `nodes` dataframe.
 
-```{r}
+```{r edges, echo=FALSE}
 
 
-
-(
   edges <- tribble(
   ~from, ~to,
   # hozo estimator
@@ -340,8 +367,11 @@ Edges are specified by a two-column dataframe, `edges`, where each row contains 
   4,24,
   24,14
   
-))
+)
 
+```
+```{r}
+edges
 ```
 
 These two dataframes cone be converted into a graph object that is compatible with the `igraph::` package and `tidyverse::` syntax.
@@ -354,7 +384,7 @@ graph <- tbl_graph(nodes, edges)
 
 These can be 
 
-```{r message=FALSE, fig.width=15, fig.cap="Codebrain before coderegistration."}
+```{r message=FALSE, fig.width=15, fig.height=5, fig.cap="Codebrain after coderegistration."}
 
 
 graph %>% 
@@ -375,57 +405,51 @@ graph %>%
 
 # Test-driven workflow
 
-```{r}
-tile <- tribble(
-  ~x, ~y, ~label, 
-  1, 3, "c", 
-  3,1,"t",
-  2,2, "d"
-) 
+```{r, message=FALSE,echo=FALSE}
+library(neet)
 
-tiles <- tile %>% 
-  bind_rows(
-    tile %>% mutate(x = x + 3)
-  ) %>% 
-  bind_rows(
-    tile %>% mutate(x = x + 6)
-  ) 
-
-
+workflow(0)
 ```
 
+This section describes the test-driven workflow presented above as a `code::proof`ed coding to doneness.  
 
-```{r}
-# image thingy
+The model workflow includes three stages, repeated three times, before returning to the start, the `code::registration`.
 
+Each phase consists of:
 
-workflow_segments <- tiles %>%
-  slice(-1) %>% # take the first row off
-  bind_rows(tiles[nrow(tiles),]) %>%  # add last row again
-  rename(xend = x, yend = y) %>%
-  select(xend, yend) %>%
-  cbind(tiles, .)
+1. `code::registration`
+2. tests
+3. code
 
-workflow_segments %>%
-  ggplot() +
-  # geom_segment() +
-  geom_path(aes(x = x, y = y))
+## `code::proof` workflow for coding to doneness
 
+The tests vary each time in complexity, so that the complete model cycle consists of ten phases of work:
 
-```
+1. `code::registration`
+2. neet tests, one per function
+3. code
+4. `code::registration`
+5. neet tests, for all inputs for each function
+6. code
+7. `code::registration`
+8. tests, and the rest, i.e., any other cases to test for
+9. code
+7. `code::registration`
 
-- describe image
+We use *model* cycle to denote the workflow may be adapted for different use-cases. Our next section steps through each phase of work.
 
-This section describees a 
+# Coding to doneness toolchain walkthrough
 
-## one `neet` test per fucntion 
-
-```{r}
-# todo: diagram
-
-```
+## one `neet` test per function 
 
 ### Coderegistration
+
+```{r}
+workflow(1)
+```
+
+
+
 
 ### At least one `neet` test per function
 

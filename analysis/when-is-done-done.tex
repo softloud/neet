@@ -36,7 +36,7 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-  pdftitle={When is done done? Practice fundamentals of automated testing for collaborative data analysis development},
+  pdftitle={Coding to code::proof: Practice fundamentals of automated testing for collaborative data analysis development},
   pdfauthor={sketch-draft by lead author, Charles T. Gray},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
@@ -98,7 +98,7 @@
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\setcounter{secnumdepth}{5}
 \newlength{\cslhangindent}
 \setlength{\cslhangindent}{1.5em}
 \newenvironment{cslreferences}%
@@ -106,8 +106,8 @@
   \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces}%
   {\par}
 
-\title{When is done \emph{done}? Practice fundamentals of automated
-testing for collaborative data analysis development}
+\title{Coding to \texttt{code::proof}: Practice fundamentals of
+automated testing for collaborative data analysis development}
 \usepackage{etoolbox}
 \makeatletter
 \providecommand{\subtitle}[1]{% add subtitle to \maketitle
@@ -146,11 +146,11 @@ This manuscript will go through three phases:
 \hypertarget{coding-to-doneness}{%
 \section{Coding to doneness}\label{coding-to-doneness}}
 
-Contrapunctus I is rarely learnt in one sitting, indeed, for most
+Contrapunctus I is rarely learnt in one sitting. Indeed, for most
 pianists, to even play the piece is the result of many months' diligent
-work, and still it will never feel \emph{done}. For the student of this
-opening work of Bach's \emph{The Art of Fugue}, the time at the keyboard
-spent to play through a three-minute piece of music can seem
+work, and still it will never feel \emph{done}. For the student of the
+opening work of Bach's \emph{The Art of Fugue}, the spent time at the
+keyboard in order to play through a three-minute piece of music can seem
 immeasurable. To play well, a diligent pianist must employ technqiue.
 But \emph{how} a pianist is to achieve the desired technique is not
 clear (Chang 2009).
@@ -166,7 +166,7 @@ This manuscript picks up from where Riederer left off with
 \emph{RMarkdown-driven development} and suggests a \emph{coderegistering
 test-driven workflow} for coding to doneness. This workflow provides a
 roadmap to completion for a packaged analysis with
-\texttt{code::proof}ed the manuscript ({\textbf{???}}), provided
+\texttt{code::proof}ed the manuscript {[}(Gray 2019){]}, provided
 measures of confidence in the implementaiton of the algorithm.
 
 Musicians and, similarly, athletes, do not see themselves as having
@@ -175,7 +175,9 @@ be a flautist is to practice, and to be athlete is to train. For
 researcher developers, it can be hard to assess when an analysis is
 completed. In this manuscript, we consider the \emph{practice} of
 test-driven analysis development as a means of \emph{coding to doneness}
-for an algorithm, a workflow that faciliates.
+for an algorithm, a workflow that faciliates the analyst achieving a
+sufficience sense of \texttt{code::proof} in their algorithm, confidence
+in the implementation of the aglorithm (Gray 2019).
 
 \hypertarget{questionable-research-practices-in-scientific-computing}{%
 \section{Questionable research practices in scientific
@@ -303,7 +305,7 @@ messages are output that assist the developer in identifying where code
 is not performing as expected.
 
 \hypertarget{collaboration-via-automated-testing}{%
-\subsection{Collaboration via automated
+\section{Collaboration via automated
 testing}\label{collaboration-via-automated-testing}}
 
 At heart, automated tests are collaborative. This may be with others,
@@ -324,9 +326,9 @@ have any automated tests (Hester 2016), highlighting that, despite
 testing identified as a `vital' part of data analysis (Wickham 2015),
 automated testing is yet to be widely adopted.
 
-\hypertarget{a-test-driven-toolchain-walkthrough-for-an-in-development-analysis}{%
-\section{A test-driven toolchain walkthrough for an in-development
-analysis}\label{a-test-driven-toolchain-walkthrough-for-an-in-development-analysis}}
+\hypertarget{a-test-driven-toolchain-walkthrough-for-in-development-analyses}{%
+\section{A test-driven toolchain walkthrough for in-development
+analyses}\label{a-test-driven-toolchain-walkthrough-for-in-development-analyses}}
 
 In this section we now consider the practicality of implementing tests
 through a \emph{toolchain walkthrough}, an opinionated documetation of a
@@ -385,6 +387,15 @@ be using the language to be answering scientific research claims.
   GitHub
 \end{itemize}
 
+\hypertarget{case-study}{%
+\subsection{Case study}\label{case-study}}
+
+\hypertarget{varameta}{%
+\subsubsection{\texorpdfstring{\texttt{varameta::}}{varameta::}}\label{varameta}}
+
+The \texttt{varameta::} package is in-development analysis support
+software for a forthcoming manuscript, Meta-analysis of Medians.
+
 \hypertarget{get-an-overview-with-covr}{%
 \subsection{\texorpdfstring{Get an overview with
 \texttt{covr::}}{Get an overview with covr::}}\label{get-an-overview-with-covr}}
@@ -422,7 +433,15 @@ Created on 2020-02-01 by the \href{https://reprex.tidyverse.org}{reprex
 package} (v0.3.0)
 
 The \texttt{covr::} function \texttt{package\_coverage} provides the
-percentage of the lines of code run in tests.
+percentage of the lines of code run in tests and is a succinct method to
+get an at-a-glance sense coverage of testing scripts. But this assumes
+we have considered everything that might require testing. Whilst this is
+informative, it's not comprehensive. A 100\% in all functions in
+\texttt{covr::}, we do not consider done.
+
+An excellent way to arrive at \emph{done} for an algorithm is to define,
+even if only broadly, what \emph{done} looks like \emph{before} we set
+out. We define what \texttt{code::proof} is requrired.
 
 \hypertarget{code-with-intent}{%
 \section{Code with intent}\label{code-with-intent}}
@@ -433,31 +452,14 @@ the estimators, and outputs in \texttt{varameta}, presented as a
 randomised \emph{graph}, a visual representation of a set of nodes,
 \(V\), and the edges, \(V \times V\), between them.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(igraph)}
+\begin{figure}
 
-\NormalTok{confusing\_relationships <{-}}\StringTok{ }\KeywordTok{make\_graph}\NormalTok{(}\OperatorTok{\textasciitilde{}}\StringTok{ }
-\NormalTok{a}\OperatorTok{{-}+}\NormalTok{hozo, b}\OperatorTok{{-}+}\NormalTok{hozo, m}\OperatorTok{{-}+}\NormalTok{hozo, n}\OperatorTok{{-}+}\NormalTok{hozo, hozo}\OperatorTok{{-}+}\NormalTok{s, hozo}\OperatorTok{{-}+}\NormalTok{mean,}
-\NormalTok{a}\OperatorTok{{-}+}\NormalTok{wan1, b}\OperatorTok{{-}+}\NormalTok{wan1, m}\OperatorTok{{-}+}\NormalTok{wan1, n}\OperatorTok{{-}+}\NormalTok{wan1, wan1}\OperatorTok{{-}+}\NormalTok{s, wan1}\OperatorTok{{-}+}\NormalTok{mean,}
-\NormalTok{a}\OperatorTok{{-}+}\NormalTok{pren, b}\OperatorTok{{-}+}\NormalTok{pren, m}\OperatorTok{{-}+}\NormalTok{pren, n}\OperatorTok{{-}+}\NormalTok{pren, pren}\OperatorTok{{-}+}\NormalTok{s,}
-\NormalTok{q1}\OperatorTok{{-}+}\NormalTok{wan3, q3}\OperatorTok{{-}+}\NormalTok{wan3, m}\OperatorTok{{-}+}\NormalTok{wan3, n}\OperatorTok{{-}+}\NormalTok{wan3, wan3}\OperatorTok{{-}+}\NormalTok{s, wan3}\OperatorTok{{-}+}\NormalTok{s,}
-\NormalTok{q1}\OperatorTok{{-}+}\NormalTok{pren, q3}\OperatorTok{{-}+}\NormalTok{pren, m}\OperatorTok{{-}+}\NormalTok{pren, n}\OperatorTok{{-}+}\NormalTok{pren, pren}\OperatorTok{{-}+}\NormalTok{s,}
-\NormalTok{a}\OperatorTok{{-}+}\NormalTok{wan2, b}\OperatorTok{{-}+}\NormalTok{wan2, q1}\OperatorTok{{-}+}\NormalTok{wan2, q3}\OperatorTok{{-}+}\NormalTok{wan2, m}\OperatorTok{{-}+}\NormalTok{wan2, n}\OperatorTok{{-}+}\NormalTok{wan2, wan2}\OperatorTok{{-}+}\NormalTok{s, wan2}\OperatorTok{{-}+}\NormalTok{mean,}
-\NormalTok{a}\OperatorTok{{-}+}\NormalTok{bland, b}\OperatorTok{{-}+}\NormalTok{bland, q1}\OperatorTok{{-}+}\NormalTok{bland, q3}\OperatorTok{{-}+}\NormalTok{bland, m}\OperatorTok{{-}+}\NormalTok{bland, n}\OperatorTok{{-}+}\NormalTok{bland, bland}\OperatorTok{{-}+}\NormalTok{s, bland}\OperatorTok{{-}+}\NormalTok{mean}
-\NormalTok{           ) }
+{\centering \includegraphics{when-is-done-done_files/figure-latex/codebrain-1} 
 
-\NormalTok{confusing\_relationships }\OperatorTok{\%>\%}\StringTok{ }\KeywordTok{plot}\NormalTok{(}
-             \DataTypeTok{vertex.color =} \StringTok{"grey"}\NormalTok{,}
-             \DataTypeTok{vertex.frame.color =} \StringTok{"darkgrey"}\NormalTok{,}
-             \DataTypeTok{vertex.size =} \DecValTok{10}\NormalTok{,}
-             \DataTypeTok{vertex.label.cex =} \FloatTok{0.8}\NormalTok{,}
-             \DataTypeTok{edge.arrow.size =} \FloatTok{0.4}
-\NormalTok{             )}
-\end{Highlighting}
-\end{Shaded}
+}
 
-\includegraphics{when-is-done-done_files/figure-latex/unnamed-chunk-1-1.pdf}
+\caption{code::brain before coderegistration.}\label{fig:codebrain}
+\end{figure}
 
 The Center for Open Science recommend \emph{preregistering} an
 experiment, stating what the hypothesis is and how the analyst intends
@@ -466,32 +468,14 @@ questionable research practices. Analogously, we might think of
 preregistering our code as providing some \texttt{code::proof} of the
 implementation of our algorithm. In this manuscript, we will think of
 \emph{coderegistration}, stating what the intention of an algorithm is,
-as
+as - todo: complete
 
-In the 2000s, Francesca Cann taught concert-pianists in training to
-\emph{practice with intent}, to do what one has intended to do.
+To coderegister an algorithm:
 
-\hypertarget{coderegistering-an-algorithm}{%
-\subsection{Coderegistering an
-algorithm}\label{coderegistering-an-algorithm}}
+\hypertarget{coderegistration}{%
+\subsection{\texorpdfstring{\texttt{code::registration}}{code::registration}}\label{coderegistration}}
 
-For this coderegistration, we To coderegister an algorithm:
-
-\hypertarget{on-a-piece-of-paper.}{%
-\subsubsection{On a piece of paper.}\label{on-a-piece-of-paper.}}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Draw a diagram of the inputs and outputs of the algorithm.
-\item
-  Draw where this algorithm fits in the pipeline of the package, if
-  appropriate.
-\end{enumerate}
-
-\hypertarget{in-an-issue-on-github}{%
-\subsubsection{In an issue on GitHub:}\label{in-an-issue-on-github}}
+In an issue on GitHub:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -506,6 +490,36 @@ For this coderegistration, we To coderegister an algorithm:
 
 Update the coderegistration as needed.
 
+\hypertarget{for-complex-projects}{%
+\subsection{For complex projects}\label{for-complex-projects}}
+
+\hypertarget{on-a-piece-of-paper.}{%
+\subsubsection{On a piece of paper.}\label{on-a-piece-of-paper.}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Draw a diagram of the inputs and outputs of the algorithm.
+\item
+  Draw where this algorithm fits in the pipeline of the package, if
+  appropriate.
+\end{enumerate}
+
+\hypertarget{write-issue}{%
+\subsubsection{Write issue}\label{write-issue}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Describe the algorithm's intended purpose.
+\item
+  Describe the input parameters and how they will be tested.
+\item
+  Describe the output parameters and how they will be tested.
+\end{enumerate}
+
 \hypertarget{sketch-diagram}{%
 \subsubsection{Sketch-diagram}\label{sketch-diagram}}
 
@@ -514,74 +528,254 @@ An image or diagram is very help, if not burdonsomely time consuming
 
 For those comfortable with \emph{graphs} understood as mathematical
 objects as a set of vertices from \(V\), and a set of edges
-\(V \times V\). There are visualisation optionss where the vertices can
-be tagged with attributes.
+\(V \times V\). There are visualisation options where the vertices can
+be tagged with attributes. The code for constructing the following
+\texttt{nodes} and \texttt{edges} dataframes has been omitted for
+brevity, but all code can be found in this manuscript's associated
+repository \href{https://github.com/softloud/neet}{\texttt{neet}} on
+GitHub.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(igraph)}
-
-\NormalTok{confusing\_relationships <{-}}\StringTok{ }\KeywordTok{make\_graph}\NormalTok{(}\OperatorTok{\textasciitilde{}}\StringTok{ }
-\NormalTok{a}\OperatorTok{{-}+}\NormalTok{hozo, b}\OperatorTok{{-}+}\NormalTok{hozo, m}\OperatorTok{{-}+}\NormalTok{hozo, n}\OperatorTok{{-}+}\NormalTok{hozo, hozo}\OperatorTok{{-}+}\NormalTok{s, hozo}\OperatorTok{{-}+}\NormalTok{mean,}
-\NormalTok{a}\OperatorTok{{-}+}\NormalTok{wan1, b}\OperatorTok{{-}+}\NormalTok{wan1, m}\OperatorTok{{-}+}\NormalTok{wan1, n}\OperatorTok{{-}+}\NormalTok{wan1, wan1}\OperatorTok{{-}+}\NormalTok{s, wan1}\OperatorTok{{-}+}\NormalTok{mean,}
-\NormalTok{a}\OperatorTok{{-}+}\NormalTok{pren, b}\OperatorTok{{-}+}\NormalTok{pren, m}\OperatorTok{{-}+}\NormalTok{pren, n}\OperatorTok{{-}+}\NormalTok{pren, pren}\OperatorTok{{-}+}\NormalTok{s,}
-\NormalTok{q1}\OperatorTok{{-}+}\NormalTok{wan3, q3}\OperatorTok{{-}+}\NormalTok{wan3, m}\OperatorTok{{-}+}\NormalTok{wan3, n}\OperatorTok{{-}+}\NormalTok{wan3, wan3}\OperatorTok{{-}+}\NormalTok{s, wan3}\OperatorTok{{-}+}\NormalTok{s,}
-\NormalTok{q1}\OperatorTok{{-}+}\NormalTok{pren, q3}\OperatorTok{{-}+}\NormalTok{pren, m}\OperatorTok{{-}+}\NormalTok{pren, n}\OperatorTok{{-}+}\NormalTok{pren, pren}\OperatorTok{{-}+}\NormalTok{s,}
-\NormalTok{a}\OperatorTok{{-}+}\NormalTok{wan2, b}\OperatorTok{{-}+}\NormalTok{wan2, q1}\OperatorTok{{-}+}\NormalTok{wan2, q3}\OperatorTok{{-}+}\NormalTok{wan2, m}\OperatorTok{{-}+}\NormalTok{wan2, n}\OperatorTok{{-}+}\NormalTok{wan2, wan2}\OperatorTok{{-}+}\NormalTok{s, wan2}\OperatorTok{{-}+}\NormalTok{mean,}
-\NormalTok{a}\OperatorTok{{-}+}\NormalTok{bland, b}\OperatorTok{{-}+}\NormalTok{bland, q1}\OperatorTok{{-}+}\NormalTok{bland, q3}\OperatorTok{{-}+}\NormalTok{bland, m}\OperatorTok{{-}+}\NormalTok{bland, n}\OperatorTok{{-}+}\NormalTok{bland, bland}\OperatorTok{{-}+}\NormalTok{s, bland}\OperatorTok{{-}+}\NormalTok{mean}
-\NormalTok{           ) }
-
-\NormalTok{confusing\_relationships }\OperatorTok{\%>\%}\StringTok{ }\KeywordTok{plot}\NormalTok{(}
-             \DataTypeTok{vertex.color =} \StringTok{"grey"}\NormalTok{,}
-             \DataTypeTok{vertex.frame.color =} \StringTok{"darkgrey"}\NormalTok{,}
-             \DataTypeTok{vertex.size =} \DecValTok{10}\NormalTok{,}
-             \DataTypeTok{vertex.label.cex =} \FloatTok{0.8}\NormalTok{,}
-             \DataTypeTok{edge.arrow.size =} \FloatTok{0.4}
-\NormalTok{             )}
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(ggraph)}
+\KeywordTok{library}\NormalTok{(tidygraph)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{when-is-done-done_files/figure-latex/unnamed-chunk-2-1.pdf}
+By tagging the nodes in this graph with the attribute \texttt{state} in
+the algorithm: starting with \texttt{input} for the estimators, sample
+quartiles (which we denote \(a, q1, m, q3, b\), in order from smallest
+to largest); \texttt{estimator}, a collection of functions that provide
+statistical methods for preparing summary medians for meta-analysis; and
+the \texttt{output} of the estimator.
 
-\begin{itemize}
-\tightlist
-\item
-  ggplot picture of algorithm? use vis thingy from drake?
-\end{itemize}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nodes}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 24 x 2
+##    node    state    
+##    <chr>   <fct>    
+##  1 a       input    
+##  2 b       input    
+##  3 q1      input    
+##  4 q3      input    
+##  5 m       input    
+##  6 n       input    
+##  7 hozo    estimator
+##  8 pren_c3 estimator
+##  9 pren_c1 estimator
+## 10 bland   estimator
+## # ... with 14 more rows
+\end{verbatim}
+
+Edges are specified by a two-column dataframe, \texttt{edges}, where
+each row contains a \texttt{to} and \texttt{from} vertex identifier, the
+row number of the \texttt{nodes} dataframe.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{edges}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 84 x 2
+##     from    to
+##    <dbl> <dbl>
+##  1     5     7
+##  2     6     7
+##  3     1     7
+##  4     2     7
+##  5     7    15
+##  6     7    16
+##  7     5    11
+##  8     6    11
+##  9     1    11
+## 10     2    11
+## # ... with 74 more rows
+\end{verbatim}
+
+These two dataframes cone be converted into a graph object that is
+compatible with the \texttt{igraph::} package and \texttt{tidyverse::}
+syntax.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{graph <{-}}\StringTok{ }\KeywordTok{tbl\_graph}\NormalTok{(nodes, edges)}
+\end{Highlighting}
+\end{Shaded}
+
+These can be
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{graph }\OperatorTok{\%>\%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{state =} \KeywordTok{fct\_relevel}\NormalTok{(state, }\StringTok{"output"}\NormalTok{)) }\OperatorTok{\%>\%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggraph}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom\_edge\_link}\NormalTok{(}\DataTypeTok{arrow =} \KeywordTok{arrow}\NormalTok{(), }\DataTypeTok{colour =} \StringTok{"lightgrey"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom\_node\_label}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{label =}\NormalTok{ node, }\DataTypeTok{colour =}\NormalTok{ state),  }
+                  \DataTypeTok{size =} \DecValTok{5}\NormalTok{,}
+                  \DataTypeTok{fill =} \StringTok{"lightgrey"}\NormalTok{,}
+                  \DataTypeTok{alpha =} \FloatTok{0.6}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme\_graph}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\NormalTok{hrbrthemes}\OperatorTok{::}\KeywordTok{scale\_color\_ipsum}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"none"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{scale\_y\_reverse}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{coord\_flip}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
 
 \begin{figure}
-\centering
-\includegraphics{when-is-done-done_files/figure-latex/unnamed-chunk-3-1.pdf}
-\caption{Codebrain before coderegistration.}
+
+{\centering \includegraphics{when-is-done-done_files/figure-latex/unnamed-chunk-4-1} 
+
+}
+
+\caption{Codebrain after coderegistration.}\label{fig:unnamed-chunk-4}
 \end{figure}
 
 \hypertarget{test-driven-workflow}{%
 \section{Test-driven workflow}\label{test-driven-workflow}}
 
+\begin{center}\includegraphics{when-is-done-done_files/figure-latex/unnamed-chunk-5-1} \end{center}
+
+This section describes the test-driven workflow presented above as a
+\texttt{code::proof}ed coding to doneness.
+
+The model workflow includes three stages, repeated three times, before
+returning to the start, the \texttt{code::registration}.
+
+Each phase consists of:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \texttt{code::registration}
+\item
+  tests
+\item
+  code
+\end{enumerate}
+
+\hypertarget{codeproof-workflow-for-coding-to-doneness}{%
+\subsection{\texorpdfstring{\texttt{code::proof} workflow for coding to
+doneness}{code::proof workflow for coding to doneness}}\label{codeproof-workflow-for-coding-to-doneness}}
+
+The tests vary each time in complexity, so that the complete model cycle
+consists of ten phases of work:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \texttt{code::registration}
+\item
+  neet tests, one per function
+\item
+  code
+\item
+  \texttt{code::registration}
+\item
+  neet tests, for all inputs for each function
+\item
+  code
+\item
+  \texttt{code::registration}
+\item
+  tests, and the rest, i.e., any other cases to test for
+\item
+  code
+\item
+  \texttt{code::registration}
+\end{enumerate}
+
+We use \emph{model} cycle to denote the workflow may be adapted for
+different use-cases. Our next section steps through each phase of work.
+
+\hypertarget{coding-to-doneness-toolchain-walkthrough}{%
+\section{Coding to doneness toolchain
+walkthrough}\label{coding-to-doneness-toolchain-walkthrough}}
+
+\hypertarget{one-neet-test-per-function}{%
+\subsection{\texorpdfstring{one \texttt{neet} test per
+function}{one neet test per function}}\label{one-neet-test-per-function}}
+
+\hypertarget{coderegistration-1}{%
+\subsubsection{Coderegistration}\label{coderegistration-1}}
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# image thingy}
+\KeywordTok{workflow}\NormalTok{(}\DecValTok{1}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{neet-test-the-inputs-and-outputs}{%
-\subsection{\texorpdfstring{\texttt{neet} test the inputs and
-outputs}{neet test the inputs and outputs}}\label{neet-test-the-inputs-and-outputs}}
+\begin{center}\includegraphics{when-is-done-done_files/figure-latex/unnamed-chunk-6-1} \end{center}
 
-\hypertarget{neet-test-all-input-cases}{%
-\subsection{\texorpdfstring{\texttt{neet} test all input
-cases}{neet test all input cases}}\label{neet-test-all-input-cases}}
+\hypertarget{at-least-one-neet-test-per-function}{%
+\subsubsection{\texorpdfstring{At least one \texttt{neet} test per
+function}{At least one neet test per function}}\label{at-least-one-neet-test-per-function}}
 
-\hypertarget{complete-any-other-tests-and-document-them}{%
-\subsection{complete any other tests and document
-them}\label{complete-any-other-tests-and-document-them}}
+\begin{itemize}
+\tightlist
+\item
+  introducing the \texttt{neet\ package}
+\end{itemize}
 
-\hypertarget{assessing-the-doneness-of-software}{%
-\section{Assessing the doneness of
-software}\label{assessing-the-doneness-of-software}}
+\hypertarget{coding-to-doneness-1}{%
+\subsubsection{Coding to doneness}\label{coding-to-doneness-1}}
 
-\hypertarget{further-directions}{%
-\section{Further directions}\label{further-directions}}
+\hypertarget{neet-tests-for-all-inputs}{%
+\subsection{\texorpdfstring{\texttt{neet} tests for all
+inputs}{neet tests for all inputs}}\label{neet-tests-for-all-inputs}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# todo: diagram}
+\end{Highlighting}
+\end{Shaded}
+
+Once we have established there is one \texttt{neet} test per function,
+we might now perform \texttt{neet} tests for each possibility for
+inputs.
+
+\hypertarget{coderegistration-2}{%
+\subsubsection{Coderegistration}\label{coderegistration-2}}
+
+\hypertarget{neet-tests-for-all-inputs-1}{%
+\subsubsection{\texorpdfstring{\texttt{neet} tests for all
+inputs}{neet tests for all inputs}}\label{neet-tests-for-all-inputs-1}}
+
+\hypertarget{coding-to-doneness-2}{%
+\subsubsection{Coding to doneness}\label{coding-to-doneness-2}}
+
+\hypertarget{testing-for-doneness}{%
+\subsection{Testing for doneness}\label{testing-for-doneness}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# todo: diagram}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{coderegistration-3}{%
+\subsubsection{Coderegistration}\label{coderegistration-3}}
+
+\hypertarget{all-tests-required-for-purpose}{%
+\subsubsection{All tests required for
+purpose}\label{all-tests-required-for-purpose}}
+
+\hypertarget{coding-to-doneness-3}{%
+\subsubsection{Coding to doneness}\label{coding-to-doneness-3}}
+
+\hypertarget{sufficient-codeproof-of-software-for-doneness}{%
+\section{\texorpdfstring{Sufficient \texttt{code::proof} of software for
+doneness}{Sufficient code::proof of software for doneness}}\label{sufficient-codeproof-of-software-for-doneness}}
 
 \hypertarget{references}{%
 \section*{References}\label{references}}

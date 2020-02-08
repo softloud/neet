@@ -43,8 +43,12 @@ expect_neet <- function(thing_to_test, expected_type) {
 }
 
 #' @export
-test_neet <- function(thing_to_test, expected_type) {
-  expect_neet(thing_to_test, expected_type)
+test_neet <- function(thing_to_test, expected_type, test_description) {
+
+  test_that(test_description, {
+    expect_neet(thing_to_test, expected_type)
+  }
+  )
 }
 
 #' @export

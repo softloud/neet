@@ -1,7 +1,7 @@
 context("expect neet")
 
 test_that("test wrapper works", {
-  expect_success(test_neet(3, "numeric"))
+  expect_success(test_neet(3, "numeric", "test"))
 })
 
 test_that("neet numeric", {
