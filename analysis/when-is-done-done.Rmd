@@ -6,7 +6,8 @@ bibliography: references.bib
 output:
   html_document:
     number_sections: true
-    code_folding: hide
+    code_folding: show
+    
 # output: 
 #   pdf_document:
 #     number_sections: true
@@ -23,7 +24,7 @@ knitr::opts_chunk$set(echo = TRUE,
 
 ## Version of this manuscript
 
-This manuscript will go through three phases:
+This manuscript (or manuscripts) will go through three phases:
 
 1. A lead author sketch draft.
 2. Implementation with the reproducibiliity team for [The repliCATS Project](https://replicats.research.unimelb.edu.au/) & version listing any team members who wish to co-author. 
@@ -31,7 +32,7 @@ This manuscript will go through three phases:
 
 ### Acknowledgments
 
-People who have contributed feedback or assisted, some of whom might be co-authors on later drafts: Danielle Navarro, Elise Gould, Hannah Fraser, Aaron 
+People who have contributed feedback or assisted, some of whom might be co-authors on later drafts: Danielle Navarro, Elise Gould, Hannah Fraser, Daniel Fryer, Aaron Willcox, David Wilkinson.
 
 # Coding to doneness 
 
@@ -39,7 +40,7 @@ J. S. Bach's Contrapunctus I is not learnt in one sitting [todo: citation]. Inde
 
 For a researcher performing an analysis using a computational tool such as R, it can be unclear when an analysis is *done*. And, while there are technical guides on *good enough* practice, it can feel overwhelming as to what to adopt and where. Particularly for an in-development algorithm, which is to say, an algorithm with scripts already started, and some results explored. 
 
-This manuscript picks up from where Riederer left off with *RMarkdown-driven development* and suggests a  *coderegistering test-driven workflow* for coding to doneness. This workflow provides a roadmap to completion for a packaged analysis with `code::proof`ed the manuscript [[@grayCodeProofPrepare2019]], provided measures of confidence in the implementaiton of the algorithm.   
+This manuscript picks up from where Riederer left off with *RMarkdown-driven development* and suggests a  *coderegistering test-driven workflow* for coding to doneness. This workflow provides a roadmap to completion for a packaged analysis with `code::proof`ed the manuscript [@grayCodeProofPrepare2019], provided measures of confidence in the implementaiton of the algorithm.   
 
 Musicians and, similarly, athletes, do not see themselves as having mastered a skill, but active practitioners of a craft [@galway_flute_1990]. To be a flautist is to practice, and to be athlete is to train. For researcher developers, it can be hard to assess when an analysis is completed. In this manuscript, we consider the *practice* of test-driven analysis development as a means of *coding to doneness* for an algorithm, a workflow that faciliates the analyst achieving a sufficience sense of `code::proof` in their algorithm, confidence in the implementation of the aglorithm [@grayCodeProofPrepare2019]. 
 
@@ -105,7 +106,71 @@ The `varameta::` package is in-development analysis support software for a forth
 
 ## Get an overview with `covr::`
 
-With a packaged analysis, it's easy to get a sense of existing automated testing coverage, if any tests have been written. The analysis functions provided by `varameta::` were put on hold while signficant discussion was written.   
+For an in-development packaged analysis, the `covr::` package provides a means of asssessing the testing coverage for each function. The analysis functions provided by `varameta::` were put on hold while signficant discussion was written for the thesis of which `varameta::` forms a part. Beginning with `covr::package_coverage`, enables us to get a more informed sense of the `code::proof` of this package, and what `code::proof` is still required to declare the analysis done.   
+
+The `covr::` function, `::package_coverage`, provides the percentage of the lines of code run in tests and is a succinct method to get an at-a-glance sense coverage of testing scripts. But this assumes we have considered everything that might require testing. Whilst this is informative, it's not comprehensive. A `100%` in all functions in `covr::`, is informative, but is not done.  
+
+Consider a function that takes a number $x$, and outputs $2\log(x)$. To demonstrate this we make a toy package `testtest::` comprising this single function.
+
+```{r}
+logfn <- function(x) {
+  2 * log(x)
+}
+
+```
+
+Now, we write a test that checks the function returns a numeric.
+
+```{r}
+
+test_that("function returns numeric", {
+  expect_is(logfn(3), "numeric")
+})
+
+```
+
+And if we run `covr::package_coverage`, we get `100%` for overall package coverage.
+
+```{r, eval=FALSE}
+testtest Coverage: 100.00%
+R/logfn.R: 100.00%
+
+```
+
+But if we were to add this test, for negative numbers. 
+
+```{r error=TRUE}
+test_that("log function works", {
+  expect_is(logfn(-1), "numeric")
+})
+
+```
+
+Then `covr::package_coverage` fails.
+
+```{r eval=FALSE}
+> covr::package_coverage()
+Error: Failure in `/tmp/RtmpDjfm3d/R_LIBS654b3cfe6ca/testtest/testtest-tests/testthat.Rout.fail`
+library(testthat)
+> library(testtest)
+> 
+> test_check("testtest")
+── 1. Failure: log function works (@test-logfn.R#10)  ──────────────────────────
+any(is.na(thing_to_test)) isn't false.
+
+── 2. Failure: log function works (@test-logfn.R#10)  ──────────────────────────
+any(abs(as.numeric(thing_to_test)) == Inf) isn't false.
+
+══ testthat results  ═══════════════════════════════════════════════════════════
+[ OK: 8 | SKIPPED: 0 | WARNINGS: 1 | FAILED: 2 ]
+1. Failure: log function works (@test-logfn.R#10) 
+2. Failure: log function works (@test-logfn.R#10) 
+
+Error: testthat unit tests failed
+Execution halted
+```
+
+We pick up the long-neglected `varameta::` package at `70%` package coverage. But as we have seen above, this is informative, but not completely informative. From here we examine how we might use tests to achieve sufficient `code::proof`, confidence in the implementation of the algorithm.
 
 ``` r 
 library(covr)
@@ -131,9 +196,7 @@ package_coverage("~/Documents/repos/varameta/")
 
 <sup>Created on 2020-02-01 by the [reprex package](https://reprex.tidyverse.org) (v0.3.0)</sup>
 
-The `covr::` function `package_coverage` provides the percentage of the lines of code run in tests and is a succinct method to get an at-a-glance sense coverage of testing scripts. But this assumes we have considered everything that might require testing. Whilst this is informative, it's not comprehensive. A 100% in all functions in `covr::`, we do not consider done. 
-
-An excellent way to arrive at *done* for an algorithm is to define, even if only broadly, what *done* looks like *before* we set out. We define what `code::proof` is requrired.
+An excellent way to arrive at *done* for an algorithm is to define, even if only broadly, what *done* looks like *before* we set out. We define what `code::proof` is required.
 
 # Code with intent
 
@@ -162,7 +225,6 @@ confusing_relationships %>% plot(
              )
 
 ```
-
 
 
 The Center for Open Science recommend *preregistering* an experiment, stating what the hypothesis is and how the analyst intends to assess the hypothesis as one safeguard against inadvertent questionable research practices. Analogously, we might think of preregistering our code as providing some `code::proof` of the implementation of our algorithm. In this manuscript, we will think of *coderegistration*, stating what the intention of an algorithm is, as - todo: complete
@@ -442,12 +504,12 @@ We use *model* cycle to denote the workflow may be adapted for different use-cas
 
 ## one `neet` test per function 
 
-### Coderegistration
+### `code::registration`
 
 ```{r}
 workflow(1)
-```
 
+```
 
 
 
