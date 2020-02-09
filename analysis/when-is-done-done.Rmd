@@ -43,9 +43,9 @@ J. S. Bach's Contrapunctus I is not learnt in one sitting [todo: citation]. Inde
 
 For a researcher performing an analysis using a computational tool such as R, it can be unclear when an analysis is *done*. And, while there are technical guides on *good enough* practice, it can feel overwhelming as to what to adopt and where. Particularly for an in-development algorithm, which is to say, an algorithm with scripts already started, and some results explored. 
 
-This manuscript picks up from where Riederer left off with *RMarkdown-driven development* and suggests a  *code::registering test-driven workflow* for coding to doneness. This workflow provides a roadmap to completion for a packaged analysis with `code::proof`ed the manuscript [@grayCodeProofPrepare2019], provided measures of confidence in the implementaiton of the algorithm.   
+This manuscript picks up from where Riederer left off with *RMarkdown-driven development* and suggests a  `code::registered` *test-driven workflow* for coding to doneness. This workflow provides a roadmap to completion for a packaged analysis with `code::proof`ed the manuscript [@grayCodeProofPrepare2019], provided measures of confidence in the implementaiton of the algorithm.   
 
-Musicians and, similarly, athletes, do not see themselves as having mastered a skill, but active practitioners of a craft [@galway_flute_1990]. To be a flautist is to practice, and to be athlete is to train. For researcher developers, it can be hard to assess when an analysis is completed. In this manuscript, we consider the *practice* of test-driven analysis development as a means of *coding to doneness* for an algorithm, a workflow that faciliates the analyst achieving a sufficience sense of `code::proof` in their algorithm, confidence in the implementation of the aglorithm [@grayCodeProofPrepare2019]. 
+Musicians and, similarly, athletes, do not see themselves as having mastered a skill, but active practitioners of a craft [@galway_flute_1990]. To be a flautist is to practice, and to be an athlete is to train. For researcher developers, it can be hard to assess when an analysis is completed. In this manuscript, we consider the *practice* of test-driven analysis development as a means of *coding to doneness* for an algorithm, a workflow that faciliates the analyst achieving sufficient `code::proof` in their algorithm, confidence in the implementation of the aglorith mt[@grayCodeProofPrepare2019]. 
 
 # Questionable research practices in scientific computing
 
@@ -204,7 +204,7 @@ An excellent way to arrive at *done* for an algorithm is to define, even if only
 
 # Code with intent
 
-When we think of an algorithm, it's easy to feel overwhelmed by the complexity. Here are the relationships between inputs, and just some of the estimators, and outputs in `varameta`, presented as a randomised *graph*, a visual representation of a set of nodes, $V$, and the edges, $V \times V$, between them. We understand each function's inputs and outputs, but understanding the way they relate to each other, is often muddled with out planning. Our `code::brain`, the way we conceptualise the code, is disorganised.
+When we think of an algorithm, it's easy to feel overwhelmed by the complexity. Here are the relationships between inputs, and just some of the estimators, and outputs in `varameta`, presented as a randomised *graph*, a visual representation of a set of nodes, $V$, and the edges, $V \times V$, between them. We understand each function's inputs and outputs, but understanding the way they relate to each other, is often muddled without planning. Our `code::brain`, the way we conceptulaise the code, is disorganised.
 
 ```{r codebrain,echo=FALSE,message=FALSE,fig.height=5,fig.cap="`code::brain` before `code::registration`."}
 library(igraph)
@@ -515,18 +515,19 @@ workflow(1)
 
 ```
 
-#### inputs
+Inputs:
 
 - [ ] one neet
 - [ ] all neets
 - [ ] and the rest
 
-#### outputs
+Outputs:
 
 - [ ] one neet
 - [ ] all neets
 - [ ] and the rest
 
+Note that `- [ ]` will create an unchecked tickbox and `- [x]` will create a tickbox in both GitHub and RMarkdown.
 
 
 ### At least one `neet` test per function
@@ -543,40 +544,46 @@ devtools::install_github("softloud/neet")
 
 ```
 
+### `code::registration`
 
-### coding to `code::proof`
+Update or rewrite `code::registration`, as needed.
 
+- ...for the varemta package
 
 ## `neet` tests for all inputs 
 
 ```{r}
-# todo: diagram
+workflow(5)
 
 ```
 
 Once we have established there is one `neet` test per function, we might now perform `neet` tests for each possibility for inputs. 
 
-### code::registration
+### `code::registration`
+
+Update or rewrite `code::registration`, as needed.
 
 ### `neet` tests for all inputs 
 
-### coding to `code::proof`
+### Coding to `code::proof`
 
 
 ## Testing for doneness
 
 
 ```{r}
-# todo: diagram
 
 ```
 
 
-### code::registration
+### `code::registration`
+
+Update or rewrite `code::registration`, as needed.
+
 
 ### All tests required for purpose
 
-### coding to `code::proof`
+### Coding to `code::proof`
 
 
 ## `code::registration` of doneness
