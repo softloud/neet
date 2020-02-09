@@ -86,7 +86,7 @@ workflow(0)
 
 This section describes the test-driven workflow presented above as a `code::proof`ed coding to doneness.  
 
-The model workflow includes three stages, repeated three times, before returning to the start, the `code::registration`. We use *model* to suggest the workflow may be adapted for different use-cases.
+The model workflow comprises three stages, repeated three times, before returning to the start, the `code::registration`. We use *model* to suggest the workflow may be adapted for different use-cases.
 
 Each phase consists of:
 

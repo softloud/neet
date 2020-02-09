@@ -3,15 +3,17 @@ title: "Coding to `code::proof`: Practice fundamentals of automated testing for 
 subtitle: "How to go from no tests, to *whoa* tests!"
 author: "sketch-draft by lead author, Charles T. Gray"
 bibliography: references.bib
-# output:
-#   html_document:
-#     number_sections: true
-#     code_folding: show
-    
 output:
-  pdf_document:
+  html_document:
     number_sections: true
-    latex_engine: xelatex
+    code_folding: show
+    toc: true
+    toc_float: true
+    
+# output:
+#   pdf_document:
+#     number_sections: true
+#     latex_engine: xelatex
 
 ---
 
@@ -35,13 +37,13 @@ This manuscript (or manuscripts) will go through three phases:
 
 People who have contributed feedback or assisted, some of whom might be co-authors on later drafts: Danielle Navarro, Elise Gould, Hannah Fraser, Daniel Fryer, Aaron Willcox, David Wilkinson.
 
-# Coding to doneness 
+# Coding to `code::proof` 
 
-J. S. Bach's Contrapunctus I is not learnt in one sitting [todo: citation]. Indeed, for most pianists, to play the three-minute piece is the result of many months' diligent work, and still it will never feel *done*. To play well, a pianist must employ technqiue. But *how* a pianist is to achieve the desired technique is not clear [@chang_fundamentalspianopractice_2009a]. 
+J. S. Bach's Contrapunctus I is not learnt in one sitting [todo: citation]. Indeed, for most pianists, to play the three-minute piece is the result of many months' diligent work, and still it will never feel *done*. To play well, a pianist must employ technqiue, but *how* a pianist is to achieve the desired technique is not clear [@chang_fundamentalspianopractice_2009a]. 
 
 For a researcher performing an analysis using a computational tool such as R, it can be unclear when an analysis is *done*. And, while there are technical guides on *good enough* practice, it can feel overwhelming as to what to adopt and where. Particularly for an in-development algorithm, which is to say, an algorithm with scripts already started, and some results explored. 
 
-This manuscript picks up from where Riederer left off with *RMarkdown-driven development* and suggests a  *coderegistering test-driven workflow* for coding to doneness. This workflow provides a roadmap to completion for a packaged analysis with `code::proof`ed the manuscript [@grayCodeProofPrepare2019], provided measures of confidence in the implementaiton of the algorithm.   
+This manuscript picks up from where Riederer left off with *RMarkdown-driven development* and suggests a  *code::registering test-driven workflow* for coding to doneness. This workflow provides a roadmap to completion for a packaged analysis with `code::proof`ed the manuscript [@grayCodeProofPrepare2019], provided measures of confidence in the implementaiton of the algorithm.   
 
 Musicians and, similarly, athletes, do not see themselves as having mastered a skill, but active practitioners of a craft [@galway_flute_1990]. To be a flautist is to practice, and to be athlete is to train. For researcher developers, it can be hard to assess when an analysis is completed. In this manuscript, we consider the *practice* of test-driven analysis development as a means of *coding to doneness* for an algorithm, a workflow that faciliates the analyst achieving a sufficience sense of `code::proof` in their algorithm, confidence in the implementation of the aglorithm [@grayCodeProofPrepare2019]. 
 
@@ -58,7 +60,6 @@ A consideration when providing recommendations of best practice is what me might
 Riederer identifies several qrps in scientific computing, for example, hardcoded values that interfere with another's ability to reproduce the computational results [@riederer_rmarkdowndrivendevelopment_2019]. As researcher software engineers, it behoves us to consider what are questionable research practices in software produced for data analyses. Version control and open code sharing via a platform such as GitHub, is one way to mitigate questionable research practices in scientific computing [@Bryan2017ExcuseMD]. There is also a growing literature on reproducible research compendia via packaged analyses [@marwick_packaging_2018; @wilson_good_2017].     
 
 This manuscript contributes to this literature by focussing on workflows for using automated tests to move analysis a fully reproducible packaged research compendium. Furthermore, these workflosw assist the developer communicate what they have coded to others and their future self, as a means of mitigating questionable research practices in scientific computing. Above all, by providing a workflow for the *practice* of code, the developer anxiety is reduced by having the parameters as clearly defined as they can be from the start.
-
 
 # Practice fundamentals
 
@@ -82,7 +83,7 @@ Reproducible research compendia provide a means by which analysts can share thei
 
 # A test-driven toolchain walkthrough for in-development analyses
 
-In this section we now consider the practicality of implementing tests through a *toolchain walkthrough*, an opinionated documetation of a scientific workflow , towards a measure of `code::proof`, confidence in the algorithm implemented [@grayCodeProofPrepare2019]. In particular, a toolchain walkthrough is a reflection of *one* workflow, whilst others, indeed, better, workflows might exist. This is in contrast to a comprehensive review of tools. Instead, a toolchain walkthrough ruminates on considerations *after* a set of tools have been chosen.
+From this section, we now consider the practicality of implementing tests through a *toolchain walkthrough*, an opinionated documetation of a scientific workflow, towards a measure of `code::proof`, confidence in the algorithm implemented [@grayCodeProofPrepare2019]. In particular, a toolchain walkthrough is a reflection of *one* workflow, whilst others, indeed, better, workflows might exist. This is in contrast to a comprehensive review of tools. Instead, a toolchain walkthrough ruminates on considerations *after* a set of tools have been chosen.
 
 Toolchain walkthroughs aim to identify obstacles and advantages in implementation of scientific workflows. By necessity, a toolchain walkthrough is language specific, but, ideally, observations emerge that are useful for any appropriate language employed for data analysis, such as Python. This toolchain walkthrough examines the *process*, analogous to piano *practice*, of implementing tests, as opposed to defining comprehensively the nature of *good enough* tests, analogous to guidance on pianistic technique.
 
@@ -105,7 +106,7 @@ This toolchain walkthrough assumes a knowledge of R advanced enough to be using 
 
 The `varameta::` package is in-development analysis support software for a forthcoming manuscript, Meta-analysis of Medians. 
 
-## Get an overview with `covr::`
+## Get an overview with `covr::`\label{sec: covr}
 
 For an in-development packaged analysis, the `covr::` package provides a means of asssessing the testing coverage for each function. The analysis functions provided by `varameta::` were put on hold while signficant discussion was written for the thesis of which `varameta::` forms a part. Beginning with `covr::package_coverage`, enables us to get a more informed sense of the `code::proof` of this package, and what `code::proof` is still required to declare the analysis done.   
 
@@ -230,9 +231,9 @@ confusing_relationships %>% plot(
 ```
 
 
-The Center for Open Science recommend *preregistering* an experiment, stating what the hypothesis is and how the analyst intends to assess the hypothesis as one safeguard against inadvertent questionable research practices. Analogously, we might think of preregistering our code as providing some `code::proof` of the implementation of our algorithm. In this manuscript, we will think of *coderegistration*, stating what the intention of an algorithm is, as - todo: complete
+The Center for Open Science recommend *preregistering* an experiment, stating what the hypothesis is and how the analyst intends to assess the hypothesis as one safeguard against inadvertent questionable research practices. Analogously, we might think of preregistering our code as providing some `code::proof` of the implementation of our algorithm. In this manuscript, we will think of *code::registration*, stating what the intention of an algorithm is, as - todo: complete
 
-To coderegister an algorithm:
+To code::register an algorithm:
 
 ## `code::registration`
 
@@ -242,7 +243,7 @@ In an issue on GitHub:
 2. Describe the input parameters and how they will be tested.
 3. Describe the output parameters and how they will be tested.
 
-Update the coderegistration as needed. 
+Update the code::registration as needed. 
 
 ## For complex projects
 
@@ -503,7 +504,7 @@ The tests vary each time in complexity, so that the complete model cycle consist
 
 We use *model* cycle to denote the workflow may be adapted for different use-cases. Our next section steps through each phase of work.
 
-# Coding to doneness toolchain walkthrough
+# Coding to `code::proof` toolchain walkthrough
 
 ## one `neet` test per function 
 
@@ -514,11 +515,36 @@ workflow(1)
 
 ```
 
+#### inputs
+
+- [ ] one neet
+- [ ] all neets
+- [ ] and the rest
+
+#### outputs
+
+- [ ] one neet
+- [ ] all neets
+- [ ] and the rest
+
+
+
 ### At least one `neet` test per function
 
-- introducing the `neet package`
+The `neet::` package is part of this manuscript's research compendia, we think of compendia, a collection of components that form a research project. In the case of this manuscript, there is an extension package of `testthat::`.
 
-### Coding to doneness
+
+```{r eval=FALSE}
+# install devtools
+install.packages(devtools) 
+
+# use devtools to install package from github
+devtools::install_github("softloud/neet")
+
+```
+
+
+### coding to `code::proof`
 
 
 ## `neet` tests for all inputs 
@@ -530,11 +556,11 @@ workflow(1)
 
 Once we have established there is one `neet` test per function, we might now perform `neet` tests for each possibility for inputs. 
 
-### Coderegistration
+### code::registration
 
 ### `neet` tests for all inputs 
 
-### Coding to doneness
+### coding to `code::proof`
 
 
 ## Testing for doneness
@@ -546,12 +572,24 @@ Once we have established there is one `neet` test per function, we might now per
 ```
 
 
-### Coderegistration
+### code::registration
 
 ### All tests required for purpose
 
-### Coding to doneness
+### coding to `code::proof`
 
+
+## `code::registration` of doneness
+
+```{r}
+workflow(10)
+```
+
+Under this workflow, the `code::registration` is the project overview any developer can return to. So, this final registration not only summarises what has been tested, but also notes any idiosyncrasies for other developers, _expeically_ the future self of the developer, who recalls so little of the code they may as well be a different developer.
+
+At this point, the developer makes a final assessment of whether the stated objective of the implementation of the algorithm. Assess the `code::proof`, through the development process, new ideas, boundaries to check (recall the `logfn` and negative numbers example in Section 5.4[todo: hyperlink]). We might characterise done as when we feel we have sufficient `code::proof`. 
+
+If the algorithm does not yet have sufficient `code::proof`, the cycle can be repeated, and `code::registration`s updates. 
 
 # Sufficient `code::proof` of software for doneness
 
