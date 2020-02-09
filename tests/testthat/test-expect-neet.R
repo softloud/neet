@@ -1,5 +1,7 @@
 context("expect neet")
 
+library(neet)
+
 test_that("neet numeric", {
   expect_success(expect_neet(3, "numeric"))
   expect_error(expect_neet(3, "character"))

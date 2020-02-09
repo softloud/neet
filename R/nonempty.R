@@ -5,9 +5,6 @@
 #' @param thing_to_test
 #'
 
-
-# generic -----------------------------------------------------------------
-
 #' @export
 
 # generic function
@@ -15,16 +12,7 @@ expect_nonempty <- function(thing_to_test) {
   UseMethod("expect_nonempty")
 }
 
-#' @export
-
-# generic function
-assert_nonempty <- function(thing_to_test) {
-  UseMethod("assert_nonempty")
-}
-
-
 # default -----------------------------------------------------------------
-
 
 #' @export
 
@@ -45,19 +33,6 @@ expect_nonempty.data.frame <-
   }
 
 #' @export
-assert_neet <- function(thing_to_test, expected_type){
-  assertthat::assert_that(
-    class(thing_to_test) == expected_type,
-    msg =
-      paste("Object given to thing_to_test argument of type ",
-      class(thing_to_test),
-      "not of expected type ",
-      thing_to_test)
-    )
-}
-
-
-#' @export
 
 expect_nonempty.numeric <-
   function(thing_to_test, positive_only = FALSE) {
@@ -73,12 +48,6 @@ expect_nonempty.numeric <-
     # non-empty
     expect_true(length(thing_to_test) > 0)
   }
-
-
-assert_neet.numeric <-
-  function(thing_to_test) {
-
-}
 
 #' @export
 

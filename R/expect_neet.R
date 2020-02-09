@@ -33,8 +33,10 @@
 #'
 #' @import testthat
 #' @import assertthat
-
 #' @export
+#'
+#'
+
 expect_neet <- function(thing_to_test, expected_type) {
   # we expect non-empty
   expect_nonempty(thing_to_test)
@@ -54,9 +56,10 @@ test_neet <- function(thing_to_test, expected_type, test_description) {
 #' @export
 assert_neet <- function(thing_to_test, expected_type) {
   # we expect non-empty
-  notempty(thing_to_test)
+  not_empty(thing_to_test)
   # thing of expected type
-  assert_that(class(thing_to_test) == expected_type)
+  assert_that(expected_type %in% class(thing_to_test),
+              msg = paste("not of expected type: ", expected_type))
 }
 
 
