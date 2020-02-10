@@ -49,8 +49,7 @@ test_neet <- function(thing_to_test, expected_type, test_description) {
 
   test_that(test_description, {
     expect_neet(thing_to_test, expected_type)
-  }
-  )
+  })
 }
 
 #' @export
@@ -59,7 +58,7 @@ assert_neet <- function(thing_to_test, expected_type) {
   not_empty(thing_to_test)
   # thing of expected type
   assert_that(expected_type %in% class(thing_to_test),
-              msg = paste("not of expected type: ", expected_type))
+              msg = paste("thing_to_test not of expected type - ", expected_type))
 }
 
 
