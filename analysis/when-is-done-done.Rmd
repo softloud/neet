@@ -1,5 +1,5 @@
 ---
-title: "Coding to `code::proof`: Practice fundamentals of automated testing for collaborative data analysis development"
+title: "Coding to `code::proof`: Practice fundamentals of automated tests for collaborative data analysis development"
 subtitle: "How to go from no tests, to *whoa* tests!"
 author: "sketch-draft by lead author, Charles T. Gray"
 bibliography: references.bib
@@ -512,7 +512,17 @@ We use *model* cycle to denote the workflow may be adapted for different use-cas
 
 # Coding to `code::proof` toolchain walkthrough
 
+In this section we step through the Coding to `code::proof` for `varameta::`, an in-development analysis that has seen many iterations.  
+
 ## one `neet` test per function 
+
+For the first `code::proof` cycle, we follow the steps:
+
+1. A rough, first-draft,`code::registration`.
+2. Write one `neet` test per function.
+3. Write code to make those `neet` tests pass, for each function.
+
+In this case, as the functions are written, we are _confirming_ the functions pass the `neet` tests.
 
 ### `code::registration`
 
@@ -523,7 +533,7 @@ workflow(1)
 
 Inputs:
 
-- [ ] one neet
+- [ ] one neet [^1]
 - [ ] all neets
 - [ ] and the rest
 
@@ -533,7 +543,9 @@ Outputs:
 - [ ] all neets
 - [ ] and the rest
 
-Note that `- [ ]` will create an unchecked tickbox and `- [x]` will create a tickbox in both GitHub and RMarkdown.
+
+
+[^1]: Note that `- [ ]` will create an unchecked tickbox and `- [x]` will create a tickbox in both GitHub and RMarkdown.
 
 
 ### At least one `neet` test per function
