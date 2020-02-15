@@ -47,31 +47,34 @@ workflow <- function(progress = 0) {
   points <-
     c(0, 2 * pi / 3, 4 * pi / 3) %>% c(., . + 2 * pi, . + 4 * pi, 6 * pi) %>%
     purrr::map_df(fetchpoints) %>%
-    dplyr::mutate(label = c("code::registration",
-                     "tests",
-                     "code") %>% rep(3) %>% c(., "code::registration"),
-                  label = factor(label, levels = c("code::registration", "tests", "code"))
-                  )
+    dplyr::mutate(
+      label = c("code::registration",
+                "tests",
+                "code") %>% rep(3) %>% c(., "code::registration"),
+      label = factor(label, levels = c("code::registration", "tests", "code"))
+    )
 
   neet_labels <- c("one neet", "all neets", "and the rest")
 
   neets <- points %>%
     dplyr::filter(label == "tests") %>%
-    dplyr::mutate(test = neet_labels,
-           test = forcats::fct_relevel(test, neet_labels),
-           label = as.factor(label),
-           label = forcats::fct_relevel(label, "code::registration", "tests", "code"))
+    dplyr::mutate(
+      test = neet_labels,
+      test = forcats::fct_relevel(test, neet_labels),
+      label = as.factor(label),
+      label = forcats::fct_relevel(label, "code::registration", "tests", "code")
+    )
 
 
   point_size <- 7
   alpha_workflow <- 0.3
   alpha_progress <- 0.4
 
-  suppressMessages(
+  suppressWarnings(
     workflow <-
       loop %>%
       ggplot2::ggplot(ggplot2::aes(x = x, y = y)) +
-      ggplot2::geom_path(alpha = alpha_workflow, colour = "grey") +
+      ggplot2::geom_path(ggplot2::aes(group = 1), alpha = alpha_workflow, colour = "grey") +
       ggplot2::theme_void() +
       ggplot2::geom_point(
         data = points,
@@ -86,10 +89,12 @@ workflow <- function(progress = 0) {
         alpha = alpha_workflow
       ) +
       hrbrthemes::scale_color_ipsum("workflow") +
-      ggplot2::geom_point(data = neets,
-                          size = point_size / 2,
-                          alpha = alpha_workflow,
-                          ggplot2::aes(shape = test))
+      ggplot2::geom_point(
+        data = neets,
+        size = point_size / 2,
+        alpha = alpha_workflow,
+        ggplot2::aes(shape = test)
+      )
     # + ggplot2::labs(x = "code::proof to doneness workflow with code::registration")
   )
 
@@ -97,24 +102,25 @@ workflow <- function(progress = 0) {
     workflow
   } else
   {
-      cut_off <- points[progress, ] %>% purrr::pluck("theta")
+    cut_off <- points[progress,] %>% purrr::pluck("theta")
 
-      suppressMessages(
-        workflow +
-          ggplot2::geom_path(
-            data = loop %>% dplyr::filter(theta <= cut_off),
-            colour = "darkblue",
-            alpha = alpha_progress
-          ) +
-          ggplot2::geom_point(
-            data = loop %>%
-              dplyr::filter(theta <= cut_off) %>%
-              dplyr::slice(1, nrow(.)),
-            colour = "darkblue",
-            alpha = alpha_progress,
-            size = point_size
-          )
+    suppressWarnings(
+      workflow +
+        ggplot2::geom_path(
+          data = loop %>% dplyr::filter(theta <= cut_off),
+          colour = "darkblue",
+          ggplot2::aes(group = 1),
+          alpha = alpha_progress
+        ) +
+        ggplot2::geom_point(
+          data = loop %>%
+            dplyr::filter(theta <= cut_off) %>%
+            dplyr::slice(1, nrow(.)),
+          colour = "darkblue",
+          alpha = alpha_progress,
+          size = point_size
+        )
 
-      )
+    )
   }
 }

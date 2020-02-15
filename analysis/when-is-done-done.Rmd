@@ -3,17 +3,14 @@ title: "Coding to `code::proof`: Practice fundamentals of automated testing for 
 subtitle: "How to go from no tests, to *whoa* tests!"
 author: "sketch-draft by lead author, Charles T. Gray"
 bibliography: references.bib
-output:
-  html_document:
-    number_sections: true
-    code_folding: show
-    toc: true
-    toc_float: true
-    
 # output:
-#   pdf_document:
+#   tufte::tufte_html:
 #     number_sections: true
-#     latex_engine: xelatex
+
+output:
+  pdf_document:
+    number_sections: true
+    latex_engine: xelatex
 
 ---
 
@@ -23,6 +20,10 @@ knitr::opts_chunk$set(echo = TRUE,
                       fig.width = 5,
                       fig.align = "center",
                       message=FALSE)
+
+library(tufte)
+library(ggplot2)
+
 ```
 
 ## Version of this manuscript
@@ -35,7 +36,7 @@ This manuscript (or manuscripts) will go through three phases:
 
 ### Acknowledgments
 
-People who have contributed feedback or assisted, some of whom might be co-authors on later drafts: Danielle Navarro, Elise Gould, Hannah Fraser, Daniel Fryer, Aaron Willcox, David Wilkinson.
+People who have contributed feedback or assisted, some of whom might be co-authors on later drafts: Emily Riederer, Elise Gould, Hannah Fraser, Daniel Fryer, Aaron Willcox, David Wilkinson. Also, appreciation for Danielle Navarro, Thomas Pedersen and others on twitter who helped with the visualisation. 
 
 # Coding to `code::proof` 
 
@@ -45,7 +46,7 @@ For a researcher performing an analysis using a computational tool such as R, it
 
 This manuscript picks up from where Riederer left off with *RMarkdown-driven development* and suggests a  `code::registered` *test-driven workflow* for coding to doneness. This workflow provides a roadmap to completion for a packaged analysis with `code::proof`ed the manuscript [@grayCodeProofPrepare2019], provided measures of confidence in the implementaiton of the algorithm.   
 
-Musicians and, similarly, athletes, do not see themselves as having mastered a skill, but active practitioners of a craft [@galway_flute_1990]. To be a flautist is to practice, and to be an athlete is to train. For researcher developers, it can be hard to assess when an analysis is completed. In this manuscript, we consider the *practice* of test-driven analysis development as a means of *coding to doneness* for an algorithm, a workflow that faciliates the analyst achieving sufficient `code::proof` in their algorithm, confidence in the implementation of the aglorith mt[@grayCodeProofPrepare2019]. 
+Musicians and, similarly, athletes, do not see themselves as having mastered a skill, but active practitioners of a craft [@galway_flute_1990]. To be a flautist is to practice, and to be an athlete is to train. For researcher developers, it can be hard to assess when an analysis is completed. In this manuscript, we consider the *practice* of test-driven analysis development as a means of *coding to doneness* for an algorithm, a workflow that faciliates the analyst achieving sufficient `code::proof` in their algorithm, confidence in the implementation of the aglorithm[@grayCodeProofPrepare2019]. 
 
 # Questionable research practices in scientific computing
 
@@ -225,8 +226,11 @@ confusing_relationships %>% plot(
              alpha=0.3,
              vertex.size = 10,
              vertex.label.cex = 0.8,
-             edge.arrow.size = 0.4
-             )
+             edge.arrow.size = 0.4 
+             ) +         
+  theme(panel.background = element_rect(colour = "#ffffe0"),
+        plot.background = element_rect(colour = "#ffffe0")) 
+
 
 ```
 
@@ -463,10 +467,12 @@ graph %>%
                   alpha = 0.6) +
   theme_graph() +
   hrbrthemes::scale_color_ipsum() +
-  theme(legend.position = "none") + 
+  theme(legend.position = "none",
+        panel.background = element_rect(colour = "#ffffe0"),
+        plot.background = element_rect(colour = "#ffffe0")) + 
   scale_y_reverse() + 
-  coord_flip() 
-  
+  coord_flip()
+
 ```
 
 # Test-driven workflow
@@ -599,5 +605,16 @@ At this point, the developer makes a final assessment of whether the stated obje
 If the algorithm does not yet have sufficient `code::proof`, the cycle can be repeated, and `code::registration`s updates. 
 
 # Sufficient `code::proof` of software for doneness
+
+It does not feel a great leap to assume that we none of us will think of every use case, every aspect, of solving an algorithm computationally. Thus, rather than disputing what is or is not _done_, we simply set out to achieve _what we can think of doing_. A `code::registration` provides a summary of what we could think of doing to 'further the process of scientific discovery', as Devezer _et al._ might put it [@devezerScientificDiscoveryModelcentric2019], towards our goal.
+
+
+The first version of this manuscript, itself, is a preregistration of a computational workflow. This workflow is for `team reprocat::` of The repliCATS Project to develop rerproducible algorithms more happily together. The first version provides a description of the workflow for the team; the second version incorporates the team's feedback. This arguably literalises the scientific practices of publishing manuscripts; no manuscript, no matter how definitive, provides everything required for a resaerch project, but may offer particular tools and evidence to further the process of scientific discovery. 
+
+
+Another researcher software engineer may be cognisant of a tool you are unfamiliar with. By providing the package, and the `code::registration`, we provide a method to facilitate what Stodden describes as the _extensibility_ of the algorithm [@stodden_setting_2013]. 
+
+
+The workflow presented in this manuscript aims to address: `code::xiety`, the anxiety associating with programming; _good enough_ scientific practices, by incorporating automated testing [@wilson_good_2017]; and collaborative benefits. `code::registration` provides a means of providing accessibility and transparency to the next developer. _Especially_ if the next developer is your future self.   
 
 # References
