@@ -27,7 +27,7 @@ is what is referred to as a *boundary condition* test in RStudio's primers
 (todo: citation).
 
 These expectations are intended to integrate into minimal testing workflow
-*for development* of data analyses. When developing a function, we will nge parameters, and structure of the pipeline. These tests
+*for development* of data analyses. When developing a function, we will need parameters, and structure of the pipeline. These tests
 enable the developer to feel reassured the pipeline's functions are
 outputting non-empty thing of expected type, while the developer decides the best structure for an analysis pipeline. 
 
