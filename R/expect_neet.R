@@ -31,6 +31,8 @@
 #' non-empty and of expected type
 #' `test_neet` is a test for [testthat]
 #'
+#' @family neet Test for non-empty thing of expected type.
+#'
 #' @export
 
 expect_neet <- function(thing_to_test, expected_type) {
@@ -44,6 +46,8 @@ expect_neet <- function(thing_to_test, expected_type) {
 #' Test for non-empty thing of expected type.
 #'
 #' @inheritParams expect_neet
+#'
+#' @family neet Test for non-empty thing of expected type.
 #'
 #' @export
 
@@ -59,6 +63,8 @@ test_neet <-
 #' Check input is non-empty and expected type
 #'
 #' @inheritParams expect_neet
+#'
+#' @family neet Test for non-empty thing of expected type.
 #'
 #' @export
 

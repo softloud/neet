@@ -41,3 +41,9 @@ non-empty and of expected type
 \description{
 Test for non-empty thing of expected type
 }
+\seealso{
+Other neet Test for non-empty thing of expected type.: 
+\code{\link{assert_neet}()},
+\code{\link{test_neet}()}
+}
+\concept{neet Test for non-empty thing of expected type.}
