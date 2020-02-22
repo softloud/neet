@@ -7,7 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "charlestigray@gmail.com",
            comment = c(ORCID = "0000−0002−9978−011X"))
-Description: Boundary checks for test-driven development
+Description: Boundary checks for test-driven development.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -16,4 +16,11 @@ RoxygenNote: 7.0.1
 Imports: 
     magrittr,
     testthat,
-    assertthat
+    assertthat,
+    dplyr,
+    forcats,
+    ggplot2,
+    hrbrthemes,
+    purrr,
+    stringr,
+    tibble

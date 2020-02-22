@@ -7,7 +7,7 @@
 expect_nonempty(thing_to_test)
 }
 \arguments{
-\item{thing_to_test}{}
+\item{thing_to_test}{An R object.}
 }
 \description{
 Test if an R object is empty.

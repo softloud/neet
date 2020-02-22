@@ -2,7 +2,7 @@
 #'
 #' Test if an R object is empty.
 #'
-#' @param thing_to_test
+#' @param thing_to_test An R object.
 #'
 
 #' @export
@@ -29,46 +29,42 @@ expect_nonempty.default <-
 
 expect_nonempty.data.frame <-
   function(thing_to_test) {
-    expect_gt(thing_to_test %>% nrow(), 0)
+    testthat::expect_gt(thing_to_test %>% nrow(), 0)
   }
 
 #' @export
 
 expect_nonempty.numeric <-
-  function(thing_to_test, positive_only = FALSE) {
+  function(thing_to_test) {
 
     # test to see if na
-    expect_false(any(is.na(thing_to_test)))
-    expect_false(is.null(thing_to_test))
+    testthat::expect_false(any(is.na(thing_to_test)))
+    testthat::expect_false(is.null(thing_to_test))
 
     # infs
-    expect_false(
+    testthat::expect_false(
       any(abs(as.numeric(thing_to_test)) == Inf))
 
     # non-empty
-    expect_true(length(thing_to_test) > 0)
+    testthat::expect_true(length(thing_to_test) > 0)
   }
 
 #' @export
 
 expect_nonempty.list <- function(thing_to_test){
-  expect_gt(thing_to_test %>% length(), 0)
+  testthat::expect_gt(thing_to_test %>% length(), 0)
 }
 
 #' @export
 
 expect_nonempty.character <- function(thing_to_test){
-  expect_gt(thing_to_test %>% stringr::str_length(), 0)
+  testthat::expect_gt(thing_to_test %>% stringr::str_length(), 0)
 }
 
 #' @export
 
 expect_nonempty.rma <- function(thing_to_test) {
-  expect_is(thing_to_test, "rma")
+  testthat::expect_is(thing_to_test, "rma")
 }
 
-#' @export
 
-expect_nonempty.ggplot <- function(thing_to_test) {
-  TRUE
-}

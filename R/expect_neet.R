@@ -26,39 +26,48 @@
 #' A `ggplot` object is checked for successfully running.
 #'
 #'
-#' [assert_neet] tests the input is non-empty and of expected type, and
-#' [expect_neet] is an expectation for [test_that] that checks the output is
+#' `assert_neet` tests the input is non-empty and of expected type, and
+#' `expect_neet` is an expectation for [test_that] that checks the output is
 #' non-empty and of expected type
-#' [test_neet] is a test for [testthat]
+#' `test_neet` is a test for [testthat]
 #'
-#' @import testthat
-#' @import assertthat
 #' @export
-#'
-#'
 
 expect_neet <- function(thing_to_test, expected_type) {
   # we expect non-empty
   expect_nonempty(thing_to_test)
   # thing of expected type
-  expect_is(thing_to_test, expected_type)
+  testthat::expect_is(thing_to_test, expected_type)
 }
 
-#' @export
-test_neet <- function(thing_to_test, expected_type, test_description) {
 
-  test_that(test_description, {
-    expect_neet(thing_to_test, expected_type)
-  })
-}
-
+#' Test for non-empty thing of expected type.
+#'
+#' @inheritParams expect_neet
+#'
 #' @export
+
+test_neet <-
+  function(thing_to_test,
+           expected_type) {
+    testthat::test_that("neet", {
+      expect_neet(thing_to_test, expected_type)
+    })
+  }
+
+
+#' Check input is non-empty and expected type
+#'
+#' @inheritParams expect_neet
+#'
+#' @export
+
 assert_neet <- function(thing_to_test, expected_type) {
   # we expect non-empty
-  not_empty(thing_to_test)
+  assertthat::not_empty(thing_to_test)
   # thing of expected type
-  assert_that(expected_type %in% class(thing_to_test),
-              msg = paste("thing_to_test not of expected type - ", expected_type))
+  assertthat::assert_that(
+    expected_type %in% class(thing_to_test),
+    msg = paste("thing_to_test not of expected type - ", expected_type)
+  )
 }
-
-

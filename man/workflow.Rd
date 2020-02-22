@@ -6,6 +6,10 @@
 \usage{
 workflow(progress = 0)
 }
+\arguments{
+\item{progress}{Progress through the code::proof cycle. Setting to 0 returns
+workflow with no progress marker.}
+}
 \description{
 Draw an image of a testing workflow and where the user is up to in the
 process.

@@ -5,16 +5,9 @@
 #'
 #' This was adapted from code snippets posted in this
 #' [thread](https://twitter.com/CSchmert/status/1224333501840928770?s=20).
-
-# acknowledgements
-# https://twitter.com/CSchmert/status/1224333501840928770?s=20
-# radians <- seq(0, 6*pi, length.out = 600)
-# df <- data.frame(
-#   x = cos(radians) + seq(0, 6, length.out = 600),
-#   y = sin(radians)
-# )
-# plot(df$x, df$y, type = 'l')
-
+#'
+#' @param progress Progress through the code::proof cycle. Setting to 0 returns
+#' workflow with no progress marker.
 #'
 #' @export
 
