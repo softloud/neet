@@ -15,4 +15,5 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.0.1
 Imports: 
     magrittr,
-    testthat
+    testthat,
+    assertthat
