@@ -1,5 +1,5 @@
 Package: neet
-Title: Coding to code::proof: Boundary checks for test-driven development. 
+Title: Coding to code::proof  
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Charles",
@@ -7,7 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "charlestigray@gmail.com",
            comment = c(ORCID = "0000−0002−9978−011X"))
-Description: What the package does (one paragraph).
+Description: Boundary checks for test-driven development
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
