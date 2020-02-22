@@ -18,6 +18,7 @@ knitr::opts_chunk$set(
 # neet
 
 <!-- badges: start -->
+[![Travis build status](https://travis-ci.org/softloud/neet.svg?branch=master)](https://travis-ci.org/softloud/neet)
 <!-- badges: end -->
 
 Test for non-empty thing of expected type

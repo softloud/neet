@@ -5,6 +5,8 @@
 
 <!-- badges: start -->
 
+[![Travis build
+status](https://travis-ci.org/softloud/neet.svg?branch=master)](https://travis-ci.org/softloud/neet)
 <!-- badges: end -->
 
 Test for non-empty thing of expected type
@@ -15,7 +17,7 @@ primers (todo: citation).
 
 These expectations are intended to integrate into minimal testing
 workflow *for development* of data analyses. When developing a function,
-we will nge parameters, and structure of the pipeline. These tests
+we will need parameters, and structure of the pipeline. These tests
 enable the developer to feel reassured the pipeline’s functions are
 outputting non-empty thing of expected type, while the developer decides
 the best structure for an analysis pipeline.
@@ -79,7 +81,7 @@ workflow(0)
 This section describes the test-driven workflow presented above as a
 `code::proof`ed coding to doneness.
 
-The model workflow includes three stages, repeated three times, before
+The model workflow comprises three stages, repeated three times, before
 returning to the start, the `code::registration`. We use *model* to
 suggest the workflow may be adapted for different use-cases.
 
