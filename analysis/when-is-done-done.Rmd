@@ -3,14 +3,15 @@ title: "Coding to `code::proof`: Practice fundamentals of automated tests for co
 subtitle: "How to go from no tests, to *whoa* tests!"
 author: "sketch-draft by lead author, Charles T. Gray"
 bibliography: references.bib
-# output:
-#   tufte::tufte_html:
-#     number_sections: true
-
 output:
-  pdf_document:
+  tufte::tufte_html:
     number_sections: true
-    latex_engine: xelatex
+    toc: true
+
+# output:
+#   pdf_document:
+#     number_sections: true
+#     latex_engine: xelatex
 
 ---
 
@@ -101,11 +102,17 @@ This toolchain walkthrough assumes a knowledge of R advanced enough to be using 
 - tools used: testthat, neet, covr
 - GitHub
 
-## Case study
+## A toolchain walkthrough for `code::registration` of...
+
+This toolchain walkthrough for `code::registration` reflects on the in-development practice of code to completion on a few different research projects. Consideration of sufficient `code::proof` of packages `varameta::`, `simeta::`, developed for the ouvre of doctoral work this manuscript contributes to. Another example project is considered, The repliCATS Project software of statistical aggregation methods, in particular `CATnap::` and `aggreCAT::`. 
+
+For The repliCATS Project, the algorithms are not available until the research is complete, in order to blind the other team to the methodology. Although we cannot provide explicit code examples, the process is considered with respect to this project, as it is an example of collaborative in-development `code::registration`.
 
 ### `varameta::`
 
 The `varameta::` package is in-development analysis support software for a forthcoming manuscript, Meta-analysis of Medians. 
+
+
 
 ## Get an overview with `covr::`\label{sec: covr}
 
