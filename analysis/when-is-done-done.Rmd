@@ -212,7 +212,48 @@ An excellent way to arrive at *done* for an algorithm is to define, even if only
 
 # Code with intent
 
-When we think of an algorithm, it's easy to feel overwhelmed by the complexity. Here are the relationships between inputs, and just some of the estimators, and outputs in `varameta`, presented as a randomised *graph*, a visual representation of a set of nodes, $V$, and the edges, $V \times V$, between them. We understand each function's inputs and outputs, but understanding the way they relate to each other, is often muddled without planning. Our `code::brain`, the way we conceptulaise the code, is disorganised.
+When we think of an algorithm, it's easy to feel overwhelmed by the complexity. And, analogous to the pitfalls of the piano student, a developer may fall prey to the inevitable rabbit holes and distractions that arise. It's tempting to consider  these distractions benign, but, in fact, these actions are frequently the result of techinical anxiety about the task, and are anathema to mastering the technique in question.
+
+## Practice with intent
+
+In learning Bach's Contrapunctus I, the student has various conventional, albeit questionable, methods of approach. 
+
+The student might begin from the start each time. But, as the piece is not yet mastered, the student will inevitably encounter something they cannot play with ease. This is often encountered in the first bar of a Bach piece. If the student plays up to the mistake, and begins again, then they risk becoming adept the start, and becoming increasingly anxious about the end of the piece.  
+In an advanced piece such as Contrapunctus I, there are many challenging technical aspects. In particular, the work is polyphonic; Contrapunctus I is a central focus of the string quartet in Vikram Seth's *An Equal Music* [todo citation].  There is a melody; formally referred to as a *subject*.
+
+> todo: figure of subject
+
+This figure reoccurs in bars.... 
+
+
+
+
+
+
+
+> Piano teachers know that students
+must practice musically in order to acquire
+technique. Both musicality and technique
+require accuracy and control. Practically
+any technical flaw can be detected in the
+music. Nonetheless, many students tend to
+practice neglecting the music, preferring to
+"work" when no one is around to listen.
+Their reasoning is, "I'll practice non-
+musically (which is easier because you can
+shut off the brain) until I can play it well,
+then I'll add the music." This never works
+because learning piano is all about training
+the brain, not finger calisthenics [@chang_fundamentalspianopractice_2009a]. 
+
+## Mindful coding
+
+
+
+
+In the `varameta::` package, we wish to compare various estimators. There are inputs, an estimator, which is to say a computational process and a similar output, however the devil is in the details, as 
+
+Here are the relationships between inputs, and just some of the estimators, and outputs in `varameta`, presented as a randomised *graph*, a visual representation of a set of nodes, $V$, and the edges, $V \times V$, between them. We understand each function's inputs and outputs, but understanding the way they relate to each other, is often muddled without planning. Our `code::brain`, the way we conceptulaise the code, is disorganised.
 
 ```{r codebrain,echo=FALSE,message=FALSE,fig.height=5,fig.cap="`code::brain` before `code::registration`."}
 library(igraph)
@@ -246,7 +287,7 @@ The Center for Open Science recommend *preregistering* an experiment, stating wh
 
 To code::register an algorithm:
 
-## `code::registration`
+# `code::registration`
 
 In an issue on GitHub:
 
