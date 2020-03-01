@@ -46,7 +46,9 @@ J. S. Bach's Contrapunctus I is not learnt in one sitting [todo: citation]. Inde
 
 For a researcher performing an analysis using a computational tool such as R, it can be unclear when an analysis is *done*. And, while there are technical guides on *good enough* practice, it can feel overwhelming as to what to adopt and where. Particularly for an in-development algorithm, which is to say, an algorithm with scripts already started, and some results explored. 
 
-This manuscript picks up from where Riederer left off with *RMarkdown-driven development* and suggests a  `code::registered` *test-driven workflow* for coding to doneness. This workflow provides a roadmap to completion for a packaged analysis with `code::proof`ed the manuscript [@grayCodeProofPrepare2019], provided measures of confidence in the implementaiton of the algorithm.   
+This manuscript picks up from where Riederer left off with **RMarkdown-driven development** and suggests a  `code::register`ed (`c::r`ed[^2]) **test-driven workflow** for coding to doneness. This workflow provides a roadmap to completion for a packaged analysis with `code::proof`ed the manuscript [@grayCodeProofPrepare2019], provided measures of confidence in the implementation of the algorithm.   
+
+[^2]: In this manuscript, `c::r` denotes `code::registration`, `c::r`ing denotes `code::registering`, and `c::r`ed denotes `code::resgistered` 
 
 Musicians and, similarly, athletes, do not see themselves as having mastered a skill, but active practitioners of a craft [@galway_flute_1990]. To be a flautist is to practice, and to be an athlete is to train. For researcher developers, it can be hard to assess when an analysis is completed. In this manuscript, we consider the *practice* of test-driven analysis development as a means of *coding to doneness* for an algorithm, a workflow that faciliates the analyst achieving sufficient `code::proof` in their algorithm, confidence in the implementation of the aglorithm[@grayCodeProofPrepare2019]. 
 
@@ -103,17 +105,15 @@ This toolchain walkthrough assumes a knowledge of R advanced enough to be using 
 - tools used: testthat, neet, covr
 - GitHub
 
-## A toolchain walkthrough for `code::registration` of...
+## A toolchain walkthrough for `c::r` of...
 
-This toolchain walkthrough for `code::registration` reflects on the in-development practice of code to completion on a few different research projects. Consideration of sufficient `code::proof` of packages `varameta::`, `simeta::`, developed for the ouvre of doctoral work this manuscript contributes to. Another example project is considered, The repliCATS Project software of statistical aggregation methods, in particular `CATnap::` and `aggreCAT::`. 
+This toolchain walkthrough for `c::r` reflects on the in-development practice of code to completion on a few different research projects. Consideration of sufficient `code::proof` of packages `varameta::`, `simeta::`, developed for the ouvre of doctoral work this manuscript contributes to. Another example project is considered, The repliCATS Project software of statistical aggregation methods, in particular `CATnap::` and `aggreCAT::`. 
 
-For The repliCATS Project, the algorithms are not available until the research is complete, in order to blind the other team to the methodology. Although we cannot provide explicit code examples, the process is considered with respect to this project, as it is an example of collaborative in-development `code::registration`.
+For The repliCATS Project, the algorithms are not available until the research is complete, in order to blind the other team to the methodology. Although we cannot provide explicit code examples, the process is considered with respect to this project, as it is an example of collaborative in-development `c::r`.
 
 ### `varameta::`
 
 The `varameta::` package is in-development analysis support software for a forthcoming manuscript, Meta-analysis of Medians. 
-
-
 
 ## Get an overview with `covr::`\label{sec: covr}
 
@@ -256,7 +256,7 @@ In the `varameta::` package, we wish to compare various estimators. There are in
 
 Here are the relationships between inputs, and just some of the estimators, and outputs in `varameta`, presented as a randomised *graph*, a visual representation of a set of nodes, $V$, and the edges, $V \times V$, between them. We understand each function's inputs and outputs, but understanding the way they relate to each other, is often muddled without planning. Our `code::brain`, the way we conceptulaise the code, is disorganised.
 
-```{r codebrain,echo=FALSE,message=FALSE,fig.height=5,fig.cap="`code::brain` before `code::registration`."}
+```{r codebrain,echo=FALSE,message=FALSE,fig.height=5,fig.cap="`code::brain` before `c::r`."}
 library(igraph)
 
 confusing_relationships <- make_graph(~ 
@@ -284,11 +284,11 @@ confusing_relationships %>% plot(
 ```
 
 
-The Center for Open Science recommend *preregistering* an experiment, stating what the hypothesis is and how the analyst intends to assess the hypothesis as one safeguard against inadvertent questionable research practices. Analogously, we might think of preregistering our code as providing some `code::proof` of the implementation of our algorithm. In this manuscript, we will think of *code::registration*, stating what the intention of an algorithm is, as - todo: complete
+The Center for Open Science recommend *preregistering* an experiment, stating what the hypothesis is and how the analyst intends to assess the hypothesis as one safeguard against inadvertent questionable research practices. Analogously, we might think of preregistering our code as providing some `code::proof` of the implementation of our algorithm. In this manuscript, we will think of *c::r*, stating what the intention of an algorithm is, as - todo: complete
 
 To code::register an algorithm:
 
-# `code::registration`
+# `c::r`
 
 In an issue on GitHub:
 
@@ -296,7 +296,7 @@ In an issue on GitHub:
 2. Describe the input parameters and how they will be tested.
 3. Describe the output parameters and how they will be tested.
 
-Update the code::registration as needed. 
+Update the c::r as needed. 
 
 ## For complex projects
 
@@ -503,7 +503,7 @@ graph <- tbl_graph(nodes, edges)
 
 These can be 
 
-```{r message=FALSE, fig.width=15, fig.height=5, fig.cap="`code::brain` after `code::registration`."}
+```{r message=FALSE, fig.width=15, fig.height=5, fig.cap="`code::brain` after `c::r`."}
 
 
 graph %>% 
@@ -524,7 +524,9 @@ graph %>%
 
 ```
 
-# Test-driven workflow
+## Test-driven workflow
+
+In order to... doneness ... propose test driven ... implemented as...
 
 ```{r, message=FALSE,echo=FALSE}
 library(neet)
@@ -532,13 +534,11 @@ library(neet)
 workflow(0)
 ```
 
-This section describes the test-driven workflow presented above as a `code::proof`ed coding to doneness.  
-
-The model workflow includes three stages, repeated three times, before returning to the start, the `code::registration`.
+The model workflow includes three stages, repeated three times, before returning to the start, the `c::r`.
 
 Each phase consists of:
 
-1. `code::registration`
+1. `c::r`
 2. tests
 3. code
 
@@ -546,58 +546,70 @@ Each phase consists of:
 
 The tests vary each time in complexity, so that the complete model cycle consists of ten phases of work:
 
-1. `code::registration`
+1. `c::r`
 2. neet tests, one per function
 3. code
-4. `code::registration`
+4. `c::r`
 5. neet tests, for all inputs for each function
 6. code
-7. `code::registration`
+7. `c::r`
 8. tests, and the rest, i.e., any other cases to test for
 9. code
-7. `code::registration`
+7. `c::r`
 
 We use *model* cycle to denote the workflow may be adapted for different use-cases. Our next section steps through each phase of work.
 
 # Coding to `code::proof` toolchain walkthrough
 
-In this section we step through the Coding to `code::proof` for `varameta::`, an in-development analysis that has seen many iterations.  
+In this section we step through the Coding to `code::proof` for...
 
-## one `neet` test per function 
+- `varameta::`, an in-development analysis that has seen many iterations.  
+- `simeta::`
+- `repliCATS`
+
+
+# First cycle: one `neet` test per function 
 
 For the first `code::proof` cycle, we follow the steps:
 
-1. A rough, first-draft,`code::registration`.
+1. A rough, first-draft `c::r`.
 2. Write one `neet` test per function.
 3. Write code to make those `neet` tests pass, for each function.
 
-In this case, as the functions are written, we are _confirming_ the functions pass the `neet` tests.
+If functions are written, then we only need _confirm_ the functions pass the `neet` tests. 
 
-### `code::registration`
+## `c::r`
 
 ```{r}
-workflow(1)
+neet::workflow(1)
 
 ```
 
-Inputs:
+We begin with a sketch outline of a `c::r`, which we then populate with description in prose, provide some detail of neet testing, before providing case-study.
 
-- [ ] one neet [^1]
-- [ ] all neets
-- [ ] and the rest
+As our first testing objective is one neet test per function, we need not necessarily work out the details of all possible things to check for. We simply ask, what will it take to check that each function required for the algorithm produces a non-empty thing of expected type? 
 
-Outputs:
+```
+
+1. Objective:
+
+2. Inputs:
 
 - [ ] one neet
 - [ ] all neets
 - [ ] and the rest
 
+3. Outputs:
 
+- [ ] one neet
+- [ ] all neets
+- [ ] and the rest
 
-[^1]: Note that `- [ ]` will create an unchecked tickbox and `- [x]` will create a tickbox in both GitHub and RMarkdown.
+```
 
+Note that `- [ ]` will create an unchecked tickbox and `- [x]` will create a tickbox in both GitHub and RMarkdown.
 
-### At least one `neet` test per function
+## At least one `neet` test per function
 
 The `neet::` package is part of this manuscript's research compendia, we think of compendia, a collection of components that form a research project. In the case of this manuscript, there is an extension package of `testthat::`.
 
@@ -611,13 +623,39 @@ devtools::install_github("softloud/neet")
 
 ```
 
-### `code::registration`
+## `simeta:: c::r`
 
-Update or rewrite `code::registration`, as needed.
+```{r}
+workflow(1)
+```
 
-- ...for the varemta package
+**Objective:**
 
-## `neet` tests for all inputs 
+Randomly generate meta-analysis data, calculate a confidence interval based on a user-specified estimator (currently only works on `varameta::`), and evaluates if the true parameter falls within; repeat this |trials| number of times, and return the coverage, the proportion of times the true parameter falls within the confidence interval. 
+
+Summarise and provide a dataframe of coverage for different sample sizes, group effect ratios, variability between studies, and distributions. Also provide summary visualisation tools. 
+
+**Inputs:**
+
+User inputs: default to *just* the estimator.  
+
+- [ ] one neet
+- [ ] all neets
+- [ ] and the rest
+
+**Outputs**
+
+A dataframe of coverage probabilities. 
+
+- [ ] one neet
+- [ ] all neets
+- [ ] and the rest
+
+## `varameta:: c::r`
+
+## `aggreCAT:: c::r`
+
+# Second cycle: `neet` tests for all inputs 
 
 ```{r}
 workflow(5)
@@ -626,16 +664,16 @@ workflow(5)
 
 Once we have established there is one `neet` test per function, we might now perform `neet` tests for each possibility for inputs. 
 
-### `code::registration`
+### `c::r`
 
-Update or rewrite `code::registration`, as needed.
+Update or rewrite `c::r`, as needed.
 
 ### `neet` tests for all inputs 
 
 ### Coding to `code::proof`
 
 
-## Testing for doneness
+# Third cycle: Testing for doneness
 
 
 ```{r}
@@ -643,9 +681,9 @@ Update or rewrite `code::registration`, as needed.
 ```
 
 
-### `code::registration`
+### `c::r`
 
-Update or rewrite `code::registration`, as needed.
+Update or rewrite `c::r`, as needed.
 
 
 ### All tests required for purpose
@@ -653,29 +691,29 @@ Update or rewrite `code::registration`, as needed.
 ### Coding to `code::proof`
 
 
-## `code::registration` of doneness
+## `c::r` of doneness
 
 ```{r}
 workflow(10)
 ```
 
-Under this workflow, the `code::registration` is the project overview any developer can return to. So, this final registration not only summarises what has been tested, but also notes any idiosyncrasies for other developers, _expeically_ the future self of the developer, who recalls so little of the code they may as well be a different developer.
+Under this workflow, the `c::r` is the project overview any developer can return to. So, this final registration not only summarises what has been tested, but also notes any idiosyncrasies for other developers, _expeically_ the future self of the developer, who recalls so little of the code they may as well be a different developer.
 
 At this point, the developer makes a final assessment of whether the stated objective of the implementation of the algorithm. Assess the `code::proof`, through the development process, new ideas, boundaries to check (recall the `logfn` and negative numbers example in Section 5.4[todo: hyperlink]). We might characterise done as when we feel we have sufficient `code::proof`. 
 
-If the algorithm does not yet have sufficient `code::proof`, the cycle can be repeated, and `code::registration`s updates. 
+If the algorithm does not yet have sufficient `code::proof`, the cycle can be repeated, and `c::r`s updates. 
 
 # Sufficient `code::proof` of software for doneness
 
-It does not feel a great leap to assume that we none of us will think of every use case, every aspect, of solving an algorithm computationally. Thus, rather than disputing what is or is not _done_, we simply set out to achieve _what we can think of doing_. A `code::registration` provides a summary of what we could think of doing to 'further the process of scientific discovery', as Devezer _et al._ might put it [@devezerScientificDiscoveryModelcentric2019], towards our goal.
+It does not feel a great leap to assume that we none of us will think of every use case, every aspect, of solving an algorithm computationally. Thus, rather than disputing what is or is not _done_, we simply set out to achieve _what we can think of doing_. A `c::r` provides a summary of what we could think of doing to 'further the process of scientific discovery', as Devezer _et al._ might put it [@devezerScientificDiscoveryModelcentric2019], towards our goal.
 
 
 The first version of this manuscript, itself, is a preregistration of a computational workflow. This workflow is for `team reprocat::` of The repliCATS Project to develop rerproducible algorithms more happily together. The first version provides a description of the workflow for the team; the second version incorporates the team's feedback. This arguably literalises the scientific practices of publishing manuscripts; no manuscript, no matter how definitive, provides everything required for a resaerch project, but may offer particular tools and evidence to further the process of scientific discovery. 
 
 
-Another researcher software engineer may be cognisant of a tool you are unfamiliar with. By providing the package, and the `code::registration`, we provide a method to facilitate what Stodden describes as the _extensibility_ of the algorithm [@stodden_setting_2013]. 
+Another researcher software engineer may be cognisant of a tool you are unfamiliar with. By providing the package, and the `c::r`, we provide a method to facilitate what Stodden describes as the _extensibility_ of the algorithm [@stodden_setting_2013]. 
 
 
-The workflow presented in this manuscript aims to address: `code::xiety`, the anxiety associating with programming; _good enough_ scientific practices, by incorporating automated testing [@wilson_good_2017]; and collaborative benefits. `code::registration` provides a means of providing accessibility and transparency to the next developer. _Especially_ if the next developer is your future self.   
+The workflow presented in this manuscript aims to address: `code::xiety`, the anxiety associating with programming; _good enough_ scientific practices, by incorporating automated testing [@wilson_good_2017]; and collaborative benefits. `c::r` provides a means of providing accessibility and transparency to the next developer. _Especially_ if the next developer is your future self.   
 
 # References
