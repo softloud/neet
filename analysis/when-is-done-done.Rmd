@@ -3,15 +3,15 @@ title: "Coding to `code::proof`: Practice fundamentals of automated tests for co
 subtitle: "How to go from no tests, to *whoa* tests!"
 author: "sketch-draft by lead author, Charles T. Gray"
 bibliography: references.bib
-# output:
-  # tufte::tufte_html:
-  #   number_sections: true
-  #   toc: true
-
 output:
-  pdf_document:
-    number_sections: true
-    latex_engine: xelatex
+tufte::tufte_html:
+  number_sections: true
+  toc: true
+
+# output:
+#   pdf_document:
+#     number_sections: true
+#     latex_engine: xelatex
 
 
 ---
