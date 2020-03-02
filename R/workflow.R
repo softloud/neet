@@ -41,10 +41,10 @@ workflow <- function(progress = 0) {
     c(0, 2 * pi / 3, 4 * pi / 3) %>% c(., . + 2 * pi, . + 4 * pi, 6 * pi) %>%
     purrr::map_df(fetchpoints) %>%
     dplyr::mutate(
-      label = c("code::registration",
+      label = c("c::r",
                 "tests",
-                "code") %>% rep(3) %>% c(., "code::registration"),
-      label = factor(label, levels = c("code::registration", "tests", "code"))
+                "code") %>% rep(3) %>% c(., "c::r"),
+      label = factor(label, levels = c("c::r", "tests", "code"))
     )
 
   neet_labels <- c("one neet", "all neets", "and the rest")
@@ -55,7 +55,7 @@ workflow <- function(progress = 0) {
       test = neet_labels,
       test = forcats::fct_relevel(test, neet_labels),
       label = as.factor(label),
-      label = forcats::fct_relevel(label, "code::registration", "tests", "code")
+      label = forcats::fct_relevel(label, "c::r", "tests", "code")
     )
 
 
@@ -88,7 +88,6 @@ workflow <- function(progress = 0) {
         alpha = alpha_workflow,
         ggplot2::aes(shape = test)
       )
-    # + ggplot2::labs(x = "code::proof to doneness workflow with code::registration")
   )
 
   if (progress == 0) {
@@ -97,7 +96,7 @@ workflow <- function(progress = 0) {
   {
     cut_off <- points[progress,] %>% purrr::pluck("theta")
 
-    suppressWarnings(
+    suppressMessages(
       workflow +
         ggplot2::geom_path(
           data = loop %>% dplyr::filter(theta <= cut_off),

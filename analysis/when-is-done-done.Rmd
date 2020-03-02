@@ -3,15 +3,15 @@ title: "Coding to `code::proof`: Practice fundamentals of automated tests for co
 subtitle: "How to go from no tests, to *whoa* tests!"
 author: "sketch-draft by lead author, Charles T. Gray"
 bibliography: references.bib
-output:
-  tufte::tufte_html:
-    number_sections: true
-    toc: true
-
 # output:
-#   pdf_document:
-#     number_sections: true
-#     latex_engine: xelatex
+  # tufte::tufte_html:
+  #   number_sections: true
+  #   toc: true
+
+output:
+  pdf_document:
+    number_sections: true
+    latex_engine: xelatex
 
 
 ---
@@ -80,7 +80,7 @@ Wilson et al. followed their work on _best practices_  in scientific computing [
 
 Automated tests are a formalised way of implementing checks that inputs and outputs of algorithsms are as expected [@wickham_r_2015]. Informative messages are output that assist the developer in identifying where code is not performing as expected. 
 
-# Collaboration via automated testing 
+## Collaboration via automated testing 
 
 At heart, automated tests are collaborative. This may be with others, but applies at least as much to a analyst approaching their own past work with which they have become unfamiliar, or have become anxious about some aspect of the work. Automated tests provide an efficient way of returning to and extending an analysis; anxiety is reduced by having defined outcomes to code explicitly for. 
 
@@ -288,7 +288,7 @@ The Center for Open Science recommend *preregistering* an experiment, stating wh
 
 To code::register an algorithm:
 
-# `c::r`
+# `code::registration (c::r)`
 
 In an issue on GitHub:
 
@@ -559,7 +559,7 @@ The tests vary each time in complexity, so that the complete model cycle consist
 
 We use *model* cycle to denote the workflow may be adapted for different use-cases. Our next section steps through each phase of work.
 
-# Coding to `code::proof` toolchain walkthrough
+## Coding to `code::proof` toolchain walkthrough
 
 In this section we step through the Coding to `code::proof` for...
 
