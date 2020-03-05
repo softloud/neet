@@ -3,10 +3,11 @@ title: "Coding to `code::proof`: Practice fundamentals of automated tests for co
 subtitle: "How to go from no tests, to *whoa* tests!"
 author: "sketch-draft by lead author, Charles T. Gray"
 bibliography: references.bib
+
 output:
-tufte::tufte_html:
-  number_sections: true
-  toc: true
+  tufte::tufte_html:
+    number_sections: true
+    toc: true
 
 # output:
 #   pdf_document:
@@ -43,6 +44,92 @@ People who have contributed feedback or assisted, some of whom might be co-autho
 # Coding to `code::proof` 
 
 J. S. Bach's Contrapunctus I is not learnt in one sitting [todo: citation]. Indeed, for most pianists, to play the three-minute piece is the result of many months' diligent work, and still it will never feel *done*. To play well, a pianist must employ technqiue, but *how* a pianist is to achieve the desired technique is not clear [@chang_fundamentalspianopractice_2009a]. 
+
+## qrps in scientific computing
+
+## coding practice to mitigate anxiety & facillitate collaboration
+
+# what is this manuscript? a toolchain walkthrough
+
+## objective
+
+## devops
+
+## case studies
+
+# `neet::` tests
+
+# `code::registration` 
+
+
+
+## `varameta:: c::r`
+
+```{r}
+workflow(1)
+```
+
+
+The `varameta::` package has the least complex structure of the examples we are considering.
+
+**Objective**
+
+The `varameta::` package aims to provide a collection of different estimators for approximating the variance of the sample median.  
+
+**Inputs**
+
+Each estimator takes various sample statistics (quartiles, etc.), sample size.
+
+- [ ] one neet
+- [ ] all neets
+- [ ] and the rest
+
+**Outputs**
+
+Each estimator outputs an estimate of spread and centre. Some are approximations of the variance of the sample median, and others approximate the standard deviation and mean.
+
+- [ ] one neet
+- [ ] all neets
+- [ ] and the rest
+
+## `simeta:: c::r`
+
+The `simeta::` package was developed to test the estimators provided in the `varameta::` package. 
+
+**Objective:**
+
+Randomly generate meta-analysis data, calculate a confidence interval based on a user-specified estimator (currently only works on `varameta::`), and evaluates if the true parameter falls within; repeat this |trials| number of times, and return the coverage, the proportion of times the true parameter falls within the confidence interval. 
+
+Summarise and provide a dataframe of coverage for different sample sizes, group effect ratios, variability between studies, and distributions. Also provide summary visualisation tools. 
+
+**Inputs:**
+
+User inputs: default to *just* the estimator.  
+
+- [ ] one neet
+- [ ] all neets
+- [ ] and the rest
+
+**Outputs**
+
+A dataframe of coverage probabilities. 
+
+- [ ] one neet
+- [ ] all neets
+- [ ] and the rest
+
+
+# First `code::proof` cycle
+
+# Second `code::proof` cycle
+
+# Third `code::proof` cycle
+
+# A measure of `code::proof`
+
+# Older draft
+
+
 
 For a researcher performing an analysis using a computational tool such as R, it can be unclear when an analysis is *done*. And, while there are technical guides on *good enough* practice, it can feel overwhelming as to what to adopt and where. Particularly for an in-development algorithm, which is to say, an algorithm with scripts already started, and some results explored. 
 
@@ -524,6 +611,23 @@ graph %>%
 
 ```
 
+# Workflow for algorithmic structure
+
+- hard to find ap lace t ostart
+
+The `neet::` package is part of this manuscript's research compendia, we think of compendia, a collection of components that form a research project. In the case of this manuscript, there is an extension package of `testthat::`.
+
+
+```{r eval=FALSE}
+# install devtools
+install.packages(devtools) 
+
+# use devtools to install package from github
+devtools::install_github("softloud/neet")
+
+```
+
+
 ## Test-driven workflow
 
 In order to... doneness ... propose test driven ... implemented as...
@@ -609,49 +713,9 @@ As our first testing objective is one neet test per function, we need not necess
 
 Note that `- [ ]` will create an unchecked tickbox and `- [x]` will create a tickbox in both GitHub and RMarkdown.
 
-## At least one `neet` test per function
-
-The `neet::` package is part of this manuscript's research compendia, we think of compendia, a collection of components that form a research project. In the case of this manuscript, there is an extension package of `testthat::`.
+In the examples below, in the interets of brevity, we will drop the tick boxes, and provide the roughly descriptive prose for the three sections of each `c::r`. Under this workflow, we expect to update the `c::r` as our understanding of the algorithmic structure becomes more nuanced. 
 
 
-```{r eval=FALSE}
-# install devtools
-install.packages(devtools) 
-
-# use devtools to install package from github
-devtools::install_github("softloud/neet")
-
-```
-
-## `simeta:: c::r`
-
-```{r}
-workflow(1)
-```
-
-**Objective:**
-
-Randomly generate meta-analysis data, calculate a confidence interval based on a user-specified estimator (currently only works on `varameta::`), and evaluates if the true parameter falls within; repeat this |trials| number of times, and return the coverage, the proportion of times the true parameter falls within the confidence interval. 
-
-Summarise and provide a dataframe of coverage for different sample sizes, group effect ratios, variability between studies, and distributions. Also provide summary visualisation tools. 
-
-**Inputs:**
-
-User inputs: default to *just* the estimator.  
-
-- [ ] one neet
-- [ ] all neets
-- [ ] and the rest
-
-**Outputs**
-
-A dataframe of coverage probabilities. 
-
-- [ ] one neet
-- [ ] all neets
-- [ ] and the rest
-
-## `varameta:: c::r`
 
 ## `aggreCAT:: c::r`
 
