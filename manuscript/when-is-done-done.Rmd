@@ -45,92 +45,6 @@ People who have contributed feedback or assisted, some of whom might be co-autho
 
 J. S. Bach's Contrapunctus I is not learnt in one sitting [todo: citation]. Indeed, for most pianists, to play the three-minute piece is the result of many months' diligent work, and still it will never feel *done*. To play well, a pianist must employ technqiue, but *how* a pianist is to achieve the desired technique is not clear [@chang_fundamentalspianopractice_2009a]. 
 
-## qrps in scientific computing
-
-## coding practice to mitigate anxiety & facillitate collaboration
-
-# what is this manuscript? a toolchain walkthrough
-
-## objective
-
-## devops
-
-## case studies
-
-# `neet::` tests
-
-# `code::registration` 
-
-
-
-## `varameta:: c::r`
-
-```{r}
-workflow(1)
-```
-
-
-The `varameta::` package has the least complex structure of the examples we are considering.
-
-**Objective**
-
-The `varameta::` package aims to provide a collection of different estimators for approximating the variance of the sample median.  
-
-**Inputs**
-
-Each estimator takes various sample statistics (quartiles, etc.), sample size.
-
-- [ ] one neet
-- [ ] all neets
-- [ ] and the rest
-
-**Outputs**
-
-Each estimator outputs an estimate of spread and centre. Some are approximations of the variance of the sample median, and others approximate the standard deviation and mean.
-
-- [ ] one neet
-- [ ] all neets
-- [ ] and the rest
-
-## `simeta:: c::r`
-
-The `simeta::` package was developed to test the estimators provided in the `varameta::` package. 
-
-**Objective:**
-
-Randomly generate meta-analysis data, calculate a confidence interval based on a user-specified estimator (currently only works on `varameta::`), and evaluates if the true parameter falls within; repeat this |trials| number of times, and return the coverage, the proportion of times the true parameter falls within the confidence interval. 
-
-Summarise and provide a dataframe of coverage for different sample sizes, group effect ratios, variability between studies, and distributions. Also provide summary visualisation tools. 
-
-**Inputs:**
-
-User inputs: default to *just* the estimator.  
-
-- [ ] one neet
-- [ ] all neets
-- [ ] and the rest
-
-**Outputs**
-
-A dataframe of coverage probabilities. 
-
-- [ ] one neet
-- [ ] all neets
-- [ ] and the rest
-
-
-# First `code::proof` cycle
-
-# Second `code::proof` cycle
-
-# Third `code::proof` cycle
-
-# A measure of `code::proof`
-
-# Older draft
-
-
-
 For a researcher performing an analysis using a computational tool such as R, it can be unclear when an analysis is *done*. And, while there are technical guides on *good enough* practice, it can feel overwhelming as to what to adopt and where. Particularly for an in-development algorithm, which is to say, an algorithm with scripts already started, and some results explored. 
 
 This manuscript picks up from where Riederer left off with **RMarkdown-driven development** and suggests a  `code::register`ed (`c::r`ed[^2]) **test-driven workflow** for coding to doneness. This workflow provides a roadmap to completion for a packaged analysis with `code::proof`ed the manuscript [@grayCodeProofPrepare2019], provided measures of confidence in the implementation of the algorithm.   
@@ -139,9 +53,9 @@ This manuscript picks up from where Riederer left off with **RMarkdown-driven de
 
 Musicians and, similarly, athletes, do not see themselves as having mastered a skill, but active practitioners of a craft [@galway_flute_1990]. To be a flautist is to practice, and to be an athlete is to train. For researcher developers, it can be hard to assess when an analysis is completed. In this manuscript, we consider the *practice* of test-driven analysis development as a means of *coding to doneness* for an algorithm, a workflow that faciliates the analyst achieving sufficient `code::proof` in their algorithm, confidence in the implementation of the aglorithm[@grayCodeProofPrepare2019]. 
 
-# Questionable research practices in scientific computing
+## Questionable research practices in scientific computing
 
-Algorithms are coded by people who practice code, and significant problems emerge when algorithms are treated as fixed artifacts, rather than one of the tools utilised by those who *practice* code. In Australia, a heartbreakingly-ongoing example of this kind of problem with the income-reporting data analyis algorithm that assesses if income welfare recipients have been overpaid entitlements. Crude averaging calculations have lead to ongoing incorrect debt notices issued, such as 20,000 people receiving "robodebt" notices for debts they did not owe [@mcilroy201720]. Problems in data analysis have real impacts on real people's lives. Perhaps, if the algorithm were considered a workflow practiced and monitored by a team of data scientists, rather than a static object, problems would not be persisting to this day [@karp_robodebtfederalcourt_2019]. Indeed, as noted in Wilson's testing primers (in development) for [RStudio](https://rstudio.cloud/learn/primers) [@_rstudiocloud_], 
+Algorithms are coded by people who *practice* code, and significant problems emerge when algorithms are treated as fixed artifacts, rather than one of the tools utilised by those who *practice* code. In Australia, a heartbreaking ongoing example of this kind of problem with the income-reporting data analyis algorithm that assesses if income welfare recipients have been overpaid entitlements. Crude averaging calculations have lead to ongoing incorrect debt notices issued, such as 20,000 people receiving "robodebt" notices for debts they did not owe [@mcilroy201720]. Problems in data analysis have real impacts on real people's lives. Perhaps, if the algorithm were considered a workflow practiced and monitored by a team of data scientists, rather than a static object, problems would not be persisting to this day [@karp_robodebtfederalcourt_2019]. Indeed, as noted in Wilson's testing primers (in development) for [RStudio](https://rstudio.cloud/learn/primers) [@_rstudiocloud_], 
 
 > Almost all (92%) of the catastrophic system failures are the result of incorrect handling of non-fatal errors explicitly signaled in software. In 58% of the catastrophic failures, the underlying faults could easily have been detected through simple testing of error handling code [@yuan_simpletestingcan_2014].
 
@@ -153,7 +67,7 @@ Riederer identifies several qrps in scientific computing, for example, hardcoded
 
 This manuscript contributes to this literature by focussing on workflows for using automated tests to move analysis a fully reproducible packaged research compendium. Furthermore, these workflosw assist the developer communicate what they have coded to others and their future self, as a means of mitigating questionable research practices in scientific computing. Above all, by providing a workflow for the *practice* of code, the developer anxiety is reduced by having the parameters as clearly defined as they can be from the start.
 
-# Practice fundamentals
+## Practice fundamentals
 
 Chuang C. Chang's _Fundamentals of Piano Practice_ sets out to address a gap in piano pedagogy [@chang_fundamentalspianopractice_2009a]. A similar gap exists in the implementation of *good enough* practices [@wilson_good_2017], which is to say, what we might reasonably expect of a analyst, in reproducible computing for research data analyses. The objective is different from advanced pianism, but we characterise testing *practice*, as opposed to *techique*, analogous to how Change delineates between *piano* practice and technique. Through attempting to identify the fundamentals of automated testing for collaborative data analysis development, this manuscript aims to articulate the gap in understanding automated testing implementation for analysts. 
 
@@ -166,6 +80,8 @@ The dearth that Chang attempts to address is in pianistic _practice_ habits that
 Wilson et al. followed their work on _best practices_  in scientific computing [@wilson_best_2014], with a reflection on _good enough_ practices [@wilson_good_2017], in recognition that we must account for what we might reasonably request of practitioners of data analysis. In this manuscript, we consider one component of *good enough* practice in data analysis: *automated testing*. 
 
 Automated tests are a formalised way of implementing checks that inputs and outputs of algorithsms are as expected [@wickham_r_2015]. Informative messages are output that assist the developer in identifying where code is not performing as expected. 
+
+
 
 ## Collaboration via automated testing 
 
@@ -201,6 +117,150 @@ For The repliCATS Project, the algorithms are not available until the research i
 ### `varameta::`
 
 The `varameta::` package is in-development analysis support software for a forthcoming manuscript, Meta-analysis of Medians. 
+
+# `neet::` tests
+
+```{r}
+library(neet)
+```
+
+
+
+# `code::registration` (`c::r`)
+
+```{r}
+neet::workflow(1)
+
+```
+
+We begin with a sketch outline of a `code::registration` (`c::r`), which we then populate with description in prose, provide some detail of neet testing, before providing case-study.
+
+As our first testing objective is one neet test per function, we need not necessarily work out the details of all possible things to check for. We simply ask, what will it take to check that each function required for the algorithm produces a non-empty thing of expected type? For the second `code::proof` cycle, we consider all possible inputs, and write tests, and then code for those. 
+
+The final phase, which we need not detail immediately, covers testing for anything else we may wish to check. This might be checking there are positive numbers output by the function. Or it might be rigorously checking the algorithm matches the output of another person's instantiation of the algorithm, as is the case with the `aggreCAT::` package.
+
+```
+
+1. Objective:
+
+2. Inputs:
+
+- [ ] one neet
+- [ ] all neets
+- [ ] and the rest
+
+3. Outputs:
+
+- [ ] one neet
+- [ ] all neets
+- [ ] and the rest
+
+```
+
+Note that `- [ ]` will create an unchecked tickbox and `- [x]` will create a tickbox in both GitHub and RMarkdown.
+
+In the examples below, in the interets of brevity, we will drop the tick boxes, and provide the roughly descriptive prose for the three sections of each `c::r`. Under this workflow, we expect to update the `c::r` as our understanding of the algorithmic structure becomes more nuanced. 
+
+
+
+## `varameta:: c::r`
+
+```{r}
+neet::workflow(1)
+```
+
+
+The `varameta::` package has the least complex structure of the examples we are considering.
+
+**Objective**
+
+The `varameta::` package aims to provide a collection of different estimators for approximating the variance of the sample median.  
+
+**Inputs**
+
+Each estimator takes various sample statistics (quartiles, etc.), sample size.
+
+- [ ] one neet
+- [ ] all neets
+- [ ] and the rest
+
+**Outputs**
+
+Each estimator outputs an estimate of spread and centre. Some are approximations of the variance of the sample median, and others approximate the standard deviation and mean.
+
+- [ ] one neet
+- [ ] all neets
+- [ ] and the rest
+
+## `simeta:: c::r`
+
+The `simeta::` package is being developed to evaluate the efficacy of the estimators provided in the `varameta::` package. 
+
+**Objective:**
+
+Randomly generate meta-analysis data, calculate a confidence interval based on a user-specified estimator (currently only works on `varameta::`), and evaluates if the true parameter falls within; repeat this |trials| number of times, and return the coverage, the proportion of times the true parameter falls within the confidence interval. 
+
+Summarise and provide a dataframe of coverage for different sample sizes, group effect ratios, variability between studies, and distributions. Also provide summary visualisation tools. 
+
+- [ ] Initial objective: provide analysis support for the meta-analysis of medians paper. 
+
+- [ ] Secondary objective: allow the user to specify the estimator. 
+
+**Inputs:**
+
+User inputs: default to *just* the estimator.  
+
+**Outputs**
+
+A dataframe of coverage probabilities. 
+
+## `aggreCAT::`
+
+As the  `aggreCAT::` package forms part of a pipeline of packages designed to build a continuously integrated analysis for living data, there are more detailed supplemntary materials detailing requirements for inputs and outputs to turn to, thus the `c::r` is somewhat brief on first pass. 
+
+**Objective**
+
+Provide export-ready data for each of the 19 aggregation functions.
+
+**Inputs**
+
+Some special functions take other datasets, too.
+
+**Outputs**
+
+A wrapper function outputs each dataset in wide client-ready format. 
+
+# First `code::proof` cycle
+
+# Second `code::proof` cycle
+
+# Third `code::proof` cycle
+
+## `aggreCAT::` from The RepliCATS Project
+
+A luxury afforded in this large-scale collaborative project is the software implementation is implemented by different analysts than those who developed the statistical algorithms. Different analysts developed different algorithms, and thus, when the research software engineers on the Reproducibility Team came to implement the algorithm there is a wealth of presexisting analyses to benchmark the software against.
+
+For a small-scale analysis, often the method and implementation are developed by one person, with minimal hands-on input from others, as is the case with the `simeta::` and `varameta::` packages also discussed. However, when the development and implementation are divided between people, an opportunity for quality assurance presents itself. 
+
+This is analogous to the quality assurance for data entry suggested by Yenni *et al.* [@yenni_developingmoderndata_2019]. To update a living data set, collected in the field, the authors suggest two researchers perform the data entry into different spreadsheets, which are then put through text comparison algorithms to identify typos and inconsistencies.
+
+In the case of `aggreCAT::`, there are twenty aggration methods, each of which has been contributed by a researcher. Thus, each researcher who developed a method has provided a testing dataset for the Reproducibility Team to compare the results of the software implementing the aggregation methods. 
+
+# A measure of `code::proof`
+
+# Older draft
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Get an overview with `covr::`\label{sec: covr}
 
@@ -682,38 +742,6 @@ For the first `code::proof` cycle, we follow the steps:
 
 If functions are written, then we only need _confirm_ the functions pass the `neet` tests. 
 
-## `c::r`
-
-```{r}
-neet::workflow(1)
-
-```
-
-We begin with a sketch outline of a `c::r`, which we then populate with description in prose, provide some detail of neet testing, before providing case-study.
-
-As our first testing objective is one neet test per function, we need not necessarily work out the details of all possible things to check for. We simply ask, what will it take to check that each function required for the algorithm produces a non-empty thing of expected type? 
-
-```
-
-1. Objective:
-
-2. Inputs:
-
-- [ ] one neet
-- [ ] all neets
-- [ ] and the rest
-
-3. Outputs:
-
-- [ ] one neet
-- [ ] all neets
-- [ ] and the rest
-
-```
-
-Note that `- [ ]` will create an unchecked tickbox and `- [x]` will create a tickbox in both GitHub and RMarkdown.
-
-In the examples below, in the interets of brevity, we will drop the tick boxes, and provide the roughly descriptive prose for the three sections of each `c::r`. Under this workflow, we expect to update the `c::r` as our understanding of the algorithmic structure becomes more nuanced. 
 
 
 
