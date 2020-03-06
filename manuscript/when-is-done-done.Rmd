@@ -43,7 +43,7 @@ People who have contributed feedback or assisted, some of whom might be co-autho
 
 # Coding to `code::proof` 
 
-J. S. Bach's Contrapunctus I is not learnt in one sitting [todo: citation]. Indeed, for most pianists, to play the three-minute piece is the result of many months' diligent work, and still it will never feel *done*. To play well, a pianist must employ technqiue, but *how* a pianist is to achieve the desired technique is not clear [@chang_fundamentalspianopractice_2009a]. 
+J. S. Bach's Contrapunctus I, a four-part work of counterpoint from *The Art of Fugue*, is not learnt in one sitting [todo: citation]. Indeed, for most pianists, to play the three-minute piece is the result of many months' diligent work, and still the piece will never feel *done*. To play well, a pianist must employ technqiue, but *how* a pianist is to achieve the desired technique is not clear [@chang_fundamentalspianopractice_2009a].  
 
 For a researcher performing an analysis using a computational tool such as R, it can be unclear when an analysis is *done*. And, while there are technical guides on *good enough* practice, it can feel overwhelming as to what to adopt and where. Particularly for an in-development algorithm, which is to say, an algorithm with scripts already started, and some results explored. 
 
@@ -89,9 +89,9 @@ At heart, automated tests are collaborative. This may be with others, but applie
 
 Reproducible research compendia provide a means by which analysts can share their work so that it may be extended by others, and automated tests provide `code::proof` [@grayCodeProofPrepare2019], a measure of confidence in the algorithm for others. Hayes expresses concern about using algorithms published without automated tests [@hayes_testing_2019]. However, only one quarter of the largest repository of R packages, [The Comprehensive R Archive Network](https://cran.r-project.org/), have any automated tests [@hester_covr_2016], highlighting that, despite testing identified as a 'vital' part of data analysis [@wickham_r_2015], automated testing is yet to be widely adopted.
 
-# A test-driven toolchain walkthrough for in-development analyses
+# A toolchain walkthrough for test-driven analysis workflow 
 
-From this section, we now consider the practicality of implementing tests through a *toolchain walkthrough*, an opinionated documetation of a scientific workflow, towards a measure of `code::proof`, confidence in the algorithm implemented [@grayCodeProofPrepare2019]. In particular, a toolchain walkthrough is a reflection of *one* workflow, whilst others, indeed, better, workflows might exist. This is in contrast to a comprehensive review of tools. Instead, a toolchain walkthrough ruminates on considerations *after* a set of tools have been chosen.
+From this section, we now consider the practicality of implementing tests through a **toolchain walkthrough**, an opinionated documetation of a scientific workflow, towards a measure of `code::proof`, confidence in the algorithm implemented [@grayCodeProofPrepare2019]. In particular, a toolchain walkthrough is a reflection of *one* workflow, whilst others, indeed, better, workflows might exist. This is in contrast to a comprehensive review of tools. Instead, a toolchain walkthrough ruminates on considerations *given* a set of tools have been chosen.
 
 Toolchain walkthroughs aim to identify obstacles and advantages in implementation of scientific workflows. By necessity, a toolchain walkthrough is language specific, but, ideally, observations emerge that are useful for any appropriate language employed for data analysis, such as Python. This toolchain walkthrough examines the *process*, analogous to piano *practice*, of implementing tests, as opposed to defining comprehensively the nature of *good enough* tests, analogous to guidance on pianistic technique.
 
@@ -123,6 +123,53 @@ The `varameta::` package is in-development analysis support software for a forth
 ```{r}
 library(neet)
 ```
+
+# `code::proof` test-driven workflow 
+
+In order to... doneness ... propose test driven ... implemented as...
+
+```{r, message=FALSE,echo=FALSE}
+library(neet)
+
+workflow(0)
+```
+
+The model begins with a `code::registration`, an outline of the intended algorithm, its inputs and outputs. 
+
+workflow includes three stages, repeated three times, before returning to the start, the `c::r`.
+
+Each phase consists of:
+
+1. `c::r`
+2. tests
+3. code
+
+## `code::proof` workflow for coding to doneness
+
+The tests vary each time in complexity, so that the complete model cycle consists of ten phases of work:
+
+1. `c::r`
+2. neet tests, one per function
+3. code
+4. `c::r`
+5. neet tests, for all inputs for each function
+6. code
+7. `c::r`
+8. tests, and the rest, i.e., any other cases to test for
+9. code
+7. `c::r`
+
+We use *model* cycle to denote the workflow may be adapted for different use-cases. Our next section steps through each phase of work.
+
+## Coding to `code::proof` toolchain walkthrough
+
+In this section we step through the Coding to `code::proof` for...
+
+- `varameta::`, an in-development analysis that has seen many iterations.  
+- `simeta::`
+- `repliCATS`
+
+
 
 
 
@@ -230,41 +277,24 @@ Some special functions take other datasets, too.
 
 A wrapper function outputs each dataset in wide client-ready format. 
 
-# First `code::proof` cycle
+# First cycle: one `neet` test per function 
+
+For the first `code::proof` cycle, we follow the steps:
+
+1. A rough, first-draft `c::r`.
+2. Write one `neet` test per function.
+3. Write code to make those `neet` tests pass, for each function.
+
+If functions are written, then we only need _confirm_ the functions pass the `neet` tests. 
 
 # Second `code::proof` cycle
 
 # Third `code::proof` cycle
 
-## `aggreCAT::` from The RepliCATS Project
+## Test coverage with `covr::`
 
-A luxury afforded in this large-scale collaborative project is the software implementation is implemented by different analysts than those who developed the statistical algorithms. Different analysts developed different algorithms, and thus, when the research software engineers on the Reproducibility Team came to implement the algorithm there is a wealth of presexisting analyses to benchmark the software against.
+- preamble
 
-For a small-scale analysis, often the method and implementation are developed by one person, with minimal hands-on input from others, as is the case with the `simeta::` and `varameta::` packages also discussed. However, when the development and implementation are divided between people, an opportunity for quality assurance presents itself. 
-
-This is analogous to the quality assurance for data entry suggested by Yenni *et al.* [@yenni_developingmoderndata_2019]. To update a living data set, collected in the field, the authors suggest two researchers perform the data entry into different spreadsheets, which are then put through text comparison algorithms to identify typos and inconsistencies.
-
-In the case of `aggreCAT::`, there are twenty aggration methods, each of which has been contributed by a researcher. Thus, each researcher who developed a method has provided a testing dataset for the Reproducibility Team to compare the results of the software implementing the aggregation methods. 
-
-# A measure of `code::proof`
-
-# Older draft
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Get an overview with `covr::`\label{sec: covr}
-
-For an in-development packaged analysis, the `covr::` package provides a means of asssessing the testing coverage for each function. The analysis functions provided by `varameta::` were put on hold while signficant discussion was written for the thesis of which `varameta::` forms a part. Beginning with `covr::package_coverage`, enables us to get a more informed sense of the `code::proof` of this package, and what `code::proof` is still required to declare the analysis done.   
 
 The `covr::` function, `::package_coverage`, provides the percentage of the lines of code run in tests and is a succinct method to get an at-a-glance sense coverage of testing scripts. But this assumes we have considered everything that might require testing. Whilst this is informative, it's not comprehensive. A `100%` in all functions in `covr::`, is informative, but is not done.  
 
@@ -276,6 +306,7 @@ logfn <- function(x) {
 }
 
 ```
+
 
 Now, we write a test that checks the function returns a numeric.
 
@@ -330,6 +361,48 @@ Error: testthat unit tests failed
 Execution halted
 ```
 
+## `aggreCAT::` from The RepliCATS Project
+
+A luxury afforded in this large-scale collaborative project is the software implementation is implemented by different analysts than those who developed the statistical algorithms. Different analysts developed different algorithms, and thus, when the research software engineers on the Reproducibility Team came to implement the algorithm there is a wealth of presexisting analyses to benchmark the software against.
+
+For a small-scale analysis, often the method and implementation are developed by one person, with minimal hands-on input from others, as is the case with the `simeta::` and `varameta::` packages also discussed. However, when the development and implementation are divided between people, an opportunity for quality assurance presents itself. 
+
+This is analogous to the quality assurance for data entry suggested by Yenni *et al.* [@yenni_developingmoderndata_2019]. To update a living data set, collected in the field, the authors suggest two researchers perform the data entry into different spreadsheets, which are then put through text comparison algorithms to identify typos and inconsistencies.
+
+In the case of `aggreCAT::`, there are twenty aggration methods, each of which has been contributed by a researcher. Thus, each researcher who developed a method has provided a testing dataset for the Reproducibility Team to compare the results of the software implementing the aggregation methods. 
+
+## `c::r` of doneness
+
+```{r}
+workflow(10)
+```
+
+Under this workflow, the `c::r` is the project overview any developer can return to. So, this final registration not only summarises what has been tested, but also notes any idiosyncrasies for other developers, _expeically_ the future self of the developer, who recalls so little of the code they may as well be a different developer.
+
+At this point, the developer makes a final assessment of whether the stated objective of the implementation of the algorithm. Assess the `code::proof`, through the development process, new ideas, boundaries to check (recall the `logfn` and negative numbers example in Section 5.4[todo: hyperlink]). We might characterise done as when we feel we have sufficient `code::proof`. 
+
+If the algorithm does not yet have sufficient `code::proof`, the cycle can be repeated, and `c::r`s updates. 
+
+# Sufficient `code::proof` of software for doneness
+
+It does not feel a great leap to assume that we none of us will think of every use case, every aspect, of solving an algorithm computationally. Thus, rather than disputing what is or is not _done_, we simply set out to achieve _what we can think of doing_. A `c::r` provides a summary of what we could think of doing to 'further the process of scientific discovery', as Devezer _et al._ might put it [@devezerScientificDiscoveryModelcentric2019], towards our goal.
+
+
+The first version of this manuscript, itself, is a preregistration of a computational workflow. This workflow is for `team reprocat::` of The repliCATS Project to develop rerproducible algorithms more happily together. The first version provides a description of the workflow for the team; the second version incorporates the team's feedback. This arguably literalises the scientific practices of publishing manuscripts; no manuscript, no matter how definitive, provides everything required for a resaerch project, but may offer particular tools and evidence to further the process of scientific discovery. 
+
+
+Another researcher software engineer may be cognisant of a tool you are unfamiliar with. By providing the package, and the `c::r`, we provide a method to facilitate what Stodden describes as the _extensibility_ of the algorithm [@stodden_setting_2013]. 
+
+
+The workflow presented in this manuscript aims to address: `code::xiety`, the anxiety associating with programming; _good enough_ scientific practices, by incorporating automated testing [@wilson_good_2017]; and collaborative benefits. `c::r` provides a means of providing accessibility and transparency to the next developer. _Especially_ if the next developer is your future self.   
+
+# older draft
+
+## Get an overview with `covr::`\label{sec: covr}
+
+For an in-development packaged analysis, the `covr::` package provides a means of asssessing the testing coverage for each function. The analysis functions provided by `varameta::` were put on hold while signficant discussion was written for the thesis of which `varameta::` forms a part. Beginning with `covr::package_coverage`, enables us to get a more informed sense of the `code::proof` of this package, and what `code::proof` is still required to declare the analysis done.   
+
+
 We pick up the long-neglected `varameta::` package at `70%` package coverage. But as we have seen above, this is informative, but not completely informative. From here we examine how we might use tests to achieve sufficient `code::proof`, confidence in the implementation of the algorithm.
 
 ``` r 
@@ -374,11 +447,6 @@ In an advanced piece such as Contrapunctus I, there are many challenging technic
 This figure reoccurs in bars.... 
 
 
-
-
-
-
-
 > Piano teachers know that students
 must practice musically in order to acquire
 technique. Both musicality and technique
@@ -395,9 +463,6 @@ because learning piano is all about training
 the brain, not finger calisthenics [@chang_fundamentalspianopractice_2009a]. 
 
 ## Mindful coding
-
-
-
 
 In the `varameta::` package, we wish to compare various estimators. There are inputs, an estimator, which is to say a computational process and a similar output, however the devil is in the details, as 
 
@@ -688,60 +753,6 @@ devtools::install_github("softloud/neet")
 ```
 
 
-## Test-driven workflow
-
-In order to... doneness ... propose test driven ... implemented as...
-
-```{r, message=FALSE,echo=FALSE}
-library(neet)
-
-workflow(0)
-```
-
-The model workflow includes three stages, repeated three times, before returning to the start, the `c::r`.
-
-Each phase consists of:
-
-1. `c::r`
-2. tests
-3. code
-
-## `code::proof` workflow for coding to doneness
-
-The tests vary each time in complexity, so that the complete model cycle consists of ten phases of work:
-
-1. `c::r`
-2. neet tests, one per function
-3. code
-4. `c::r`
-5. neet tests, for all inputs for each function
-6. code
-7. `c::r`
-8. tests, and the rest, i.e., any other cases to test for
-9. code
-7. `c::r`
-
-We use *model* cycle to denote the workflow may be adapted for different use-cases. Our next section steps through each phase of work.
-
-## Coding to `code::proof` toolchain walkthrough
-
-In this section we step through the Coding to `code::proof` for...
-
-- `varameta::`, an in-development analysis that has seen many iterations.  
-- `simeta::`
-- `repliCATS`
-
-
-# First cycle: one `neet` test per function 
-
-For the first `code::proof` cycle, we follow the steps:
-
-1. A rough, first-draft `c::r`.
-2. Write one `neet` test per function.
-3. Write code to make those `neet` tests pass, for each function.
-
-If functions are written, then we only need _confirm_ the functions pass the `neet` tests. 
-
 
 
 
@@ -783,29 +794,6 @@ Update or rewrite `c::r`, as needed.
 ### Coding to `code::proof`
 
 
-## `c::r` of doneness
 
-```{r}
-workflow(10)
-```
-
-Under this workflow, the `c::r` is the project overview any developer can return to. So, this final registration not only summarises what has been tested, but also notes any idiosyncrasies for other developers, _expeically_ the future self of the developer, who recalls so little of the code they may as well be a different developer.
-
-At this point, the developer makes a final assessment of whether the stated objective of the implementation of the algorithm. Assess the `code::proof`, through the development process, new ideas, boundaries to check (recall the `logfn` and negative numbers example in Section 5.4[todo: hyperlink]). We might characterise done as when we feel we have sufficient `code::proof`. 
-
-If the algorithm does not yet have sufficient `code::proof`, the cycle can be repeated, and `c::r`s updates. 
-
-# Sufficient `code::proof` of software for doneness
-
-It does not feel a great leap to assume that we none of us will think of every use case, every aspect, of solving an algorithm computationally. Thus, rather than disputing what is or is not _done_, we simply set out to achieve _what we can think of doing_. A `c::r` provides a summary of what we could think of doing to 'further the process of scientific discovery', as Devezer _et al._ might put it [@devezerScientificDiscoveryModelcentric2019], towards our goal.
-
-
-The first version of this manuscript, itself, is a preregistration of a computational workflow. This workflow is for `team reprocat::` of The repliCATS Project to develop rerproducible algorithms more happily together. The first version provides a description of the workflow for the team; the second version incorporates the team's feedback. This arguably literalises the scientific practices of publishing manuscripts; no manuscript, no matter how definitive, provides everything required for a resaerch project, but may offer particular tools and evidence to further the process of scientific discovery. 
-
-
-Another researcher software engineer may be cognisant of a tool you are unfamiliar with. By providing the package, and the `c::r`, we provide a method to facilitate what Stodden describes as the _extensibility_ of the algorithm [@stodden_setting_2013]. 
-
-
-The workflow presented in this manuscript aims to address: `code::xiety`, the anxiety associating with programming; _good enough_ scientific practices, by incorporating automated testing [@wilson_good_2017]; and collaborative benefits. `c::r` provides a means of providing accessibility and transparency to the next developer. _Especially_ if the next developer is your future self.   
 
 # References
