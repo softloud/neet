@@ -5,11 +5,13 @@ library(neet)
 test_that("neet numeric", {
   expect_success(expect_neet(3, "numeric"))
   expect_error(expect_neet(3, "character"))
+  expect_error(expect_neet(NULL, "numeric"))
 })
 
 test_that("neet character", {
   expect_success(expect_neet("cat", "character"))
   expect_error(expect_neet("cat", "numeric"))
+  expect_error(expect_neet(NULL, "character"))
 })
 
 test_that("neet logical", {

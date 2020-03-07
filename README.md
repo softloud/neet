@@ -1,15 +1,13 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# neet
-
 <!-- badges: start -->
 
 [![Travis build
-status](https://travis-ci.org/softloud/neet.svg?branch=master)](https://travis-ci.org/softloud/neet)
+status](https://travis-ci.com/softloud/neet.svg?branch=master)](https://travis-ci.org/softloud/neet)
 <!-- badges: end -->
 
-Test for non-empty thing of expected type
+# `neet::` Test for non-empty thing of expected type
 
 A *neet test* tests for **non-empty** thing of **expected type**. This
 is what is referred to as a *boundary condition* test in RStudio’s
@@ -54,11 +52,6 @@ library(neet)
 
 ## basic example code
 
-# expectations check output of code in testthat files
-expect_neet(3, "numeric") # test numeric
-expect_neet("cat", "character") # test character string
-expect_neet(mtcars, "data.frame") # test data frame
-
 # assertions check inputs of code in function scripts
 assert_neet(3, "numeric") # test numeric
 #> [1] TRUE
@@ -66,6 +59,11 @@ assert_neet("cat", "character") # test character string
 #> [1] TRUE
 assert_neet(mtcars, "data.frame") # test data frame
 #> [1] TRUE
+
+# expectations check output of code in testthat files
+expect_neet(3, "numeric") # test numeric
+expect_neet("cat", "character") # test character string
+expect_neet(mtcars, "data.frame") # test data frame
 ```
 
 # Workflow

@@ -99,7 +99,7 @@ workflow <- function(progress = 0) {
     suppressMessages(
       workflow +
         ggplot2::geom_path(
-          data = loop %>% dplyr::filter(theta <= cut_off),
+          data = loop %>% dplyr::filter(.data$theta <= cut_off),
           colour = "darkblue",
           ggplot2::aes(group = 1),
           alpha = alpha_progress
