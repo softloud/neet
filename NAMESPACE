@@ -3,6 +3,7 @@
 S3method(expect_nonempty,character)
 S3method(expect_nonempty,data.frame)
 S3method(expect_nonempty,default)
+S3method(expect_nonempty,integer)
 S3method(expect_nonempty,list)
 S3method(expect_nonempty,numeric)
 S3method(expect_nonempty,rma)

@@ -19,6 +19,8 @@
 #'
 #' A `numeric` is checked for not being `NA`, `NULL`, `Inf`, or `-Inf`.
 #'
+#' An `integer` is checked for being of length > 1.
+#'
 #' A `list`` is checked for being of length > 1.
 #'
 #' A `data.frame` is checked for having at least one row.

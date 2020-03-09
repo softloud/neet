@@ -57,6 +57,12 @@ expect_nonempty.list <- function(thing_to_test){
 
 #' @export
 
+expect_nonempty.integer <- function(thing_to_test){
+  testthat::expect_gt(thing_to_test %>% length(), 0)
+}
+
+#' @export
+
 expect_nonempty.character <- function(thing_to_test){
   testthat::expect_gt(thing_to_test %>% stringr::str_length(), 0)
 }

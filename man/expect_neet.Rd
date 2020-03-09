@@ -27,6 +27,8 @@ A \code{character} string will be checked for being of string-length > 1.
 
 A \code{numeric} is checked for not being \code{NA}, \code{NULL}, \code{Inf}, or \code{-Inf}.
 
+An \code{integer} is checked for being of length > 1.
+
 A `list`` is checked for being of length > 1.
 
 A \code{data.frame} is checked for having at least one row.

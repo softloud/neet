@@ -1,20 +1,23 @@
 ---
 title: "Coding to `code::proof`: Practice fundamentals of automated tests for collaborative data analysis development"
 subtitle: "How to go from no tests, to *whoa* tests!"
-author: "sketch-draft by lead author, Charles T. Gray"
+author: "sketch-draft by lead author, Charles T. Gray, Aaron Willcox"
 bibliography: references.bib
 
-output:
-  tufte::tufte_html:
-    number_sections: true
-    toc: true
-
 # output:
-#   pdf_document:
+#   tufte::tufte_html:
 #     number_sections: true
-#     latex_engine: xelatex
+#     toc: true
 
-
+output:
+  pdf_document:
+    fig_caption: yes
+    number_sections: true
+    keep_tex: true
+    latex_engine: xelatex
+    includes:
+      in_header: tex_preamble.tex
+      before_body: tex_macros.tex
 ---
 
 ```{r setup, include=FALSE}
@@ -37,7 +40,7 @@ This manuscript (or manuscripts) will go through three phases:
 2. Implementation with the reproducibiliity team for [The repliCATS Project](https://replicats.research.unimelb.edu.au/) & version listing any team members who wish to co-author. 
 3. Implementation of repliCATS procedures, explicitly, after we need not blind the algorithms for experimental ingegrity. Invitation for external co-authors to contribute and extend the content, review, and final submission. Possibly for useR2020. 
 
-### Acknowledgments
+### Acknowledgements
 
 People who have contributed feedback or assisted, some of whom might be co-authors on later drafts: Emily Riederer, Elise Gould, Hannah Fraser, Daniel Fryer, Aaron Willcox, David Wilkinson. Also, appreciation for Danielle Navarro, Thomas Pedersen and others on twitter who helped with the visualisation. 
 
@@ -149,7 +152,7 @@ A `data.frame` is checked for having at least one row.
 
 A `ggplot` object is checked for successfully running.
 
-# Installation
+## Installation
 
 You can install the released version of `neet` from GitHub with:
 
@@ -162,7 +165,7 @@ devtools::install_github("softloud/neet")
 
 ```
 
-## Example
+### Example
 
 This is a basic example which shows you how to solve a common problem:
 
@@ -333,7 +336,7 @@ Provide export-ready data for each of the 19 aggregation functions.
 
 **Inputs**
 
-Some special functions take other datasets, too.
+Expert judgements to be aggregated. Some special functions take other datasets, too.
 
 **Outputs**
 
@@ -352,6 +355,22 @@ If functions are written, then we only need _confirm_ the functions pass the `ne
 # Second `code::proof` cycle
 
 # Third `code::proof` cycle
+
+## And the rest
+
+Now that we have neet tests for each function, we might ask what else needs to be tested. 
+
+In the case of `varameta::`, we might calculate a fixed-value output and compare it, but calculations rapidly become too complex to calculate explicitly. 
+
+In the case of `aggreCAT::` for The RepliCATS Project, we have several aggregation methods to compare. In a large-scale collaborative project such as this, we have several different researchers contributing methods which the Reproducibility Team are engineering as open-source research software. In this case, the algorithms are being computationally implemented in software by different researchers than those who ran the initial analyses. And that means, with a bit of collating, we have access to many testing datasets.
+
+In Figure \@ref(fig:aggregators), we present the results of in-development tests on the aggregation methods developed for The RepliCATS project.
+
+```{r aggregators, fig.cap="\\label{fig:aggregators} After neet tests written, comparison of aggregation methods with other researchers' analyses. Methods ssuch as 1,6, 10, are in close aggrement. There are some mthods that are relatively close, 9 and 17. These may be deemed close enough, in consultation with the researchers who developed the methods. Then there are methods to investigate, such as 18 and 16, where there is variability between the two analyses. The aggregation methods are deidentified and the code for this visualisation will not be available until The RepliCATS Project is complete, to blind the other research teams on the SCORE Program to the methods used for analysis."}
+knitr::include_graphics("cs_diff_by_method_id.png")
+
+```
+
 
 ## Test coverage with `covr::`
 
@@ -813,48 +832,6 @@ install.packages(devtools)
 devtools::install_github("softloud/neet")
 
 ```
-
-
-
-
-
-## `aggreCAT:: c::r`
-
-# Second cycle: `neet` tests for all inputs 
-
-```{r}
-workflow(5)
-
-```
-
-Once we have established there is one `neet` test per function, we might now perform `neet` tests for each possibility for inputs. 
-
-### `c::r`
-
-Update or rewrite `c::r`, as needed.
-
-### `neet` tests for all inputs 
-
-### Coding to `code::proof`
-
-
-# Third cycle: Testing for doneness
-
-
-```{r}
-
-```
-
-
-### `c::r`
-
-Update or rewrite `c::r`, as needed.
-
-
-### All tests required for purpose
-
-### Coding to `code::proof`
-
 
 
 
