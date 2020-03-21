@@ -135,18 +135,14 @@ The workflow described in this toolchain walkthrough differentiates between ...
 
 ```{r}
 library(neet)
-
-
 ```
 
-
-A **neet test** checks a function outputs a **non-empty** thing of **expected type**. This is what is referred to as a **boundary condition** test in RStudio's primers
-(todo: citation).
+A **neet test** checks a function outputs a **non-empty** thing of **expected type**. This is what is referred to as a **boundary condition** test in RStudio's primers (todo: citation).
 
 These expectations are intended to integrate into minimal testing workflow
-*for development* of data analyses. When developing a function, we will need parameters, and structure of the pipeline. These tests
+*for the development* of data analyses. When developing a function, we will need parameters, and structure of the pipeline. These tests
 enable the developer to feel reassured the pipeline's functions are
-outputting non-empty thing of expected type, while the developer decides the best structure for an analysis pipeline. 
+outputting non-empty things of expected type, while the developer decides the best structure for an analysis pipeline. 
 
 A `character` string will be checked for being of string-length > 1.
 
@@ -163,10 +159,10 @@ A `ggplot` object is checked for successfully running.
 You can install the released version of `neet` from GitHub with:
 
 ``` r
-# install devtools
+# Install devtools
 install.packages(devtools) 
 
-# use devtools to install package from github
+# Use devtools to install package from GitHub
 devtools::install_github("softloud/neet")
 
 ```
@@ -179,21 +175,18 @@ This is a basic example which shows you how to solve a common problem:
 library(testthat)
 library(neet)
 
-## basic example code
+## Basic example code
 
-# expectations check output of code in testthat files
+# Expectations check output of code in testthat files
 expect_neet(3, "numeric") # test numeric
 expect_neet("cat", "character") # test character string
 expect_neet(mtcars, "data.frame") # test data frame
 
-# assertions check inputs of code in function scripts
+# Assertions check inputs of code in function scripts
 assert_neet(3, "numeric") # test numeric
 assert_neet("cat", "character") # test character string
 assert_neet(mtcars, "data.frame") # test data frame
-
 ```
-
-
 
 # `code::proof` test-driven workflow 
 
