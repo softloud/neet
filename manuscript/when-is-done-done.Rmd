@@ -198,9 +198,9 @@ library(neet)
 workflow(0)
 ```
 
-The model begins with a `code::registration`, an outline of the intended algorithm, its inputs and outputs. 
+The model begins with a `code::registration`, an outline of the intended algorithm, its inputs, and outputs. 
 
-workflow includes three stages, repeated three times, before returning to the start, the `c::r`.
+A workflow includes three stages, repeated three times, before returning to the start, the `c::r`.
 
 Each phase consists of:
 
@@ -232,10 +232,6 @@ In this section we step through the Coding to `code::proof` for...
 - `varameta::`, an in-development analysis that has seen many iterations.  
 - `simeta::`
 - `repliCATS`
-
-
-
-
 
 # `code::registration` (`c::r`)
 
