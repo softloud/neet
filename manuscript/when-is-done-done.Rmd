@@ -341,7 +341,7 @@ For the first `code::proof` cycle, we follow the steps:
 2. Write one `neet` test per function.
 3. Write code to make those `neet` tests pass, for each function.
 
-If functions are written, then we only need _confirm_ the functions pass the `neet` tests. 
+If functions are already written, then we only need to _confirm_ the functions pass the `neet` tests. 
 
 # Second `code::proof` cycle
 
