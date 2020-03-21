@@ -235,16 +235,15 @@ In this section we step through the Coding to `code::proof` for...
 
 # `code::registration` (`c::r`)
 
-```{r}
+```{r, message=FALSE,echo=FALSE}
 neet::workflow(1)
-
 ```
 
-We begin with a sketch outline of a `code::registration` (`c::r`), which we then populate with description in prose, provide some detail of neet testing, before providing case-study.
+We begin with a sketch outline of a `code::registration` (`c::r`), which we then populate with description in prose, provide some detail of neet testing, before providing case-studies.
 
 As our first testing objective is one neet test per function, we need not necessarily work out the details of all possible things to check for. We simply ask, what will it take to check that each function required for the algorithm produces a non-empty thing of expected type? For the second `code::proof` cycle, we consider all possible inputs, and write tests, and then code for those. 
 
-The final phase, which we need not detail immediately, covers testing for anything else we may wish to check. This might be checking there are positive numbers output by the function. Or it might be rigorously checking the algorithm matches the output of another person's instantiation of the algorithm, as is the case with the `aggreCAT::` package.
+The final phase, which we need not detail immediately, covers testing for anything else we may wish to check. This might be checking there are positive numbers output by the function. Or it might be rigorously checking that the algorithm matches the output of another person's instantiation of the algorithm, as is the case with the `aggreCAT::` package.
 
 ```
 
@@ -266,16 +265,13 @@ The final phase, which we need not detail immediately, covers testing for anythi
 
 Note that `- [ ]` will create an unchecked tickbox and `- [x]` will create a tickbox in both GitHub and RMarkdown.
 
-In the examples below, in the interets of brevity, we will drop the tick boxes, and provide the roughly descriptive prose for the three sections of each `c::r`. Under this workflow, we expect to update the `c::r` as our understanding of the algorithmic structure becomes more nuanced. 
-
-
+For the examples below, in the interest of brevity, we will drop the tick boxes, and provide the roughly descriptive prose for the three sections of each `c::r`. Under this workflow, we expect to update the `c::r` as our understanding of the algorithmic structure becomes more nuanced. 
 
 ## `varameta:: c::r`
 
 ```{r}
 neet::workflow(1)
 ```
-
 
 The `varameta::` package has the least complex structure of the examples we are considering.
 
@@ -323,7 +319,7 @@ A dataframe of coverage probabilities.
 
 ## `aggreCAT::`
 
-As the  `aggreCAT::` package forms part of a pipeline of packages designed to build a continuously integrated analysis for living data, there are more detailed supplemntary materials detailing requirements for inputs and outputs to turn to, thus the `c::r` is somewhat brief on first pass. 
+As the  `aggreCAT::` package forms part of a pipeline of packages designed to build a continuously integrated analysis for living data, there are more detailed supplementary materials detailing requirements for inputs and outputs to turn to, thus the `c::r` is somewhat brief on first pass. 
 
 **Objective**
 
@@ -331,7 +327,7 @@ Provide export-ready data for each of the 19 aggregation functions.
 
 **Inputs**
 
-Expert judgements to be aggregated. Some special functions take other datasets, too.
+Expert judgements to be aggregated. Some special functions take other supplementary datasets, too.
 
 **Outputs**
 
