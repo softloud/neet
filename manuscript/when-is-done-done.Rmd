@@ -455,12 +455,9 @@ If the algorithm does not yet have sufficient `code::proof`, the cycle can be re
 
 It does not feel a great leap to assume that we none of us will think of every use case, every aspect, of solving an algorithm computationally. Thus, rather than disputing what is or is not _done_, we simply set out to achieve _what we can think of doing_. A `c::r` provides a summary of what we could think of doing to 'further the process of scientific discovery', as Devezer _et al._ might put it [@devezerScientificDiscoveryModelcentric2019], towards our goal.
 
+The first version of this manuscript, itself, is a preregistration of a computational workflow. This workflow is for `team reprocat::` of the repliCATS Project to develop reproducible algorithms more happily together. The first version provides a description of the workflow for the team; the second version incorporates the team's feedback. This arguably literalises the scientific practices of publishing manuscripts; no manuscript, no matter how definitive, provides everything required for a research project, but may offer particular tools and evidence to further the process of scientific discovery. 
 
-The first version of this manuscript, itself, is a preregistration of a computational workflow. This workflow is for `team reprocat::` of The repliCATS Project to develop rerproducible algorithms more happily together. The first version provides a description of the workflow for the team; the second version incorporates the team's feedback. This arguably literalises the scientific practices of publishing manuscripts; no manuscript, no matter how definitive, provides everything required for a resaerch project, but may offer particular tools and evidence to further the process of scientific discovery. 
-
-
-Another researcher software engineer may be cognisant of a tool you are unfamiliar with. By providing the package, and the `c::r`, we provide a method to facilitate what Stodden describes as the _extensibility_ of the algorithm [@stodden_setting_2013]. 
-
+Another research software engineer may be cognisant of a tool you are unfamiliar with. By providing the package, and the `c::r`, we provide a method to facilitate what Stodden describes as the _extensibility_ of the algorithm [@stodden_setting_2013]. 
 
 The workflow presented in this manuscript aims to address: `code::xiety`, the anxiety associating with programming; _good enough_ scientific practices, by incorporating automated testing [@wilson_good_2017]; and collaborative benefits. `c::r` provides a means of providing accessibility and transparency to the next developer. _Especially_ if the next developer is your future self.   
 
