@@ -353,11 +353,11 @@ Now that we have neet tests for each function, we might ask what else needs to b
 
 In the case of `varameta::`, we might calculate a fixed-value output and compare it, but calculations rapidly become too complex to calculate explicitly. 
 
-In the case of `aggreCAT::` for The RepliCATS Project, we have several aggregation methods to compare. In a large-scale collaborative project such as this, we have several different researchers contributing methods which the Reproducibility Team are engineering as open-source research software. In this case, the algorithms are being computationally implemented in software by different researchers than those who ran the initial analyses. And that means, with a bit of collating, we have access to many testing datasets.
+In the case of `aggreCAT::` for the repliCATS Project, we have several aggregation methods to compare. In a large-scale collaborative project such as this, we have several different researchers contributing methods which the Reproducibility Team are engineering as open-source research software. In this case, the algorithms are being computationally implemented in software by different researchers than those who conducted the initial analyses. And that means, with a bit of collating, we have access to many testing datasets.
 
 In Figure \@ref(fig:aggregators), we present the results of in-development tests on the aggregation methods developed for The RepliCATS project.
 
-```{r aggregators, fig.cap="\\label{fig:aggregators} After neet tests written, comparison of aggregation methods with other researchers' analyses. Methods ssuch as 1,6, 10, are in close aggrement. There are some mthods that are relatively close, 9 and 17. These may be deemed close enough, in consultation with the researchers who developed the methods. Then there are methods to investigate, such as 18 and 16, where there is variability between the two analyses. The aggregation methods are deidentified and the code for this visualisation will not be available until The RepliCATS Project is complete, to blind the other research teams on the SCORE Program to the methods used for analysis."}
+```{r aggregators, fig.cap="\\label{fig:aggregators} After neet tests are written, a comparison of aggregation methods with other researchers' analyses. Methods such as 1,6, 10, are in close agreement. There are some methods that are relatively close, such as 9 and 17. These may be deemed close enough, in consultation with the researchers who developed the methods. Then there are methods to investigate, such as 18 and 16, where there is variability between the two analyses. The aggregation methods are deidentified and the code for this visualisation will not be available until the repliCATS Project is complete, to blind the other research teams on the SCORE Program to the methods used for analysis."}
 knitr::include_graphics("cs_diff_by_method_id.png")
 
 ```
@@ -379,17 +379,14 @@ logfn <- function(x) {
 
 ```
 
-
 Now, we write a test that checks the function returns a numeric.
 
 ```{r}
-
 library(testthat)
 
 test_that("function returns numeric", {
   expect_is(logfn(3), "numeric")
 })
-
 ```
 
 And if we run `covr::package_coverage`, we get `100%` for overall package coverage.
@@ -397,7 +394,6 @@ And if we run `covr::package_coverage`, we get `100%` for overall package covera
 ```{r, eval=FALSE}
 testtest Coverage: 100.00%
 R/logfn.R: 100.00%
-
 ```
 
 But if we were to add this test, for negative numbers. 
@@ -433,15 +429,15 @@ Error: testthat unit tests failed
 Execution halted
 ```
 
-## `aggreCAT::` from The RepliCATS Project
+## `aggreCAT::` from the repliCATS Project
 
-A luxury afforded in this large-scale collaborative project is the software implementation is implemented by different analysts than those who developed the statistical algorithms. Different analysts developed different algorithms, and thus, when the research software engineers on the Reproducibility Team came to implement the algorithm there is a wealth of presexisting analyses to benchmark the software against.
+A luxury afforded in this large-scale collaborative project is that the software implementation is implemented by different analysts than those who developed the statistical algorithms. Different analysts developed different algorithms, and thus, when the research software engineers on the Reproducibility Team came to implement the algorithms there is a wealth of pre-existing analyses to benchmark the software against.
 
-For a small-scale analysis, often the method and implementation are developed by one person, with minimal hands-on input from others, as is the case with the `simeta::` and `varameta::` packages also discussed. However, when the development and implementation are divided between people, an opportunity for quality assurance presents itself. 
+For a small-scale analysis, the method and implementation are often developed by one person, with minimal hands-on input from others, as is the case with the `simeta::` and `varameta::` packages also discussed. However, when the development and implementation are divided between people, an opportunity for quality assurance presents itself. 
 
 This is analogous to the quality assurance for data entry suggested by Yenni *et al.* [@yenni_developingmoderndata_2019]. To update a living data set, collected in the field, the authors suggest two researchers perform the data entry into different spreadsheets, which are then put through text comparison algorithms to identify typos and inconsistencies.
 
-In the case of `aggreCAT::`, there are twenty aggration methods, each of which has been contributed by a researcher. Thus, each researcher who developed a method has provided a testing dataset for the Reproducibility Team to compare the results of the software implementing the aggregation methods. 
+In the case of `aggreCAT::`, there are nineteen aggregation methods, each of which has been contributed by a researcher. Thus, each researcher who developed a method has provided a testing dataset for the Reproducibility Team to compare the results of the software implementing the aggregation methods. 
 
 ## `c::r` of doneness
 
@@ -449,9 +445,9 @@ In the case of `aggreCAT::`, there are twenty aggration methods, each of which h
 workflow(10)
 ```
 
-Under this workflow, the `c::r` is the project overview any developer can return to. So, this final registration not only summarises what has been tested, but also notes any idiosyncrasies for other developers, _expeically_ the future self of the developer, who recalls so little of the code they may as well be a different developer.
+Under this workflow, the `c::r` is the project overview any developer can return to. So, this final registration not only summarises what has been tested, but also notes any idiosyncrasies for other developers, _especially_ the future self of the developer who recalls so little of the code they may as well be a different developer.
 
-At this point, the developer makes a final assessment of whether the stated objective of the implementation of the algorithm. Assess the `code::proof`, through the development process, new ideas, boundaries to check (recall the `logfn` and negative numbers example in Section 5.4[todo: hyperlink]). We might characterise done as when we feel we have sufficient `code::proof`. 
+At this point, the developer makes a final assessment of whether the stated objective of the implementation of the algorithm has been reached. Assess the `code::proof`, through the development process, new ideas, boundaries to check (recall the `logfn` and negative numbers example in Section 5.4[todo: hyperlink]). We might characterise done as when we feel we have sufficient `code::proof`. 
 
 If the algorithm does not yet have sufficient `code::proof`, the cycle can be repeated, and `c::r`s updates. 
 
