@@ -92,32 +92,40 @@ Reproducible research compendia provide a means by which analysts can share thei
 
 # A toolchain walkthrough for test-driven analysis workflow 
 
-From this section, we now consider the practicality of implementing tests through a **toolchain walkthrough**, an opinionated documetation of a scientific workflow, towards a measure of `code::proof`, confidence in the algorithm implemented [@grayCodeProofPrepare2019]. In particular, a toolchain walkthrough is a reflection of *one* workflow, whilst others, indeed, better, workflows might exist. This is in contrast to a comprehensive review of tools. Instead, a toolchain walkthrough ruminates on considerations *given* a set of tools have been chosen.
+From this section, we now consider the practicality of implementing tests through a **toolchain walkthrough**, an opinionated documetation of a scientific workflow, towards a measure of `code::proof`, or confidence in the algorithm implementation [@grayCodeProofPrepare2019]. In particular, a toolchain walkthrough is a reflection of *one* workflow, whilst other, potentially better, workflows might exist. This is in contrast to a comprehensive review of tools. Instead, a toolchain walkthrough ruminates on considerations *given* a set of tools have been chosen.
 
 Toolchain walkthroughs aim to identify obstacles and advantages in implementation of scientific workflows. By necessity, a toolchain walkthrough is language specific, but, ideally, observations emerge that are useful for any appropriate language employed for data analysis, such as Python. This toolchain walkthrough examines the *process*, analogous to piano *practice*, of implementing tests, as opposed to defining comprehensively the nature of *good enough* tests, analogous to guidance on pianistic technique.
 
 ## Objective of this toolchain walkthrough
 
-This toolchain walkthrough aims to provide guidance on implementing a test-driven workflow for an in-development analysis. Many analyses begin as scripts that develop [todo expan] [@riederer_rmarkdowndrivendevelopment_2019]. The central question of this manuscript is what constitutes a minimal level of testing for in-development analysis, where code is still being written and features implemented. Automated tests assist in time-consuming debugging tasks [@wickham_r_2015], but also in providing information with a developer who is unfamiliar with the code. 
+This toolchain walkthrough aims to provide guidance on implementing a test-driven workflow for an in-development analysis. Many analyses begin as scripts that develop [todo expan] [@riederer_rmarkdowndrivendevelopment_2019]. The central question of this manuscript is what constitutes a minimal level of testing for in-development analysis, where code is still being written and features implemented. Automated tests assist in time-consuming debugging tasks [@wickham_r_2015], but also in providing information for a developer who is unfamiliar with the code (including new users *and* existing developers returning after some level of teporal distancing). 
 
 This is a first effort in identifying the fundamentals of automated testing for the collaborative process of developing an analysis in R. Analgous to Riederer's *RMarkdown-driven development* [@riederer_rmarkdowndrivendevelopment_2019], which deconstructs the workflow of developing an analysis from .Rmd notebook-style reports to packaged analyses, we consider a set a computational tools that form a workflow to assist in the coherent development of automated tests for data analysis. This is an extension of the workflow suggestions provided in *R Packages*, with a specific focus on collaborative workflows in research.   
 
 ## Devops and assumed expertise
 
-This toolchain walkthrough assumes a knowledge of R advanced enough to be using the language to be answering scientific research claims.
+This toolchain walkthrough assumes a knowledge of R advanced enough to be using the language to answer scientific research claims.
 
 - tools used: testthat, neet, covr
 - GitHub
 
 ## A toolchain walkthrough for `c::r` of...
 
-This toolchain walkthrough for `c::r` reflects on the in-development practice of code to completion on a few different research projects. Consideration of sufficient `code::proof` of packages `varameta::`, `simeta::`, developed for the ouvre of doctoral work this manuscript contributes to. Another example project is considered, The repliCATS Project software of statistical aggregation methods, in particular `CATnap::` and `aggreCAT::`. 
+This toolchain walkthrough for `c::r` reflects on the in-development practice of code to completion on several different research projects. Consideration of sufficient `code::proof` of packages `varameta::` and `simeta::`, developed for the oeuvre of doctoral work this manuscript contributes to. Another example project is considered, The repliCATS Project software of statistical aggregation methods, in particular `CATnap::` and `aggreCAT::`. 
 
 For The repliCATS Project, the algorithms are not available until the research is complete, in order to blind the other team to the methodology. Although we cannot provide explicit code examples, the process is considered with respect to this project, as it is an example of collaborative in-development `c::r`.
 
 ### `varameta::`
 
 The `varameta::` package is in-development analysis support software for a forthcoming manuscript, Meta-analysis of Medians. 
+
+### `simeta::`
+
+Words words words
+
+### repliCATS Project
+
+Moar words words words
 
 # `neet::` tests
 
