@@ -498,14 +498,14 @@ An excellent way to arrive at *done* for an algorithm is to define, even if only
 
 # Code with intent
 
-When we think of an algorithm, it's easy to feel overwhelmed by the complexity. And, analogous to the pitfalls of the piano student, a developer may fall prey to the inevitable rabbit holes and distractions that arise. It's tempting to consider  these distractions benign, but, in fact, these actions are frequently the result of techinical anxiety about the task, and are anathema to mastering the technique in question.
+When we think of an algorithm, it's easy to feel overwhelmed by the complexity. And, analogous to the pitfalls of the piano student, a developer may fall prey to the inevitable rabbit holes and distractions that arise. It's tempting to consider these distractions benign, but, in fact, these actions are frequently the result of techinical anxiety about the task, and are anathema to mastering the technique in question.
 
 ## Practice with intent
 
 In learning Bach's Contrapunctus I, the student has various conventional, albeit questionable, methods of approach. 
 
 The student might begin from the start each time. But, as the piece is not yet mastered, the student will inevitably encounter something they cannot play with ease. This is often encountered in the first bar of a Bach piece. If the student plays up to the mistake, and begins again, then they risk becoming adept the start, and becoming increasingly anxious about the end of the piece.  
-In an advanced piece such as Contrapunctus I, there are many challenging technical aspects. In particular, the work is polyphonic; Contrapunctus I is a central focus of the string quartet in Vikram Seth's *An Equal Music* [todo citation].  There is a melody; formally referred to as a *subject*.
+In an advanced piece such as Contrapunctus I, there are many challenging technical aspects. In particular, the work is polyphonic; Contrapunctus I is a central focus of the string quartet in Vikram Seth's *An Equal Music* [todo citation]. There is a melody; formally referred to as a *subject*.
 
 > todo: figure of subject
 
@@ -531,7 +531,7 @@ the brain, not finger calisthenics [@chang_fundamentalspianopractice_2009a].
 
 In the `varameta::` package, we wish to compare various estimators. There are inputs, an estimator, which is to say a computational process and a similar output, however the devil is in the details, as 
 
-Here are the relationships between inputs, and just some of the estimators, and outputs in `varameta`, presented as a randomised *graph*, a visual representation of a set of nodes, $V$, and the edges, $V \times V$, between them. We understand each function's inputs and outputs, but understanding the way they relate to each other, is often muddled without planning. Our `code::brain`, the way we conceptulaise the code, is disorganised.
+Here are the relationships between inputs, and just some of the estimators, and outputs in `varameta`, presented as a randomised *graph*, a visual representation of a set of nodes, $V$, and the edges, $V \times V$, between them. We understand each function's inputs and outputs, but understanding the way they relate to each other, is often muddled without planning. Our `code::brain`, the way we conceptualise the code, is disorganised.
 
 ```{r codebrain,echo=FALSE,message=FALSE,fig.height=5,fig.cap="`code::brain` before `c::r`."}
 library(igraph)
@@ -590,7 +590,7 @@ Update the c::r as needed.
 
 ### Sketch-diagram 
 
-An image or diagram is very help, if not burdonsomely time consuming (but it often is). This section is only useful for those who enjoy graph theory and visualisation, and is not essential. 
+An image or diagram is very helpful, if not burdensomely time consuming (but it often is). This section is only useful for those who enjoy graph theory and visualisation, and is not essential. 
 
 For those comfortable with *graphs* understood as mathematical objects as a set of vertices from $V$, and a set of edges $V \times V$, there are visualisation options where the vertices can be tagged with attributes. The code for constructing the following `nodes` and `edges` dataframes has been omitted for brevity, but all code can be found in this manuscript's associated repository [`neet`](https://github.com/softloud/neet) on GitHub.     
 
@@ -598,7 +598,6 @@ For those comfortable with *graphs* understood as mathematical objects as a set 
 library(tidyverse)
 library(ggraph)
 library(tidygraph)
-
 ```
 
 By tagging the nodes in this graph with the attribute `state` in the algorithm: starting with `input` for the estimators, sample quartiles (which we denote $a, q1, m, q3, b$, in order from smallest to largest); `estimator`, a collection of functions that provide statistical methods for preparing summary medians for meta-analysis; and the `output` of the estimator.
@@ -770,7 +769,7 @@ Edges are specified by a two-column dataframe, `edges`, where each row contains 
 edges
 ```
 
-These two dataframes cone be converted into a graph object that is compatible with the `igraph::` package and `tidyverse::` syntax.
+These two dataframes can be converted into a graph object that is compatible with the `igraph::` package and `tidyverse::` syntax.
 
 ```{r}
 
