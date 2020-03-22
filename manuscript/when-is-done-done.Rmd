@@ -82,9 +82,9 @@ The dearth that Chang attempts to address is in pianistic _practice_ habits that
 
 > .. practically every piano learning method consists of showing students what to practice, and what kinds of techniques (runs, arpeggios, legato, staccato, trills, etc.) are needed. There are few instructions on how to practice in order to be able to play them, which is mostly left to the student and endless repetitions [@chang_fundamentalspianopractice_2009a].
 
-Wilson *et al.* followed their work on _best practices_ in scientific computing [@wilson_best_2014], with a reflection on _good enough_ practices [@wilson_good_2017], in recognition that we must account for what we might reasonably request of data analysis practitioners. In this manuscript, we consider one component of *good enough* practice in data analysis: *automated testing*. 
+Wilson *et al.* followed their work on _best practices_ in scientific computing [@wilson_best_2014], with a reflection on _good enough_ practices [@wilson_good_2017], in recognition that we must account for what we might reasonably request of data analysis practitioners. In this manuscript, we consider one component of *good enough* practice in data analysis: *automated testing*.  
 
-Automated tests are a formalised way of implementing checks that inputs and outputs of algorithms are as expected [@wickham_r_2015]. Informative messages are output that assist the developer in identifying where code is not performing as expected. 
+Automated tests are a formalised way of implementing checks that inputs and outputs of algorithms are as expected [@wickham_r_2015]. Informative messages are output that assist the developer in identifying where code is not performing as expected. Not only does this conform to good enough practices in scientific computing, but test-driven development provides a collaborative framework for the *practice* of coding to a measure of `code::proof`.
 
 ## Collaboration via automated testing 
 
