@@ -37,7 +37,7 @@
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
   pdftitle={Coding to code::proof: Practice fundamentals of automated tests for collaborative data analysis development},
-  pdfauthor={sketch-draft by lead author, Charles T. Gray, Aaron Willcox},
+  pdfauthor={Charles T. Gray, IMeRG; Elise Gould, IMeRG; David Wilkinson, QAEG; Aaron Willcox, IMeRG},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
@@ -126,48 +126,33 @@ automated tests for collaborative data analysis development}
 }
 \makeatother
 \subtitle{How to go from no tests, to \emph{whoa} tests!}
-\author{sketch-draft by lead author, Charles T. Gray, Aaron Willcox}
+\author{Charles T. Gray, IMeRG\footnote{Special thanks to Emily Riederer
+  for her ongoing correspondence throughout the writing of this
+  manuscript. Thanks, also, to Hannah Fraser, Fiona Fidler, and Daniel
+  Fryer. Also, appreciation for Danielle Navarro, Thomas Pedersen and
+  others on twitter who helped with the visualisation.} \and Elise
+Gould, IMeRG \and David Wilkinson, QAEG \and Aaron Willcox, IMeRG}
 \date{}
 
 \begin{document}
 \maketitle
+\begin{abstract}
+Despite centuries' accumulation of pedagogy on pianistic technique,
+there remains a comparative dearth of literature conceptualising the
+process of obtainng sufficiant technical ability. Analogously, a
+toolchain gap exists between between good enough practices of scientific
+computation and implementation. A toolchain walkthrough, an opinionated
+documentation of a scientific workflow, provides a means of addressing
+this gap. In this toolchain walkthrough, we present a methodology for
+coding to a measure of \texttt{code::proof}, a sense of good enough
+confidence in the implementation of a statistical algorithm.
+\end{abstract}
 
 \newcommand{\codereg}[1]{
 \fbox{\begin{minipage}{15em}
 #1
 \end{minipage}}
 }
-
-\hypertarget{version-of-this-manuscript}{%
-\subsection{Version of this
-manuscript}\label{version-of-this-manuscript}}
-
-This manuscript (or manuscripts) will go through three phases:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  A lead author sketch draft.
-\item
-  Implementation with the reproducibiliity team for
-  \href{https://replicats.research.unimelb.edu.au/}{The repliCATS
-  Project} \& version listing any team members who wish to co-author.
-\item
-  Implementation of repliCATS procedures, explicitly, after we need not
-  blind the algorithms for experimental ingegrity. Invitation for
-  external co-authors to contribute and extend the content, review, and
-  final submission. Possibly for useR2020.
-\end{enumerate}
-
-\hypertarget{acknowledgements}{%
-\subsubsection{Acknowledgements}\label{acknowledgements}}
-
-People who have contributed feedback or assisted, some of whom might be
-co-authors on later drafts: Emily Riederer, Elise Gould, Hannah Fraser,
-Daniel Fryer, Aaron Willcox, David Wilkinson. Also, appreciation for
-Danielle Navarro, Thomas Pedersen and others on twitter who helped with
-the visualisation.
 
 \hypertarget{coding-to-codeproof}{%
 \section{\texorpdfstring{Coding to
@@ -177,7 +162,7 @@ J. S. Bach's Contrapunctus I, a four-part work of counterpoint from
 \emph{The Art of Fugue}, is not learnt in one sitting {[}todo:
 citation{]}. Indeed, for most pianists, to play the three-minute piece
 is the result of many months' diligent work, and still the piece will
-never feel \emph{done}. To play well, a pianist must employ technqiue,
+never feel \emph{done}. To play well, a pianist must employ technique,
 but \emph{how} a pianist is to achieve the desired technique is not
 clear (Chang 2009).
 
@@ -193,21 +178,21 @@ This manuscript picks up from where Riederer left off with
 \texttt{code::register}ed (\texttt{c::r}ed\footnote{In this manuscript,
   \texttt{c::r} denotes \texttt{code::registration}, \texttt{c::r}ing
   denotes \texttt{code::registering}, and \texttt{c::r}ed denotes
-  \texttt{code::resgistered}}) \textbf{test-driven workflow} for coding
+  \texttt{code::registered}}) \textbf{test-driven workflow} for coding
 to doneness. This workflow provides a roadmap to completion for a
 packaged analysis with \texttt{code::proof}ed the manuscript (Gray
 2019), provided measures of confidence in the implementation of the
 algorithm.
 
 Musicians and, similarly, athletes, do not see themselves as having
-mastered a skill, but active practitioners of a craft (Galway 1990). To
-be a flautist is to practice, and to be an athlete is to train. For
+mastered a skill but as active practitioners of a craft (Galway 1990).
+To be a flautist is to practice, and to be an athlete is to train. For
 researcher developers, it can be hard to assess when an analysis is
 completed. In this manuscript, we consider the \emph{practice} of
 test-driven analysis development as a means of \emph{coding to doneness}
-for an algorithm, a workflow that faciliates the analyst achieving
+for an algorithm, a workflow that facilitates the analyst achieving
 sufficient \texttt{code::proof} in their algorithm, confidence in the
-implementation of the aglorithm(Gray 2019).
+implementation of the algorithm (Gray 2019).
 
 \hypertarget{questionable-research-practices-in-scientific-computing}{%
 \subsection{Questionable research practices in scientific
@@ -216,8 +201,8 @@ computing}\label{questionable-research-practices-in-scientific-computing}}
 Algorithms are coded by people who \emph{practice} code, and significant
 problems emerge when algorithms are treated as fixed artifacts, rather
 than one of the tools utilised by those who \emph{practice} code. In
-Australia, a heartbreaking ongoing example of this kind of problem with
-the income-reporting data analyis algorithm that assesses if income
+Australia, a heartbreaking ongoing example of this kind of problem is
+the income-reporting data analysis algorithm that assesses if income
 welfare recipients have been overpaid entitlements. Crude averaging
 calculations have lead to ongoing incorrect debt notices issued, such as
 20,000 people receiving ``robodebt'' notices for debts they did not owe
@@ -231,7 +216,7 @@ n.d.),
 
 \begin{quote}
 Almost all (92\%) of the catastrophic system failures are the result of
-incorrect handling of non-fatal errors explicitly signaled in software.
+incorrect handling of non-fatal errors explicitly signalled in software.
 In 58\% of the catastrophic failures, the underlying faults could easily
 have been detected through simple testing of error handling code (Yuan
 et al. 2014).
@@ -251,7 +236,7 @@ scientific computing, as the robodebt example illustrates, similar and
 overlapping errors may occur.
 
 A consideration when providing recommendations of best practice is what
-me might reasonably expect of a researcher. Indeed, it is likely
+we might reasonably expect of a researcher. Indeed, it is likely
 unrealistic to expect \emph{best practices} in scientific computing
 (Wilson et al. 2014), perhaps we would be better off asking for
 \emph{good enough} practices (Wilson et al. 2017) in scientific
@@ -260,7 +245,7 @@ every day, most of them are not trained in computational science. Even
 mathematicians and statisticians do a great deal of training at the
 blackboard, rather than the computer.
 
-Riederer identifies several qrps in scientific computing, for example,
+Riederer identifies several QRPs in scientific computing, for example,
 hardcoded values that interfere with another's ability to reproduce the
 computational results (Riederer 2019). As researcher software engineers,
 it behoves us to consider what are questionable research practices in
@@ -272,13 +257,13 @@ via packaged analyses (Marwick, Boettiger, and Mullen 2018; Wilson et
 al. 2017).
 
 This manuscript contributes to this literature by focussing on workflows
-for using automated tests to move analysis a fully reproducible packaged
-research compendium. Furthermore, these workflosw assist the developer
-communicate what they have coded to others and their future self, as a
-means of mitigating questionable research practices in scientific
-computing. Above all, by providing a workflow for the \emph{practice} of
-code, the developer anxiety is reduced by having the parameters as
-clearly defined as they can be from the start.
+for using automated tests to move analysis towards a fully reproducible
+packaged research compendium. Furthermore, these workflows assist the
+developer to communicate what they have coded to others and their future
+self, as a means of mitigating questionable research practices in
+scientific computing. Above all, by providing a workflow for the
+\emph{practice} of code, the developer anxiety is reduced by having the
+parameters as clearly defined as they can be from the start.
 
 \hypertarget{practice-fundamentals}{%
 \subsection{Practice fundamentals}\label{practice-fundamentals}}
@@ -286,10 +271,10 @@ clearly defined as they can be from the start.
 Chuang C. Chang's \emph{Fundamentals of Piano Practice} sets out to
 address a gap in piano pedagogy (Chang 2009). A similar gap exists in
 the implementation of \emph{good enough} practices (Wilson et al. 2017),
-which is to say, what we might reasonably expect of a analyst, in
+which is to say, what we might reasonably expect of an analyst, in
 reproducible computing for research data analyses. The objective is
 different from advanced pianism, but we characterise testing
-\emph{practice}, as opposed to \emph{techique}, analogous to how Change
+\emph{practice}, as opposed to \emph{technique}, analogous to how Chang
 delineates between \emph{piano} practice and technique. Through
 attempting to identify the fundamentals of automated testing for
 collaborative data analysis development, this manuscript aims to
@@ -300,37 +285,37 @@ As Chang notes, whilst there a rich history of technical pedagogy, there
 is a dearth of guidance for pianists on \emph{learning} the technique
 (Chang 2009). There are many canonical texts of pianistic technique
 pedagogy. Bach provides a pathway from small canons {[}todo: cite{]}, to
-two-part inventions{[}todo: cite{]}, three-part sinfonia, and the
+two-part inventions {[}todo: cite{]}, three-part sinfonia, and the
 challenge of \emph{The Well-Tempered Clavier} and \emph{The Art of
-Fugue}. Bartok provides the \emph{Mikrokosmos} {[}todo: {]}, and
-Czerny's \emph{School of Velocity} {[}to do{]}. In each case, technical
-exercises of increasing difficulty are provided. In piano pedagogy, a
-\emph{technical} exercise isolates a particular aspect of pianistic
-technique {[}todo examples{]}. For example, {[}todo Czerny staccato{]}.
-Or, {[}todo voicing technique{]}.
+Fugue}. Bartok provides the \emph{Mikrokosmos} {[}todo: cite{]}, and
+Czerny's \emph{School of Velocity} {[}to do: cite{]}. In each case,
+technical exercises of increasing difficulty are provided. In piano
+pedagogy, a \emph{technical} exercise isolates a particular aspect of
+pianistic technique {[}todo examples{]}. For example, {[}todo Czerny
+staccato{]}. Or, {[}todo voicing technique{]}.
 
 The dearth that Chang attempts to address is in pianistic
-\emph{practice} habits that will lead to succesful adoption of these
-techniques. In science, we might call this \emph{work flow} {[}todo
+\emph{practice} habits that will lead to successful adoption of these
+techniques. In science, we might call this a \emph{work flow} {[}todo
 cite{]}.
 
 \begin{quote}
 .. practically every piano learning method consists of showing students
 what to practice, and what kinds of techniques (runs, arpeggios, legato,
 staccato, trills, etc.) are needed. There are few instructions on how to
-practice order to be able to play them, which is mostly left to the
+practice in order to be able to play them, which is mostly left to the
 student and endless repetitions (Chang 2009).
 \end{quote}
 
-Wilson et al.~followed their work on \emph{best practices} in scientific
-computing (Wilson et al. 2014), with a reflection on \emph{good enough}
-practices (Wilson et al. 2017), in recognition that we must account for
-what we might reasonably request of practitioners of data analysis. In
-this manuscript, we consider one component of \emph{good enough}
-practice in data analysis: \emph{automated testing}.
+Wilson \emph{et al.} followed their work on \emph{best practices} in
+scientific computing (Wilson et al. 2014), with a reflection on
+\emph{good enough} practices (Wilson et al. 2017), in recognition that
+we must account for what we might reasonably request of data analysis
+practitioners. In this manuscript, we consider one component of
+\emph{good enough} practice in data analysis: \emph{automated testing}.
 
 Automated tests are a formalised way of implementing checks that inputs
-and outputs of algorithsms are as expected (Wickham 2015). Informative
+and outputs of algorithms are as expected (Wickham 2015). Informative
 messages are output that assist the developer in identifying where code
 is not performing as expected.
 
@@ -339,11 +324,11 @@ is not performing as expected.
 testing}\label{collaboration-via-automated-testing}}
 
 At heart, automated tests are collaborative. This may be with others,
-but applies at least as much to a analyst approaching their own past
+but applies at least as much to an analyst approaching their own past
 work with which they have become unfamiliar, or have become anxious
-about some aspect of the work. Automated tests provide an efficient way
-of returning to and extending an analysis; anxiety is reduced by having
-defined outcomes to code explicitly for.
+about some aspect of their work. Automated tests provide an efficient
+way of returning to and extending an analysis; anxiety is reduced by
+having defined outcomes to explicitly code for.
 
 Reproducible research compendia provide a means by which analysts can
 share their work so that it may be extended by others, and automated
@@ -353,8 +338,8 @@ algorithms published without automated tests (Hayes 2019). However, only
 one quarter of the largest repository of R packages,
 \href{https://cran.r-project.org/}{The Comprehensive R Archive Network},
 have any automated tests (Hester 2016), highlighting that, despite
-testing identified as a `vital' part of data analysis (Wickham 2015),
-automated testing is yet to be widely adopted.
+testing being identified as a `vital' part of data analysis (Wickham
+2015), automated testing is yet to be widely adopted.
 
 \hypertarget{a-toolchain-walkthrough-for-test-driven-analysis-workflow}{%
 \section{A toolchain walkthrough for test-driven analysis
@@ -362,10 +347,10 @@ workflow}\label{a-toolchain-walkthrough-for-test-driven-analysis-workflow}}
 
 From this section, we now consider the practicality of implementing
 tests through a \textbf{toolchain walkthrough}, an opinionated
-documetation of a scientific workflow, towards a measure of
-\texttt{code::proof}, confidence in the algorithm implemented (Gray
-2019). In particular, a toolchain walkthrough is a reflection of
-\emph{one} workflow, whilst others, indeed, better, workflows might
+documentation of a scientific workflow, towards a measure of
+\texttt{code::proof}, or confidence in the algorithm implementation
+(Gray 2019). In particular, a toolchain walkthrough is a reflection of
+\emph{one} workflow, whilst other, potentially better, workflows might
 exist. This is in contrast to a comprehensive review of tools. Instead,
 a toolchain walkthrough ruminates on considerations \emph{given} a set
 of tools have been chosen.
@@ -389,13 +374,15 @@ as scripts that develop {[}todo expan{]} (Riederer 2019). The central
 question of this manuscript is what constitutes a minimal level of
 testing for in-development analysis, where code is still being written
 and features implemented. Automated tests assist in time-consuming
-debugging tasks (Wickham 2015), but also in providing information with a
-developer who is unfamiliar with the code.
+debugging tasks (Wickham 2015), but also in providing information for a
+developer who is unfamiliar with the code (including new users
+\emph{and} existing developers returning after some level of temporal
+distancing).
 
 This is a first effort in identifying the fundamentals of automated
 testing for the collaborative process of developing an analysis in R.
-Analgous to Riederer's \emph{RMarkdown-driven development} (Riederer
-2019), which deconstructs the workflow of developing an analysis from
+Analogous to Riederer's \emph{RMarkdown-driven development} (Riederer
+2019), which de-constructs the workflow of developing an analysis from
 .Rmd notebook-style reports to packaged analyses, we consider a set a
 computational tools that form a workflow to assist in the coherent
 development of automated tests for data analysis. This is an extension
@@ -407,7 +394,7 @@ specific focus on collaborative workflows in research.
 expertise}\label{devops-and-assumed-expertise}}
 
 This toolchain walkthrough assumes a knowledge of R advanced enough to
-be using the language to be answering scientific research claims.
+be using the language to answer scientific research claims.
 
 \begin{itemize}
 \tightlist
@@ -422,12 +409,13 @@ be using the language to be answering scientific research claims.
 of\ldots{}}{A toolchain walkthrough for c::r of\ldots{}}}\label{a-toolchain-walkthrough-for-cr-of}}
 
 This toolchain walkthrough for \texttt{c::r} reflects on the
-in-development practice of code to completion on a few different
+in-development practice of code to completion on several different
 research projects. Consideration of sufficient \texttt{code::proof} of
-packages \texttt{varameta::}, \texttt{simeta::}, developed for the ouvre
-of doctoral work this manuscript contributes to. Another example project
-is considered, The repliCATS Project software of statistical aggregation
-methods, in particular \texttt{CATnap::} and \texttt{aggreCAT::}.
+packages \texttt{varameta::} and \texttt{simeta::}, developed for the
+oeuvre of doctoral work this manuscript contributes to. Another example
+project is considered, The repliCATS Project software of statistical
+aggregation methods, in particular \texttt{CATnap::} and
+\texttt{aggreCAT::}.
 
 For The repliCATS Project, the algorithms are not available until the
 research is complete, in order to blind the other team to the
@@ -440,6 +428,16 @@ of collaborative in-development \texttt{c::r}.
 
 The \texttt{varameta::} package is in-development analysis support
 software for a forthcoming manuscript, Meta-analysis of Medians.
+
+\hypertarget{simeta}{%
+\subsubsection{\texorpdfstring{\texttt{simeta::}}{simeta::}}\label{simeta}}
+
+Words words words
+
+\hypertarget{replicats-project}{%
+\subsubsection{repliCATS Project}\label{replicats-project}}
+
+Moar words words words
 
 \hypertarget{neet-tests}{%
 \section{\texorpdfstring{\texttt{neet::}
@@ -463,10 +461,10 @@ thing of \textbf{expected type}. This is what is referred to as a
 \textbf{boundary condition} test in RStudio's primers (todo: citation).
 
 These expectations are intended to integrate into minimal testing
-workflow \emph{for development} of data analyses. When developing a
+workflow \emph{for the development} of data analyses. When developing a
 function, we will need parameters, and structure of the pipeline. These
 tests enable the developer to feel reassured the pipeline's functions
-are outputting non-empty thing of expected type, while the developer
+are outputting non-empty things of expected type, while the developer
 decides the best structure for an analysis pipeline.
 
 A \texttt{character} string will be checked for being of string-length
@@ -488,10 +486,10 @@ You can install the released version of \texttt{neet} from GitHub with:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# install devtools}
+\CommentTok{\# Install devtools}
 \KeywordTok{install.packages}\NormalTok{(devtools) }
 
-\CommentTok{\# use devtools to install package from github}
+\CommentTok{\# Use devtools to install package from GitHub}
 \NormalTok{devtools}\OperatorTok{::}\KeywordTok{install\_github}\NormalTok{(}\StringTok{"softloud/neet"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -506,14 +504,14 @@ This is a basic example which shows you how to solve a common problem:
 \KeywordTok{library}\NormalTok{(testthat)}
 \KeywordTok{library}\NormalTok{(neet)}
 
-\CommentTok{\#\# basic example code}
+\CommentTok{\#\# Basic example code}
 
-\CommentTok{\# expectations check output of code in testthat files}
+\CommentTok{\# Expectations check output of code in testthat files}
 \KeywordTok{expect\_neet}\NormalTok{(}\DecValTok{3}\NormalTok{, }\StringTok{"numeric"}\NormalTok{) }\CommentTok{\# test numeric}
 \KeywordTok{expect\_neet}\NormalTok{(}\StringTok{"cat"}\NormalTok{, }\StringTok{"character"}\NormalTok{) }\CommentTok{\# test character string}
 \KeywordTok{expect\_neet}\NormalTok{(mtcars, }\StringTok{"data.frame"}\NormalTok{) }\CommentTok{\# test data frame}
 
-\CommentTok{\# assertions check inputs of code in function scripts}
+\CommentTok{\# Assertions check inputs of code in function scripts}
 \KeywordTok{assert\_neet}\NormalTok{(}\DecValTok{3}\NormalTok{, }\StringTok{"numeric"}\NormalTok{) }\CommentTok{\# test numeric}
 \end{Highlighting}
 \end{Shaded}
@@ -552,9 +550,9 @@ implemented as\ldots{}
 \begin{center}\includegraphics{when-is-done-done_files/figure-latex/unnamed-chunk-2-1} \end{center}
 
 The model begins with a \texttt{code::registration}, an outline of the
-intended algorithm, its inputs and outputs.
+intended algorithm, its inputs, and outputs.
 
-workflow includes three stages, repeated three times, before returning
+A workflow includes three stages, repeated three times, before returning
 to the start, the \texttt{c::r}.
 
 Each phase consists of:
@@ -627,17 +625,11 @@ for\ldots{}
 \section{\texorpdfstring{\texttt{code::registration}
 (\texttt{c::r})}{code::registration (c::r)}}\label{coderegistration-cr}}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{neet}\OperatorTok{::}\KeywordTok{workflow}\NormalTok{(}\DecValTok{1}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{center}\includegraphics{when-is-done-done_files/figure-latex/unnamed-chunk-3-1} \end{center}
 
 We begin with a sketch outline of a \texttt{code::registration}
 (\texttt{c::r}), which we then populate with description in prose,
-provide some detail of neet testing, before providing case-study.
+provide some detail of neet testing, before providing case-studies.
 
 As our first testing objective is one neet test per function, we need
 not necessarily work out the details of all possible things to check
@@ -649,7 +641,7 @@ inputs, and write tests, and then code for those.
 The final phase, which we need not detail immediately, covers testing
 for anything else we may wish to check. This might be checking there are
 positive numbers output by the function. Or it might be rigorously
-checking the algorithm matches the output of another person's
+checking that the algorithm matches the output of another person's
 instantiation of the algorithm, as is the case with the
 \texttt{aggreCAT::} package.
 
@@ -672,11 +664,11 @@ instantiation of the algorithm, as is the case with the
 Note that \texttt{-\ {[}\ {]}} will create an unchecked tickbox and
 \texttt{-\ {[}x{]}} will create a tickbox in both GitHub and RMarkdown.
 
-In the examples below, in the interets of brevity, we will drop the tick
-boxes, and provide the roughly descriptive prose for the three sections
-of each \texttt{c::r}. Under this workflow, we expect to update the
-\texttt{c::r} as our understanding of the algorithmic structure becomes
-more nuanced.
+For the examples below, in the interest of brevity, we will drop the
+tick boxes, and provide the roughly descriptive prose for the three
+sections of each \texttt{c::r}. Under this workflow, we expect to update
+the \texttt{c::r} as our understanding of the algorithmic structure
+becomes more nuanced.
 
 \hypertarget{varameta-cr}{%
 \subsection{\texorpdfstring{\texttt{varameta::\ c::r}}{varameta:: c::r}}\label{varameta-cr}}
@@ -769,7 +761,7 @@ A dataframe of coverage probabilities.
 
 As the \texttt{aggreCAT::} package forms part of a pipeline of packages
 designed to build a continuously integrated analysis for living data,
-there are more detailed supplemntary materials detailing requirements
+there are more detailed supplementary materials detailing requirements
 for inputs and outputs to turn to, thus the \texttt{c::r} is somewhat
 brief on first pass.
 
@@ -780,7 +772,7 @@ Provide export-ready data for each of the 19 aggregation functions.
 \textbf{Inputs}
 
 Expert judgements to be aggregated. Some special functions take other
-datasets, too.
+supplementary datasets, too.
 
 \textbf{Outputs}
 
@@ -803,8 +795,8 @@ For the first \texttt{code::proof} cycle, we follow the steps:
   Write code to make those \texttt{neet} tests pass, for each function.
 \end{enumerate}
 
-If functions are written, then we only need \emph{confirm} the functions
-pass the \texttt{neet} tests.
+If functions are already written, then we only need to \emph{confirm}
+the functions pass the \texttt{neet} tests.
 
 \hypertarget{second-codeproof-cycle}{%
 \section{\texorpdfstring{Second \texttt{code::proof}
@@ -824,13 +816,13 @@ In the case of \texttt{varameta::}, we might calculate a fixed-value
 output and compare it, but calculations rapidly become too complex to
 calculate explicitly.
 
-In the case of \texttt{aggreCAT::} for The RepliCATS Project, we have
+In the case of \texttt{aggreCAT::} for the repliCATS Project, we have
 several aggregation methods to compare. In a large-scale collaborative
 project such as this, we have several different researchers contributing
 methods which the Reproducibility Team are engineering as open-source
 research software. In this case, the algorithms are being
 computationally implemented in software by different researchers than
-those who ran the initial analyses. And that means, with a bit of
+those who conducted the initial analyses. And that means, with a bit of
 collating, we have access to many testing datasets.
 
 In Figure @ref(fig:aggregators), we present the results of
@@ -849,7 +841,7 @@ RepliCATS project.
 
 }
 
-\caption{\label{fig:aggregators} After neet tests written, comparison of aggregation methods with other researchers' analyses. Methods ssuch as 1,6, 10, are in close aggrement. There are some mthods that are relatively close, 9 and 17. These may be deemed close enough, in consultation with the researchers who developed the methods. Then there are methods to investigate, such as 18 and 16, where there is variability between the two analyses. The aggregation methods are deidentified and the code for this visualisation will not be available until The RepliCATS Project is complete, to blind the other research teams on the SCORE Program to the methods used for analysis.}\label{fig:aggregators}
+\caption{\label{fig:aggregators} After neet tests are written, a comparison of aggregation methods with other researchers' analyses. Methods such as 1,6, 10, are in close agreement. There are some methods that are relatively close, such as 9 and 17. These may be deemed close enough, in consultation with the researchers who developed the methods. Then there are methods to investigate, such as 18 and 16, where there is variability between the two analyses. The aggregation methods are deidentified and the code for this visualisation will not be available until the repliCATS Project is complete, to blind the other research teams on the SCORE Program to the methods used for analysis.}\label{fig:aggregators}
 \end{figure}
 
 \hypertarget{test-coverage-with-covr}{%
@@ -940,17 +932,17 @@ Then \texttt{covr::package\_coverage} fails.
 \end{Shaded}
 
 \hypertarget{aggrecat-from-the-replicats-project}{%
-\subsection{\texorpdfstring{\texttt{aggreCAT::} from The RepliCATS
-Project}{aggreCAT:: from The RepliCATS Project}}\label{aggrecat-from-the-replicats-project}}
+\subsection{\texorpdfstring{\texttt{aggreCAT::} from the repliCATS
+Project}{aggreCAT:: from the repliCATS Project}}\label{aggrecat-from-the-replicats-project}}
 
-A luxury afforded in this large-scale collaborative project is the
+A luxury afforded in this large-scale collaborative project is that the
 software implementation is implemented by different analysts than those
 who developed the statistical algorithms. Different analysts developed
 different algorithms, and thus, when the research software engineers on
-the Reproducibility Team came to implement the algorithm there is a
-wealth of presexisting analyses to benchmark the software against.
+the Reproducibility Team came to implement the algorithms there is a
+wealth of pre-existing analyses to benchmark the software against.
 
-For a small-scale analysis, often the method and implementation are
+For a small-scale analysis, the method and implementation are often
 developed by one person, with minimal hands-on input from others, as is
 the case with the \texttt{simeta::} and \texttt{varameta::} packages
 also discussed. However, when the development and implementation are
@@ -963,8 +955,8 @@ collected in the field, the authors suggest two researchers perform the
 data entry into different spreadsheets, which are then put through text
 comparison algorithms to identify typos and inconsistencies.
 
-In the case of \texttt{aggreCAT::}, there are twenty aggration methods,
-each of which has been contributed by a researcher. Thus, each
+In the case of \texttt{aggreCAT::}, there are nineteen aggregation
+methods, each of which has been contributed by a researcher. Thus, each
 researcher who developed a method has provided a testing dataset for the
 Reproducibility Team to compare the results of the software implementing
 the aggregation methods.
@@ -984,15 +976,16 @@ doneness}{c::r of doneness}}\label{cr-of-doneness}}
 Under this workflow, the \texttt{c::r} is the project overview any
 developer can return to. So, this final registration not only summarises
 what has been tested, but also notes any idiosyncrasies for other
-developers, \emph{expeically} the future self of the developer, who
+developers, \emph{especially} the future self of the developer who
 recalls so little of the code they may as well be a different developer.
 
 At this point, the developer makes a final assessment of whether the
-stated objective of the implementation of the algorithm. Assess the
-\texttt{code::proof}, through the development process, new ideas,
-boundaries to check (recall the \texttt{logfn} and negative numbers
-example in Section 5.4{[}todo: hyperlink{]}). We might characterise done
-as when we feel we have sufficient \texttt{code::proof}.
+stated objective of the implementation of the algorithm has been
+reached. Assess the \texttt{code::proof}, through the development
+process, new ideas, boundaries to check (recall the \texttt{logfn} and
+negative numbers example in Section 5.4{[}todo: hyperlink{]}). We might
+characterise done as when we feel we have sufficient
+\texttt{code::proof}.
 
 If the algorithm does not yet have sufficient \texttt{code::proof}, the
 cycle can be repeated, and \texttt{c::r}s updates.
@@ -1009,18 +1002,17 @@ provides a summary of what we could think of doing to `further the
 process of scientific discovery', as Devezer \emph{et al.} might put it
 (Devezer et al. 2019), towards our goal.
 
-The first version of this manuscript, itself, is a preregistration of a
+The first version of this manuscript, itself, is a pre-registration of a
 computational workflow. This workflow is for \texttt{team\ reprocat::}
-of The repliCATS Project to develop rerproducible algorithms more
-happily together. The first version provides a description of the
-workflow for the team; the second version incorporates the team's
-feedback. This arguably literalises the scientific practices of
-publishing manuscripts; no manuscript, no matter how definitive,
-provides everything required for a resaerch project, but may offer
-particular tools and evidence to further the process of scientific
-discovery.
+of the repliCATS Project to develop reproducible algorithms more happily
+together. The first version provides a description of the workflow for
+the team; the second version incorporates the team's feedback. This
+arguably literalises the scientific practices of publishing manuscripts;
+no manuscript, no matter how definitive, provides everything required
+for a research project, but may offer particular tools and evidence to
+further the process of scientific discovery.
 
-Another researcher software engineer may be cognisant of a tool you are
+Another research software engineer may be cognisant of a tool you are
 unfamiliar with. By providing the package, and the \texttt{c::r}, we
 provide a method to facilitate what Stodden describes as the
 \emph{extensibility} of the algorithm (Stodden, Borwein, and Bailey
@@ -1041,9 +1033,9 @@ developer. \emph{Especially} if the next developer is your future self.
 \texttt{covr::}\label{sec: covr}}{Get an overview with covr::}}\label{get-an-overview-with-covr}}
 
 For an in-development packaged analysis, the \texttt{covr::} package
-provides a means of asssessing the testing coverage for each function.
+provides a means of assessing the testing coverage for each function.
 The analysis functions provided by \texttt{varameta::} were put on hold
-while signficant discussion was written for the thesis of which
+while significant discussion was written for the thesis of which
 \texttt{varameta::} forms a part. Beginning with
 \texttt{covr::package\_coverage}, enables us to get a more informed
 sense of the \texttt{code::proof} of this package, and what
@@ -1093,8 +1085,8 @@ When we think of an algorithm, it's easy to feel overwhelmed by the
 complexity. And, analogous to the pitfalls of the piano student, a
 developer may fall prey to the inevitable rabbit holes and distractions
 that arise. It's tempting to consider these distractions benign, but, in
-fact, these actions are frequently the result of techinical anxiety
-about the task, and are anathema to mastering the technique in question.
+fact, these actions are frequently the result of technical anxiety about
+the task, and are anathema to mastering the technique in question.
 
 \hypertarget{practice-with-intent}{%
 \subsection{Practice with intent}\label{practice-with-intent}}
@@ -1129,7 +1121,7 @@ preferring to ``work'' when no one is around to listen. Their reasoning
 is, ``I'll practice non- musically (which is easier because you can shut
 off the brain) until I can play it well, then I'll add the music.'' This
 never works because learning piano is all about training the brain, not
-finger calisthenics (Chang 2009).
+finger callisthenics (Chang 2009).
 \end{quote}
 
 \hypertarget{mindful-coding}{%
@@ -1146,7 +1138,7 @@ estimators, and outputs in \texttt{varameta}, presented as a randomised
 edges, \(V \times V\), between them. We understand each function's
 inputs and outputs, but understanding the way they relate to each other,
 is often muddled without planning. Our \texttt{code::brain}, the way we
-conceptulaise the code, is disorganised.
+conceptualise the code, is disorganised.
 
 \begin{figure}
 
@@ -1161,11 +1153,11 @@ conceptulaise the code, is disorganised.
 ## NULL
 \end{verbatim}
 
-The Center for Open Science recommend \emph{preregistering} an
+The Center for Open Science recommend \emph{pre-registering} an
 experiment, stating what the hypothesis is and how the analyst intends
 to assess the hypothesis as one safeguard against inadvertent
 questionable research practices. Analogously, we might think of
-preregistering our code as providing some \texttt{code::proof} of the
+pre-registering our code as providing some \texttt{code::proof} of the
 implementation of our algorithm. In this manuscript, we will think of
 \emph{c::r}, stating what the intention of an algorithm is, as - todo:
 complete
@@ -1223,7 +1215,7 @@ Update the c::r as needed.
 \hypertarget{sketch-diagram}{%
 \subsubsection{Sketch-diagram}\label{sketch-diagram}}
 
-An image or diagram is very help, if not burdonsomely time consuming
+An image or diagram is very helpful, if not burdensomely time consuming
 (but it often is). This section is only useful for those who enjoy graph
 theory and visualisation, and is not essential.
 
@@ -1301,7 +1293,7 @@ row number of the \texttt{nodes} dataframe.
 ## # ... with 74 more rows
 \end{verbatim}
 
-These two dataframes cone be converted into a graph object that is
+These two dataframes can be converted into a graph object that is
 compatible with the \texttt{igraph::} package and \texttt{tidyverse::}
 syntax.
 

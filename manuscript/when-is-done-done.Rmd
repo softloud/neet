@@ -1,15 +1,22 @@
 ---
 title: "Coding to `code::proof`: Practice fundamentals of automated tests for collaborative data analysis development"
 subtitle: "How to go from no tests, to *whoa* tests!"
-author: "sketch-draft by lead author, Charles T. Gray, Aaron Willcox"
+author: 
+  - Charles T. Gray, IMeRG [^1]
+# listing in alphabetical for secondary, but am 
+# not fussed about authorship orderings 
+# if others have strong feelings about this
+  - Elise Gould, IMeRG
+  - David Wilkinson, QAEG
+  - Aaron Willcox, IMeRG
 bibliography: references.bib
-
-# output:
-#   tufte::tufte_html:
-#     number_sections: true
-#     toc: true
+abstract: Despite centuries' accumulation of pedagogy on pianistic technique, there remains a comparative dearth of literature conceptualising the process of obtainng sufficiant technical ability. Analogously, a toolchain gap exists between between good enough practices of scientific computation and implementation. A toolchain walkthrough, an opinionated documentation of a scientific workflow, provides a means of addressing this gap. In this toolchain walkthrough, we present a methodology for coding to a measure of `code::proof`, a sense of good enough confidence in the implementation of a statistical algorithm.
 
 output:
+  # tufte::tufte_html:
+  #   number_sections: true
+  #   toc: true
+
   pdf_document:
     fig_caption: yes
     number_sections: true
@@ -18,6 +25,7 @@ output:
     includes:
       in_header: tex_preamble.tex
       before_body: tex_macros.tex
+
 ---
 
 ```{r setup, include=FALSE}
@@ -30,19 +38,13 @@ knitr::opts_chunk$set(echo = TRUE,
 library(tufte)
 library(ggplot2)
 
+# David's affiliation
+# Quantitative and Applied Ecology Group, School of BioSciences, University of Melbourne. And orcID: 0000-0002-9560-6499
 ```
 
-## Version of this manuscript
+[^1]: Special thanks to Emily Riederer for her ongoing correspondence throughout the writing of this manuscript. Thanks, also, to Hannah Fraser, Fiona Fidler, and Daniel Fryer. Also, appreciation for Danielle Navarro, Thomas Pedersen and others on twitter who helped with the visualisation. 
 
-This manuscript (or manuscripts) will go through three phases:
 
-1. A lead author sketch draft.
-2. Implementation with the reproducibility team for [The repliCATS Project](https://replicats.research.unimelb.edu.au/) & version listing any team members who wish to co-author. 
-3. Implementation of repliCATS procedures, explicitly, after we need not blind the algorithms for experimental integrity. Invitation for external co-authors to contribute and extend the content, review, and final submission. Possibly for useR2020. 
-
-### Acknowledgements
-
-People who have contributed feedback or assisted, some of whom might be co-authors on later drafts: Emily Riederer, Elise Gould, Hannah Fraser, Daniel Fryer, Aaron Willcox, David Wilkinson. Also, appreciation for Danielle Navarro, Thomas Pedersen and others on twitter who helped with the visualisation. 
 
 # Coding to `code::proof` 
 
