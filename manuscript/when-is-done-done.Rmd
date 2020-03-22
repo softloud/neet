@@ -6,11 +6,11 @@ author:
 # listing in alphabetical for secondary, but am 
 # not fussed about authorship orderings 
 # if others have strong feelings about this
-  - Elise Gould, IMeRG
-  - David Wilkinson, QAEG
+  - Elise Gould, QAECO/IMeRG
+  - David Wilkinson, QAECO/IMeRG
   - Aaron Willcox, IMeRG
 bibliography: references.bib
-abstract: Despite centuries' accumulation of pedagogy on pianistic technique, there remains a comparative dearth of literature conceptualising the process of obtainng sufficiant technical ability. Analogously, a toolchain gap exists between between good enough practices of scientific computation and implementation. A toolchain walkthrough, an opinionated documentation of a scientific workflow, provides a means of addressing this gap. In this toolchain walkthrough, we present a methodology for coding to a measure of `code::proof`, a sense of good enough confidence in the implementation of a statistical algorithm.
+abstract: Despite centuries' accumulation of pedagogy on pianistic technique, there remains a comparative dearth of literature conceptualising the process of obtaining sufficiant technical ability. Analogously, a toolchain gap exists between between good enough practices of scientific computation and implementation. A toolchain walkthrough, an opinionated documentation of a scientific workflow, provides a means of addressing this gap. In this toolchain walkthrough, we present a methodology for coding to a measure of `code::proof`, a sense of good enough confidence in the implementation of a statistical algorithm.
 
 output:
   # tufte::tufte_html:
@@ -56,7 +56,7 @@ This manuscript picks up from where Riederer left off with **RMarkdown-driven de
 
 [^2]: In this manuscript, `c::r` denotes `code::registration`, `c::r`ing denotes `code::registering`, and `c::r`ed denotes `code::registered` 
 
-Musicians and, similarly, athletes, do not see themselves as having mastered a skill but as active practitioners of a craft [@galway_flute_1990]. To be a flautist is to practice, and to be an athlete is to train. For researcher developers, it can be hard to assess when an analysis is completed. In this manuscript, we consider the *practice* of test-driven analysis development as a means of *coding to doneness* for an algorithm, a workflow that facilitates the analyst achieving sufficient `code::proof` in their algorithm, confidence in the implementation of the algorithm [@grayCodeProofPrepare2019]. 
+Musicians and, similarly, athletes, do not see themselves as having mastered a skill, but as active practitioners of a craft [@galway_flute_1990]. To be a flautist is to practice, and to be an athlete is to train. For researcher developers, it can be hard to assess when an analysis is completed. In this manuscript, we consider the *practice* of test-driven analysis development as a means of *coding to doneness* for an algorithm, a workflow that facilitates the analyst achieving sufficient `code::proof` in their algorithm, confidence in the implementation of the algorithm [@grayCodeProofPrepare2019]. 
 
 ## Questionable research practices in scientific computing
 
