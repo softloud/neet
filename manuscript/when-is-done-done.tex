@@ -160,19 +160,22 @@ confidence in the implementation of a statistical algorithm.
 \texttt{code::proof}}{Coding to code::proof}}\label{coding-to-codeproof}}
 
 J. S. Bach's Contrapunctus I, a four-part work of counterpoint from
-\emph{The Art of Fugue}, is not learnt in one sitting {[}todo:
-citation{]}. Indeed, for most pianists, to play the three-minute piece
-is the result of many months' diligent work, and still the piece will
-never feel \emph{done}. To play well, a pianist must employ technique,
-but \emph{how} a pianist is to achieve the desired technique is not
-clear (Chang 2009).
+\emph{The Art of Fugue} (Bach 2005), is not learnt in one sitting.
+Indeed, for most pianists, to play the three-minute piece is the result
+of many months' diligent work, and still the piece will never feel
+\emph{done}. To play well, a pianist must employ technique, but
+\emph{how} a pianist is to achieve the desired technique is not clear
+(Chang 2009).
 
 For a researcher performing an analysis using a computational tool such
 as R, it can be unclear when an analysis is \emph{done}. And, while
-there are technical guides on \emph{good enough} practice, it can feel
-overwhelming as to what to adopt and where. Particularly for an
-in-development algorithm, which is to say, an algorithm with scripts
-already started, and some results explored.
+there are technical guides on \emph{good enough} practice, which is to
+say, what we might reasonably request of a researcher developer (Wilson
+et al. 2017), it can feel overwhelming as to what to adopt and where.
+Particularly for an in-development algorithm, which is to say, an
+algorithm with scripts already started, and some results explored. Given
+the evolutionary nature of research conceptualistion, this is often the
+case for the beginning of a scientific project intended for publication.
 
 This manuscript picks up from where Riederer left off with
 \textbf{RMarkdown-driven development} and suggests a
@@ -181,9 +184,8 @@ This manuscript picks up from where Riederer left off with
   denotes \texttt{code::registering}, and \texttt{c::r}ed denotes
   \texttt{code::registered}}) \textbf{test-driven workflow} for coding
 to doneness. This workflow provides a roadmap to completion for a
-packaged analysis with \texttt{code::proof}ed the manuscript (Gray
-2019), provided measures of confidence in the implementation of the
-algorithm.
+packaged analysis with \texttt{code::proof} (Gray 2019), a measure of
+confidence in the implementation of the algorithm.
 
 Musicians and, similarly, athletes, do not see themselves as having
 mastered a skill, but as active practitioners of a craft (Galway 1990).
@@ -192,8 +194,8 @@ researcher developers, it can be hard to assess when an analysis is
 completed. In this manuscript, we consider the \emph{practice} of
 test-driven analysis development as a means of \emph{coding to doneness}
 for an algorithm, a workflow that facilitates the analyst achieving
-sufficient \texttt{code::proof} in their algorithm, confidence in the
-implementation of the algorithm (Gray 2019).
+sufficient \texttt{code::proof}, confidence in the implementation of the
+algorithm (Gray 2019).
 
 \hypertarget{questionable-research-practices-in-scientific-computing}{%
 \subsection{Questionable research practices in scientific
@@ -201,17 +203,17 @@ computing}\label{questionable-research-practices-in-scientific-computing}}
 
 Algorithms are coded by people who \emph{practice} code, and significant
 problems emerge when algorithms are treated as fixed artifacts, rather
-than one of the tools utilised by those who \emph{practice} code. In
-Australia, a heartbreaking ongoing example of this kind of problem is
-the income-reporting data analysis algorithm that assesses if income
-welfare recipients have been overpaid entitlements. Crude averaging
-calculations have lead to ongoing incorrect debt notices issued, such as
-20,000 people receiving ``robodebt'' notices for debts they did not owe
-(McIlroy 2017). Problems in data analysis have real impacts on real
-people's lives. Perhaps, if the algorithm were considered a workflow
-practiced and monitored by a team of data scientists, rather than a
-static object, problems would not be persisting to this day (Karp 2019).
-Indeed, as noted in Wilson's testing primers (in development) for
+than one of the tools utilised by those who practice code. In Australia,
+a heartbreaking, ongoing example of this kind of problem is the
+income-reporting data analysis algorithm that assesses if income welfare
+recipients have been overpaid entitlements. Crude averaging calculations
+have lead to ongoing incorrect debt notices issued, such as 20,000
+people receiving `robodebt' notices for debts they did not owe (McIlroy
+2017). Problems in data analysis have real impacts on real people's
+lives. Perhaps, if the algorithm were considered a workflow practiced
+and monitored by a team of data scientists, rather than a static object,
+problems would not be persisting to this day (Karp 2019). Indeed, as
+noted in Wilson's testing primers (in development) for
 \href{https://rstudio.cloud/learn/primers}{RStudio} (``RStudio Cloud,''
 n.d.),
 
@@ -270,28 +272,54 @@ parameters as clearly defined as they can be from the start.
 \subsection{Practice fundamentals}\label{practice-fundamentals}}
 
 Chuang C. Chang's \emph{Fundamentals of Piano Practice} sets out to
-address a gap in piano pedagogy (Chang 2009). A similar gap exists in
-the implementation of \emph{good enough} practices (Wilson et al. 2017),
-which is to say, what we might reasonably expect of an analyst, in
-reproducible computing for research data analyses. The objective is
-different from advanced pianism, but we characterise testing
-\emph{practice}, as opposed to \emph{technique}, analogous to how Chang
-delineates between \emph{piano} practice and technique. Through
-attempting to identify the fundamentals of automated testing for
-collaborative data analysis development, this manuscript aims to
-articulate the gap in understanding automated testing implementation for
-analysts.
+address a gap in piano pedagogy (Chang 2009), not in what defines
+different levels of pianistic technique, which is abundant, but the
+scarce-found process of obtaining said technique. Chang differentiates
+between piano \emph{performance}, the desired end product, and
+\emph{practice}, a daily task experienced alone by the pianist with the
+purpose of achieving the technical requirements of performing the work.
+For a pianist, solo practice dominates their experience of the
+instrument, but this may not be immediately evident when one only
+encounters the pianist before an audience of three thousand in a concert
+hall. Whilst abundant guidance exists as to the technical demands of the
+performance, the desired end product, Chang aims to address how the
+pianist spents the vast majority of their time at the piano: practice.
 
-As Chang notes, whilst there a rich history of technical pedagogy, there
-is a dearth of guidance for pianists on \emph{learning} the technique
-(Chang 2009). There are many canonical texts of pianistic technique
-pedagogy. Bach provides a pathway from small canons {[}todo: cite{]}, to
-two-part inventions {[}todo: cite{]}, three-part sinfonia, and the
-challenge of \emph{The Well-Tempered Clavier} and \emph{The Art of
-Fugue}. Bartok provides the \emph{Mikrokosmos} {[}todo: cite{]}, and
-Czerny's \emph{School of Velocity} {[}to do: cite{]}. In each case,
-technical exercises of increasing difficulty are provided. In piano
-pedagogy, a \emph{technical} exercise isolates a particular aspect of
+The technique required, the end product, is analogous to prioritising
+the end-user's experience computational data analysis tools. Researcher
+developers' domain is not computer science, but, increasingly, the
+humanities, social science, and biomedical science (McElreath 2016).
+Thus, for scientific research, there is a need for reflection not on the
+end-user's experience, but on the researcher developer themselves. For
+if good enough practice is too daunting, too time consuming, the
+reseacher, juggling teaching loads, global upheavals, and technological
+revolutions, may simply accept failure and revert to conventional, if
+questionable, research practices (Fraser et al. 2018; Wilson et al.
+2017).
+
+The objective of scientific computation is different from advanced
+pianism, but we may characterise testing \emph{practice}, as opposed to
+coding \emph{technique}, analogous to how Chang delineates between
+\emph{pianistic} practice and technique. Through attempting to identify
+the fundamentals of automated testing for collaborative data analysis
+development, this manuscript aims to articulate the gap in understanding
+automated testing implementation for analysts. We begin, as is perfectly
+natural, with a rumination of canonical literature of piano technqiue,
+before examining the parallels in the guidance of good enough practices
+in scientific computation.
+
+There are many texts of pianistic technique students of the instrument
+are like to be familiar with. Bach provides a pathway from small canons
+(Bach 1933), to two-part inventions and three-part sinfonia (Bach 1968),
+and the challenge of \emph{The Well-Tempered Clavier} (Bach 2006) and
+\emph{The Art of Fugue} (Bach 2005). Bartok provides the
+\emph{Mikrokosmos: Progressive piano pieces} (Bartók 1940), and Czerny's
+\emph{School of Velocity} (Czerny, n.d.), for studies (more often
+referred to in French as etude) that target different aspects of
+technique, such as staccato, legato, slurring, (clipped or smooth), and
+dynamics, (loud or soft). In each case, technical exercises of
+increasing difficulty are provided. In piano pedagogy, a
+\emph{technical} exercise, an etude, isolates a particular aspect of
 pianistic technique {[}todo examples{]}. For example, {[}todo Czerny
 staccato{]}. Or, {[}todo voicing technique{]}.
 
@@ -845,7 +873,7 @@ RepliCATS project.
 
 }
 
-\caption{\label{fig:aggregators} After neet tests are written, a comparison of aggregation methods with other researchers' analyses. Methods such as 1,6, 10, are in close agreement. There are some methods that are relatively close, such as 9 and 17. These may be deemed close enough, in consultation with the researchers who developed the methods. Then there are methods to investigate, such as 18 and 16, where there is variability between the two analyses. The aggregation methods are deidentified and the code for this visualisation will not be available until the repliCATS Project is complete, to blind the other research teams on the SCORE Program to the methods used for analysis.}\label{fig:aggregators}
+\caption{\label{aggregators} After neet tests are written, a comparison of aggregation methods with other researchers' analyses. Methods such as 1,6, 10, are in close agreement. There are some methods that are relatively close, such as 9 and 17. These may be deemed close enough, in consultation with the researchers who developed the methods. Then there are methods to investigate, such as 18 and 16, where there is variability between the two analyses. The aggregation methods are deidentified and the code for this visualisation will not be available until the repliCATS Project is complete, to blind the other research teams on the SCORE Program to the methods used for analysis.}\label{fig:aggregators}
 \end{figure}
 
 \hypertarget{test-coverage-with-covr}{%
@@ -1369,12 +1397,44 @@ package of \texttt{testthat::}.
 
 \hypertarget{refs}{}
 \begin{cslreferences}
+\leavevmode\hypertarget{ref-bach_childrenbachmusic_1933}{}%
+Bach, Johann Sebastian. 1933. \emph{The Children's Bach {[}Music{]} /
+{[}Edited by{]} E. Harold Davies.} Edited by E. Harold Davies. Imperial
+Ed. ; No. 354. Melbourne: Allan \& Co.
+
+\leavevmode\hypertarget{ref-bach_twothreepart_1968}{}%
+---------. 1968. ``Two and Three Part Inventions {[}Music{]}: Facsimile
+of the Autograph Manuscript / Johann Sebastian Bach ; with an
+Introduction by Eric Simon.'' Dover Publications.
+
+\leavevmode\hypertarget{ref-bach_artfuguebach_2005}{}%
+---------. 2005. \emph{The Art of Fugue: Bach Fugues for Keyboard,
+1715-1750 / Joseph Kerman.} Edited by Joseph Kerman, Davitt Moroney, and
+Karen Rosenak. Berkeley: University of California Press.
+
+\leavevmode\hypertarget{ref-bach_welltemperedclaviermusic_2006}{}%
+---------. 2006. \emph{The Well-Tempered Clavier {[}Music{]}: 48
+Preludes and Fugues ; Complete Books 1 and 2 ; for Piano / Johann
+Sebastian Bach ; Edited and Fingered by Carl Czerny.} Reprint ed.
+Schirmer's Library of Musical Classics, Vol. 2057. New York : Milwaukee,
+Wisconsin: GSchirmer ; Hal Leonard distributor.
+
+\leavevmode\hypertarget{ref-bartok_mikrokosmosmusicprogressive_1940}{}%
+Bartók, Béla. 1940. \emph{Mikrokosmos {[}Music{]}: Progressive Piano
+Pieces = Pièces de Piano Progressives = Klavierstücke, Vom Allerersten
+Anfang an / Béla Bartók.} Winthrop Rogers ed. London: Boosey \& Hawkes.
+
 \leavevmode\hypertarget{ref-Bryan2017ExcuseMD}{}%
 Bryan, Jennifer. 2017. ``Excuse Me, Do You Have a Moment to Talk About
 Version Control?'' \emph{PeerJ PrePrints} 5: e3159.
 
 \leavevmode\hypertarget{ref-chang_fundamentalspianopractice_2009a}{}%
 Chang, Chuan C. 2009. \emph{Fundamentals of Piano Practice}.
+
+\leavevmode\hypertarget{ref-czerny_schoolvelocityop_19}{}%
+Czerny, Carl. n.d. \emph{School of Velocity, Op. 299 {[}Music{]} =
+(Schule Der Geläufigkeit) / Czerny ; Revised and Edited by Louis
+Arensky.} Imperial Ed. ; No. 2. Melbourne: Allan \& Co.
 
 \leavevmode\hypertarget{ref-devezerScientificDiscoveryModelcentric2019}{}%
 Devezer, Berna, Luis G. Nardin, Bert Baumgaertner, and Erkan Ozge
@@ -1411,6 +1471,11 @@ for Targeted Welfare Recipients.'' \emph{The Guardian}, November.
 Marwick, Ben, Carl Boettiger, and Lincoln Mullen. 2018. ``Packaging Data
 Analytical Work Reproducibly Using R (and Friends).'' e3192v2. PeerJ
 Inc. \url{https://doi.org/10.7287/peerj.preprints.3192v2}.
+
+\leavevmode\hypertarget{ref-statrethinkingbook}{}%
+McElreath, Richard. 2016. \emph{Statistical Rethinking: A Bayesian
+Course with Examples in R and Stan}. CRC Press.
+\url{http://xcelab.net/rm/statistical-rethinking/}.
 
 \leavevmode\hypertarget{ref-mcilroy201720}{}%
 McIlroy, T. 2017. ``20,000 People Sent Centrelink `Robo-Debt' Notices
