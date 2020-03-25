@@ -6,6 +6,7 @@ test_that("neet numeric", {
   expect_success(expect_neet(3, "numeric"))
   expect_error(expect_neet(3, "character"))
   expect_error(expect_neet(NULL, "numeric"))
+  expect_error(expectg_neet(NA, "numeric"))
 })
 
 test_that("neet character", {
