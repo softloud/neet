@@ -142,11 +142,12 @@ Despite centuries' accumulation of pedagogy on pianistic technique,
 there remains a comparative dearth of literature conceptualising the
 process of obtaining sufficiant technical ability. Analogously, a
 toolchain gap exists between between good enough practices of scientific
-computation and implementation. A toolchain walkthrough, an opinionated
-documentation of a scientific workflow, provides a means of addressing
-this gap. In this toolchain walkthrough, we present a methodology for
-coding to a measure of \texttt{code::proof}, a sense of good enough
-confidence in the implementation of a statistical algorithm.
+computation and the implementation of these practices. A toolchain
+walkthrough, an opinionated documentation of a scientific workflow,
+provides a means of addressing this gap. In this toolchain walkthrough,
+we present a methodology for coding to a measure of
+\texttt{code::proof}, a sense of good enough confidence in the
+implementation of a statistical algorithm.
 \end{abstract}
 
 \newcommand{\codereg}[1]{
@@ -159,13 +160,17 @@ confidence in the implementation of a statistical algorithm.
 \section{\texorpdfstring{Coding to
 \texttt{code::proof}}{Coding to code::proof}}\label{coding-to-codeproof}}
 
-J. S. Bach's Contrapunctus I, a four-part work of counterpoint from
-\emph{The Art of Fugue} (Bach 2005), is not learnt in one sitting.
-Indeed, for most pianists, to play the three-minute piece is the result
-of many months' diligent work, and still the piece will never feel
-\emph{done}. To play well, a pianist must employ technique, but
-\emph{how} a pianist is to achieve the desired technique is not clear
-(Chang 2009).
+J. S. Bach's Contrapunctus I, a four-part\footnote{A \textbf{part}
+  denotes a melodic voice in music theory; these \textbf{polyphonic}
+  pieces comprise melodies that are played at the same time, creating
+  harmonies. Many would have encountered this in early schooling,
+  singing rounds in the classroom, where singers are staggered in
+  starting.} work of counterpoint from \emph{The Art of Fugue} (Bach
+2005), is not learnt in one sitting. Indeed, for most pianists, to play
+the three-minute piece is the result of many months' diligent work, and
+still the piece will never feel \emph{done}. To play well, a pianist
+must employ technique, but \emph{how} a pianist is to achieve the
+desired technique is not clear (Chang 2009).
 
 For a researcher performing an analysis using a computational tool such
 as R, it can be unclear when an analysis is \emph{done}. And, while
@@ -192,10 +197,9 @@ mastered a skill, but as active practitioners of a craft (Galway 1990).
 To be a flautist is to practice, and to be an athlete is to train. For
 researcher developers, it can be hard to assess when an analysis is
 completed. In this manuscript, we consider the \emph{practice} of
-test-driven analysis development as a means of \emph{coding to doneness}
-for an algorithm, a workflow that facilitates the analyst achieving
-sufficient \texttt{code::proof}, confidence in the implementation of the
-algorithm (Gray 2019).
+test-driven analysis development as a means of achieving
+trustworthy-enough \texttt{code::proof} in an algorithm, confidence in
+the implementation of the algorithm (Gray 2019).
 
 \hypertarget{questionable-research-practices-in-scientific-computing}{%
 \subsection{Questionable research practices in scientific
@@ -285,18 +289,22 @@ encounters the pianist before an audience of three thousand in a concert
 hall. Whilst abundant guidance exists as to the technical demands of the
 performance, the desired end product, Chang aims to address how the
 pianist spents the vast majority of their time at the piano: practice.
-
+Technical works provide guidance as to optimal end-product and provide
+incrementally more difficult pieces towards the process of achieving the
+end product. The end product, in piano, is a performance, in
+computation, software; the process for piano is known as practice, and
+for software, coding.\\
 The technique required, the end product, is analogous to prioritising
-the end-user's experience computational data analysis tools. Researcher
-developers' domain is not computer science, but, increasingly, the
-humanities, social science, and biomedical science (McElreath 2016).
-Thus, for scientific research, there is a need for reflection not on the
-end-user's experience, but on the researcher developer themselves. For
-if good enough practice is too daunting, too time consuming, the
-reseacher, juggling teaching loads, global upheavals, and technological
-revolutions, may simply accept failure and revert to conventional, if
-questionable, research practices (Fraser et al. 2018; Wilson et al.
-2017).
+the end-user's experience of computational data analysis tools.
+Researcher developers' domain is not merely computer science, but,
+increasingly, the humanities, social science and biomedical research
+(McElreath 2016). Thus, for computational science, there is a need for
+reflection not on the end-user's experience, but on the researcher
+developer themselves. For if good enough practice is too daunting, too
+time consuming, the reseacher, juggling teaching loads, global
+upheavals, and technological revolutions, may simply accept failure and
+revert to conventional, if questionable, research practices (Fraser et
+al. 2018; Wilson et al. 2017).
 
 The objective of scientific computation is different from advanced
 pianism, but we may characterise testing \emph{practice}, as opposed to
@@ -305,7 +313,7 @@ coding \emph{technique}, analogous to how Chang delineates between
 the fundamentals of automated testing for collaborative data analysis
 development, this manuscript aims to articulate the gap in understanding
 automated testing implementation for analysts. We begin, as is perfectly
-natural, with a rumination of canonical literature of piano technqiue,
+natural, with a rumination on canonical literature of piano technqiue,
 before examining the parallels in the guidance of good enough practices
 in scientific computation.
 
@@ -314,15 +322,16 @@ are like to be familiar with. Bach provides a pathway from small canons
 (Bach 1933), to two-part inventions and three-part sinfonia (Bach 1968),
 and the challenge of \emph{The Well-Tempered Clavier} (Bach 2006) and
 \emph{The Art of Fugue} (Bach 2005). Bartok provides the
-\emph{Mikrokosmos: Progressive piano pieces} (Bartók 1940), and Czerny's
-\emph{School of Velocity} (Czerny, n.d.), for studies (more often
-referred to in French as etude) that target different aspects of
-technique, such as staccato, legato, slurring, (clipped or smooth), and
-dynamics, (loud or soft). In each case, technical exercises of
-increasing difficulty are provided. In piano pedagogy, a
-\emph{technical} exercise, an etude, isolates a particular aspect of
-pianistic technique {[}todo examples{]}. For example, {[}todo Czerny
-staccato{]}. Or, {[}todo voicing technique{]}.
+\emph{Mikrokosmos: Progressive piano pieces} (Bartók 1940), and one can
+progress from Carl Czerny's \emph{One Hundred and One Exercises for the
+Pianoforte} (Czerny 1900a) to his \emph{School of Velocity} (Czerny
+1900b), for studies (more often referred to in French as etude) that
+target different aspects of technique, such as staccato, legato,
+slurring, (clipped or smooth), and dynamics, (loud or soft). In each
+case, technical exercises of increasing difficulty are provided. In
+piano pedagogy, a \emph{technical} exercise, an etude, isolates a
+particular aspect of pianistic technique {[}todo examples{]}. For
+example, {[}todo Czerny staccato{]}. Or, {[}todo voicing technique{]}.
 
 The dearth that Chang attempts to address is in pianistic
 \emph{practice} habits that will lead to successful adoption of these
@@ -342,7 +351,8 @@ scientific computing (Wilson et al. 2014), with a reflection on
 \emph{good enough} practices (Wilson et al. 2017), in recognition that
 we must account for what we might reasonably request of data analysis
 practitioners. In this manuscript, we consider one component of
-\emph{good enough} practice in data analysis: \emph{automated testing}.
+\emph{good enough} practice in data analysis: \textbf{automated
+testing}.
 
 Automated tests are a formalised way of implementing checks that inputs
 and outputs of algorithms are as expected (Wickham 2015). Informative
@@ -1432,8 +1442,12 @@ Version Control?'' \emph{PeerJ PrePrints} 5: e3159.
 \leavevmode\hypertarget{ref-chang_fundamentalspianopractice_2009a}{}%
 Chang, Chuan C. 2009. \emph{Fundamentals of Piano Practice}.
 
-\leavevmode\hypertarget{ref-czerny_schoolvelocityop_19}{}%
-Czerny, Carl. n.d. \emph{School of Velocity, Op. 299 {[}Music{]} =
+\leavevmode\hypertarget{ref-czerny_czernyonehundred_1900}{}%
+Czerny, Carl. 1900a. ``Czerny's One Hundred and One Exercises for the
+Pianoforte {[}Music{]}: Complete / Edited by William Layland.'' EWCole.
+
+\leavevmode\hypertarget{ref-czerny_schoolvelocityop_1900}{}%
+---------. 1900b. \emph{School of Velocity, Op. 299 {[}Music{]} =
 (Schule Der Geläufigkeit) / Czerny ; Revised and Edited by Louis
 Arensky.} Imperial Ed. ; No. 2. Melbourne: Allan \& Co.
 

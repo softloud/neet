@@ -69,8 +69,7 @@ expect_nonempty.character <- function(thing_to_test){
 
 #' @export
 
-expect_nonempty.rma <- function(thing_to_test) {
-  testthat::expect_is(thing_to_test, "rma")
+expect_nonempty.logical <- function(thing_to_test) {
+  testthat::expect_is(thing_to_test, "logical")
+  testthat::expect_false(is.na(thing_to_test))
 }
-
-
