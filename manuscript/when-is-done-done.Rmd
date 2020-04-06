@@ -173,61 +173,283 @@ devtools::install_github("softloud/neet")
 
 ### Example
 
-This is a basic example which shows you how to solve a common problem:
-
 ```{r example}
 library(testthat)
-library(neet)
-
-## Basic example code
-
-# Expectations check output of code in testthat files
-expect_neet(3, "numeric") # test numeric
-expect_neet("cat", "character") # test character string
-expect_neet(mtcars, "data.frame") # test data frame
 
 # Assertions check inputs of code in function scripts
 assert_neet(3, "numeric") # test numeric
 assert_neet("cat", "character") # test character string
 assert_neet(mtcars, "data.frame") # test data frame
+
+# Expectations check output of code in testthat files
+test_neet(3, "numeric") # test numeric
+test_neet("cat", "character") # test character string
+test_neet(mtcars, "data.frame") # test data frame
+
+# test the output of a function
+quack <- function() {
+  "quack"
+}
+
+test_neet(quack(), "character")
+
 ```
 
-# `code::proof` test-driven workflow 
+# test-driven workflow to `code::proof`  
 
-In order to... doneness ... propose test driven ... implemented as...
+This toolchain walkthrough outlines a workflow for coding an analysis to a sense of doneness, which is to say, `code::proof`, a sense of confidence in the implementation of an algorithm. By deciding, and updating, what *done* looks like from the start, the anxiety induced by feature creep, the introduction of ever more complexities, is reduced. We may not think of everything required for analysis, but this is always so. But by `c::r`ing our code, we are at least clear of what has been created for the analysis, rendering the code more transparent and extensible by both the developer themselves, at some future date, or by another researcher. In Figure \@ref(fig:workflow), we see an overview of the test-driven workflow proposed in this manuscript. This function is included in the `neet::` package. 
 
-```{r, message=FALSE,echo=FALSE}
-library(neet)
-
+```{r workflow, message=FALSE,echo=FALSE,fig.cap="This test-driven workflow has ten phases. It begins with a c::r, and then each of the three cycles consists of: tests, code, and update c::r"}
+# workflow 0 displays the workflow template
 workflow(0)
 ```
 
-The model begins with a `code::registration`, an outline of the intended algorithm, its inputs, and outputs. 
+The workflow begins with a `c::r`, an outline of the intended algorithm, its inputs, and outputs. After the initial `c::r`, the workflow comprises three steps, repeated for three cycles, before returning to the start, the `c::r`.
 
-A workflow includes three stages, repeated three times, before returning to the start, the `c::r`.
+Each cycle consists of:
 
-Each phase consists of:
+1. tests
+2. code
+3. `c::r`
 
-1. `c::r`
-2. tests
-3. code
+Note that tests precede code; thus the tests are written for functions that are yet to exist. The idea is to write code to make the tests pass. For an example of the difference between `c::r`ed code and ad hoc developed code, we turn to  the `varameta::` package, which comprises estimators for the variance of the sample median.  
+
+In Figure \@ref(fig:codebrainbad), we represent the estimators provided by `varameta::`, as we might think of them as we code. We have an understanding, from the perspective of any given estimator, of the inputs and outputs, but less understanding as to how the estimators relate to each other. 
+
+```{r codebrainbad, echo=FALSE,message=FALSE,fig.height=5,fig.cap="`code::brain` before `c::r`: in the `varameta::` package there are various estimators that take different summary statistics as inputs. This is a visual representation of how we might conceptualise each function; we're aware of what goes in and what comes out, but it is hard to understand how the functions relate to each other."}
+library(igraph)
+
+confusing_relationships <- make_graph(~ 
+a-+hozo, b-+hozo, m-+hozo, n-+hozo, hozo-+s, hozo-+mean,
+a-+wan1, b-+wan1, m-+wan1, n-+wan1, wan1-+s, wan1-+mean,
+a-+pren, b-+pren, m-+pren, n-+pren, pren-+s,
+q1-+wan3, q3-+wan3, m-+wan3, n-+wan3, wan3-+s, wan3-+s,
+q1-+pren, q3-+pren, m-+pren, n-+pren, pren-+s,
+a-+wan2, b-+wan2, q1-+wan2, q3-+wan2, m-+wan2, n-+wan2, wan2-+s, wan2-+mean,
+a-+bland, b-+bland, q1-+bland, q3-+bland, m-+bland, n-+bland, bland-+s, bland-+mean
+           ) 
+
+confusing_relationships %>% plot(
+             vertex.color = "grey",
+             vertex.frame.color = "darkgrey",
+             alpha=0.3,
+             vertex.size = 10,
+             vertex.label.cex = 0.8,
+             edge.arrow.size = 0.4 
+             ) +         
+  theme(panel.background = element_rect(colour = "#ffffe0"),
+        plot.background = element_rect(colour = "#ffffe0")) 
+
+
+```
+
+However, if we `c::r` our analysis, we are forced to identify the inputs and outputs for each function. This enables us to have a clearer understanding of where code should be shared, and how the functions relate to each other.
+
+```{r echo=FALSE}
+library(ggraph)
+library(tidygraph)
+library(tidyverse)
+
+  nodes <- tribble(
+  ~node, ~state,
+  "a", "input",
+  "b", "input",
+  "q1", "input",
+  "q3", "input",
+    "m", "input",
+  "n","input",
+  "hozo", "estimator",
+  "pren_c3", "estimator",
+  "pren_c1", "estimator",
+  "bland", "estimator",
+  "wan_c1", "estimator",
+  "wan_c2", "estimator",
+  "wan_c3", "estimator",
+  "se_median", "output",
+  "mean", "output",
+  "sd", "output",
+  "g_cauchy_c1", "estimator",
+  "g_cauchy_c3", "estimator",
+  "g_exp_c1", "estimator",
+  "g_exp_c3", "estimator",
+  "g_norm_c1", "estimator",
+  "g_norm_c3", "estimator",
+  "g_lnorm_c1", "estimator",
+  "g_lnorm_c3", "estimator"
+) %>% 
+  mutate(state = fct_relevel(state, "input"))
+
+edges <- tribble(
+  ~from, ~to,
+  # hozo estimator
+  5,7, 
+  6,7,
+  1,7,
+  2,7,
+  7,15,
+  7,16,
+
+  # wan1 estimator
+  5,11, 
+  6,11,
+  1,11,
+  2,11,
+  11,15,
+  11,16,
+  
+  # pren1 estimator
+  5,9, 
+  6,9,
+  1,9,
+  2,9,
+  9,14,
+  
+  # bland estimator
+  5,10,
+  6,10,
+  1,10,
+  2,10,
+  3,10,
+  4,10,
+  10,15,
+  10,16,
+  
+  # wan2 estimator
+  5,12,
+  6,12,
+  1,12,
+  2,12,
+  3,12,
+  4,12,
+  12,15,
+  12,16,
+
+  # wan3 estimator
+  5,13, 
+  6,13,
+  3,13,
+  4,13,
+  13,15,
+  13,16,
+
+  # pren3
+  5,8, 
+  6,8,
+  3,8,
+  4,8,
+  8,14,
+
+  # g_cauchy_c1
+  5,17, 
+  6,17,
+  1,17,
+  2,17,
+  17,14,
+  
+  # g_cauchy_c3
+  5,18, 
+  6,18,
+  3,18,
+  4,18,
+  18,14,
+
+  # g_exp_c1
+  5,19, 
+  6,19,
+  1,19,
+  2,19,
+  19,14,
+  
+  # g_exp_c3
+  5,20, 
+  6,20,
+  3,20,
+  4,20,
+  20,14,
+
+  # g_norm_c1
+  5,21, 
+  6,21,
+  1,21,
+  2,21,
+  21,14,
+  
+  # g_norm_c3
+  5,22, 
+  6,22,
+  3,22,
+  4,22,
+  22,14,
+  
+  # g_lnorm_c1
+  5,23, 
+  6,23,
+  1,23,
+  2,23,
+  23,14,
+  
+  # g_lnorm_c3
+  5,24, 
+  6,24,
+  3,24,
+  4,24,
+  24,14
+)
+```
+
+
+```{r codebraingood, echo=FALSE, fig.cap="code::brain after `c::r`: by outlining the outputs and inputs, we have a clearer understanding of the codeflow of the package. We can see the inputs vary, but overlap, as do the outputs.", fig.width=5, fig.height=5}
+
+
+tbl_graph(nodes, edges) %>% 
+  mutate(state = fct_relevel(state, "output")) %>% 
+  ggraph() +
+  geom_edge_link(arrow = arrow(), colour = "lightgrey") + 
+  geom_node_label(aes(label = node, colour = state),
+                  fill = "lightgrey",
+                  size = 2.5) +
+  theme_graph() +
+  hrbrthemes::scale_color_ipsum() +
+  theme(legend.position = "none",
+        panel.background = element_rect(colour = "#ffffe0"),
+        plot.background = element_rect(colour = "#ffffe0")) + 
+  scale_y_reverse() + 
+  coord_flip()
+
+```
+
+
+```{r}
+
+```
+
+
 
 ## `code::proof` workflow for coding to doneness
 
 The tests vary each time in complexity, so that the complete model cycle consists of ten phases of work:
 
 1. `c::r`
+
+First cycle:
+
 2. neet tests, one per function
 3. code
 4. `c::r`
+
+Second cycle:
+
 5. neet tests, for all inputs for each function
 6. code
 7. `c::r`
+
+Third cycle:
+
 8. tests, and the rest, i.e., any other cases to test for
 9. code
 7. `c::r`
 
-We use *model* cycle to denote the workflow may be adapted for different use-cases. Our next section steps through each phase of work.
+However, this workflow may be adapted for different use-cases, with more or less cycles, depending on the complexity of the algorithm. Thus, we will consider this a model workflow designed with not the intent of blind adherence, but to contribute to ruminations in computational metaresearch. The following section steps through each phase of work, comparing and contrasting across the example analyses.
 
 ## Coding to `code::proof` toolchain walkthrough
 
@@ -341,13 +563,44 @@ A wrapper function outputs each dataset in wide client-ready format.
 
 For the first `code::proof` cycle, we follow the steps:
 
-1. A rough, first-draft `c::r`.
-2. Write one `neet` test per function.
-3. Write code to make those `neet` tests pass, for each function.
+1. Write one `neet` test per function.
+2. Write code to make those `neet` tests pass, for each function.
+3. Update `c::r`.
 
 If functions are already written, then we only need to _confirm_ the functions pass the `neet` tests. 
 
-# Second `code::proof` cycle
+## One `neet` test per function
+
+In the following code example, we provide some of the `neet` tests associated with the `aggreCAT::` package. The methods have been replaced with `< n >`, as a condition of this research is to keep the other teams blinded to the aggregation calculations. Once the project is completed, the software and analyses will be open source. 
+
+> todo: update testing datasets
+
+```{r oneneet, eval=FALSE}
+context("neet:: - non-empty thing of expected type")
+
+library(neet)
+
+
+# wrapper -----------------------------------------------------------------
+
+test_neet(aggregate_cs(expert_judgements_comp_subset), "data.frame")
+
+# methods -----------------------------------------------------------------
+
+test_neet(< 1 > (expert_judgements_comp_subset), "data.frame")
+test_neet(< 2 > (expert_judgements_comp_subset), "data.frame")
+test_neet(< 3 > (expert_judgements_comp_subset), "data.frame")
+
+```
+
+
+# Second `code::proof` cycle: all neets
+
+One `neet` confirms the function runs on one input. All `neet`s is for confirming the functions run on all possible inputs. In the `aggreCAT::` package, there is very little variation on inputs for the functions, so the single `neet`s effectively cover all `neet`s. In `varameta::`, the different cases are handled by different functions, with the exception of `::effect_se`, which handles various inputs, and performs different calculations for each. For `simeta::` this is considerably more involved. 
+
+## All `neet`s for `varameta::effect_se`
+
+## Testing functions as input for `simeta::metasims`
 
 # Third `code::proof` cycle: and the rest
 
@@ -431,10 +684,15 @@ ts <-
     ...
 ```
 
+## Analysis comparison in `aggreCAT::`
 
+A luxury afforded in a large-scale collaborative research, such as The RepliCATS Project, is that the software is implemented by different analysts than those who developed the statistical algorithms. Different analysts developed different algorithms, and thus, when the research software engineers on the Reproducibility Team came to implement the algorithms there is a wealth of pre-existing analyses to benchmark the software against.
 
-## Comparison with others' analyses
+For a small-scale analysis, the method and implementation are often developed by one person, with minimal hands-on input from others, as is the case with the `simeta::` and `varameta::` packages also discussed. However, when the development and implementation are divided between people, an opportunity for quality assurance presents itself. 
 
+This is analogous to the quality assurance for data entry suggested by Yenni *et al.* [@yenni_developingmoderndata_2019]. To update a living data set, collected in the field, the authors suggest two researchers perform the data entry into different spreadsheets, which are then put through text comparison algorithms to identify typos and inconsistencies.
+
+In the case of `aggreCAT::`, there are nineteen aggregation methods, each of which has been contributed by a researcher. Thus, each researcher who developed a method has provided a testing dataset for the Reproducibility Team to compare the results of the software implementing the aggregation methods. 
 In Figure \@ref(fig:aggregators), we present the results of in-development tests on the aggregation methods developed for The RepliCATS project.
 
 ```{r aggregators, fig.cap="\\label{aggregators} After neet tests are written, a comparison of aggregation methods with other researchers' analyses. Methods such as 1,6, 10, are in close agreement. There are some methods that are relatively close, such as 9 and 17. These may be deemed close enough, in consultation with the researchers who developed the methods. Then there are methods to investigate, such as 18 and 16, where there is variability between the two analyses. The aggregation methods are deidentified and the code for this visualisation will not be available until the repliCATS Project is complete, to blind the other research teams on the SCORE Program to the methods used for analysis."}
@@ -499,15 +757,10 @@ Error: testthat unit tests failed
 Execution halted
 ```
 
-## `aggreCAT::` from the repliCATS Project
+## Integrated testing with Travis
 
-A luxury afforded in this large-scale collaborative project is that the software implementation is implemented by different analysts than those who developed the statistical algorithms. Different analysts developed different algorithms, and thus, when the research software engineers on the Reproducibility Team came to implement the algorithms there is a wealth of pre-existing analyses to benchmark the software against.
 
-For a small-scale analysis, the method and implementation are often developed by one person, with minimal hands-on input from others, as is the case with the `simeta::` and `varameta::` packages also discussed. However, when the development and implementation are divided between people, an opportunity for quality assurance presents itself. 
 
-This is analogous to the quality assurance for data entry suggested by Yenni *et al.* [@yenni_developingmoderndata_2019]. To update a living data set, collected in the field, the authors suggest two researchers perform the data entry into different spreadsheets, which are then put through text comparison algorithms to identify typos and inconsistencies.
-
-In the case of `aggreCAT::`, there are nineteen aggregation methods, each of which has been contributed by a researcher. Thus, each researcher who developed a method has provided a testing dataset for the Reproducibility Team to compare the results of the software implementing the aggregation methods. 
 
 ## `c::r` of doneness
 
@@ -603,32 +856,7 @@ In the `varameta::` package, we wish to compare various estimators. There are in
 
 Here are the relationships between inputs, and just some of the estimators, and outputs in `varameta`, presented as a randomised *graph*, a visual representation of a set of nodes, $V$, and the edges, $V \times V$, between them. We understand each function's inputs and outputs, but understanding the way they relate to each other, is often muddled without planning. Our `code::brain`, the way we conceptualise the code, is disorganised.
 
-```{r codebrain,echo=FALSE,message=FALSE,fig.height=5,fig.cap="`code::brain` before `c::r`."}
-library(igraph)
 
-confusing_relationships <- make_graph(~ 
-a-+hozo, b-+hozo, m-+hozo, n-+hozo, hozo-+s, hozo-+mean,
-a-+wan1, b-+wan1, m-+wan1, n-+wan1, wan1-+s, wan1-+mean,
-a-+pren, b-+pren, m-+pren, n-+pren, pren-+s,
-q1-+wan3, q3-+wan3, m-+wan3, n-+wan3, wan3-+s, wan3-+s,
-q1-+pren, q3-+pren, m-+pren, n-+pren, pren-+s,
-a-+wan2, b-+wan2, q1-+wan2, q3-+wan2, m-+wan2, n-+wan2, wan2-+s, wan2-+mean,
-a-+bland, b-+bland, q1-+bland, q3-+bland, m-+bland, n-+bland, bland-+s, bland-+mean
-           ) 
-
-confusing_relationships %>% plot(
-             vertex.color = "grey",
-             vertex.frame.color = "darkgrey",
-             alpha=0.3,
-             vertex.size = 10,
-             vertex.label.cex = 0.8,
-             edge.arrow.size = 0.4 
-             ) +         
-  theme(panel.background = element_rect(colour = "#ffffe0"),
-        plot.background = element_rect(colour = "#ffffe0")) 
-
-
-```
 
 
 The Center for Open Science recommend *pre-registering* an experiment, stating what the hypothesis is and how the analyst intends to assess the hypothesis as one safeguard against inadvertent questionable research practices. Analogously, we might think of pre-registering our code as providing some `code::proof` of the implementation of our algorithm. In this manuscript, we will think of *c::r*, stating what the intention of an algorithm is, as - todo: complete
@@ -674,34 +902,7 @@ By tagging the nodes in this graph with the attribute `state` in the algorithm: 
 
 ```{r nodes,echo=FALSE}
 
-  nodes <- tribble(
-  ~node, ~state,
-  "a", "input",
-  "b", "input",
-  "q1", "input",
-  "q3", "input",
-    "m", "input",
-  "n","input",
-  "hozo", "estimator",
-  "pren_c3", "estimator",
-  "pren_c1", "estimator",
-  "bland", "estimator",
-  "wan_c1", "estimator",
-  "wan_c2", "estimator",
-  "wan_c3", "estimator",
-  "se_median", "output",
-  "mean", "output",
-  "sd", "output",
-  "g_cauchy_c1", "estimator",
-  "g_cauchy_c3", "estimator",
-  "g_exp_c1", "estimator",
-  "g_exp_c3", "estimator",
-  "g_norm_c1", "estimator",
-  "g_norm_c3", "estimator",
-  "g_lnorm_c1", "estimator",
-  "g_lnorm_c3", "estimator"
-) %>% 
-  mutate(state = fct_relevel(state, "input"))
+
 
 
 ```
@@ -843,30 +1044,6 @@ These two dataframes can be converted into a graph object that is compatible wit
 
 ```{r}
 
-graph <- tbl_graph(nodes, edges)
-
-```
-
-These can be 
-
-```{r message=FALSE, fig.width=15, fig.height=5, fig.cap="`code::brain` after `c::r`."}
-
-
-graph %>% 
-  mutate(state = fct_relevel(state, "output")) %>% 
-  ggraph() +
-  geom_edge_link(arrow = arrow(), colour = "lightgrey") + 
-  geom_node_label(aes(label = node, colour = state),  
-                  size = 5,
-                  fill = "lightgrey",
-                  alpha = 0.6) +
-  theme_graph() +
-  hrbrthemes::scale_color_ipsum() +
-  theme(legend.position = "none",
-        panel.background = element_rect(colour = "#ffffe0"),
-        plot.background = element_rect(colour = "#ffffe0")) + 
-  scale_y_reverse() + 
-  coord_flip()
 
 ```
 

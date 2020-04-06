@@ -4,7 +4,7 @@
 <!-- badges: start -->
 
 [![Travis build
-status](https://travis-ci.com/softloud/neet.svg?branch=master)](https://travis-ci.org/softloud/neet)
+status](https://travis-ci.com/softloud/neet.svg?branch=master)](https://travis-ci.com/softloud/neet)
 <!-- badges: end -->
 
 # `neet::` Test for non-empty thing of expected type
@@ -28,8 +28,6 @@ A \`list\`\` is checked for being of length \> 1.
 
 A `data.frame` is checked for having at least one row.
 
-A `ggplot` object is checked for successfully running.
-
 # Installation
 
 You can install the released version of `neet` from GitHub with:
@@ -43,8 +41,6 @@ devtools::install_github("softloud/neet")
 ```
 
 ## Example
-
-This is a basic example which shows you how to solve a common problem:
 
 ``` r
 library(testthat)
@@ -60,10 +56,10 @@ assert_neet("cat", "character") # test character string
 assert_neet(mtcars, "data.frame") # test data frame
 #> [1] TRUE
 
-# expectations check output of code in testthat files
-expect_neet(3, "numeric") # test numeric
-expect_neet("cat", "character") # test character string
-expect_neet(mtcars, "data.frame") # test data frame
+# tests to check neet expectations in testthat files
+test_neet(3, "numeric") # test numeric
+test_neet("cat", "character") # test character string
+test_neet(mtcars, "data.frame") # test data frame
 ```
 
 # Workflow

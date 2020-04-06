@@ -311,14 +311,8 @@ This is a basic example which shows you how to solve a common problem:
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(testthat)}
-\KeywordTok{library}\NormalTok{(neet)}
 
 \CommentTok{\#\# Basic example code}
-
-\CommentTok{\# Expectations check output of code in testthat files}
-\KeywordTok{expect\_neet}\NormalTok{(}\DecValTok{3}\NormalTok{, }\StringTok{"numeric"}\NormalTok{) }\CommentTok{\# test numeric}
-\KeywordTok{expect\_neet}\NormalTok{(}\StringTok{"cat"}\NormalTok{, }\StringTok{"character"}\NormalTok{) }\CommentTok{\# test character string}
-\KeywordTok{expect\_neet}\NormalTok{(mtcars, }\StringTok{"data.frame"}\NormalTok{) }\CommentTok{\# test data frame}
 
 \CommentTok{\# Assertions check inputs of code in function scripts}
 \KeywordTok{assert\_neet}\NormalTok{(}\DecValTok{3}\NormalTok{, }\StringTok{"numeric"}\NormalTok{) }\CommentTok{\# test numeric}
@@ -349,29 +343,78 @@ This is a basic example which shows you how to solve a common problem:
 ## [1] TRUE
 \end{verbatim}
 
-\hypertarget{codeproof-test-driven-workflow}{%
-\section{\texorpdfstring{\texttt{code::proof} test-driven workflow}{code::proof test-driven workflow}}\label{codeproof-test-driven-workflow}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Expectations check output of code in testthat files}
+\KeywordTok{test\_neet}\NormalTok{(}\DecValTok{3}\NormalTok{, }\StringTok{"numeric"}\NormalTok{) }\CommentTok{\# test numeric}
+\KeywordTok{test\_neet}\NormalTok{(}\StringTok{"cat"}\NormalTok{, }\StringTok{"character"}\NormalTok{) }\CommentTok{\# test character string}
+\KeywordTok{test\_neet}\NormalTok{(mtcars, }\StringTok{"data.frame"}\NormalTok{) }\CommentTok{\# test data frame}
 
-In order to\ldots{} doneness \ldots{} propose test driven \ldots{} implemented as\ldots{}
+\CommentTok{\# test the output of a function}
+\NormalTok{quack <{-}}\StringTok{ }\ControlFlowTok{function}\NormalTok{() \{}
+  \StringTok{"quack"}
+\NormalTok{\}}
 
-\begin{center}\includegraphics{when-is-done-done_files/figure-latex/unnamed-chunk-2-1} \end{center}
+\KeywordTok{test\_neet}\NormalTok{(}\KeywordTok{quack}\NormalTok{(), }\StringTok{"character"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
-The model begins with a \texttt{code::registration}, an outline of the intended algorithm, its inputs, and outputs.
+\hypertarget{test-driven-workflow-to-codeproof}{%
+\section{\texorpdfstring{test-driven workflow to \texttt{code::proof}}{test-driven workflow to code::proof}}\label{test-driven-workflow-to-codeproof}}
 
-A workflow includes three stages, repeated three times, before returning to the start, the \texttt{c::r}.
+This toolchain walkthrough outlines a workflow for coding an analysis to a sense of doneness, which is to say, \texttt{code::proof}, a sense of confidence in the implementation of an algorithm. By deciding, and updating, what \emph{done} looks like from the start, the anxiety induced by feature creep, the introduction of ever more complexities, is reduced. We may not think of everything required for analysis, but this is always so. But by \texttt{c::r}ing our code, we are at least clear of what has been created for the analysis, rendering the code more transparent and extensible by both the developer themselves, at some future date, or by another researcher. In Figure \ref{fig:workflow}, we see an overview of the test-driven workflow proposed in this manuscript. This function is included in the \texttt{neet::} package.
 
-Each phase consists of:
+\begin{figure}
+
+{\centering \includegraphics{when-is-done-done_files/figure-latex/workflow-1} 
+
+}
+
+\caption{This test-driven workflow has ten phases. It begins with a c::r, and then each of the three cycles consists of: tests, code, and update c::r}\label{fig:workflow}
+\end{figure}
+
+The workflow begins with a \texttt{c::r}, an outline of the intended algorithm, its inputs, and outputs. After the initial \texttt{c::r}, the workflow comprises three steps, repeated for three cycles, before returning to the start, the \texttt{c::r}.
+
+Each cycle consists of:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \texttt{c::r}
-\item
   tests
 \item
   code
+\item
+  \texttt{c::r}
 \end{enumerate}
+
+Note that tests precede code; thus the tests are written for functions that are yet to exist. The idea is to write code to make the tests pass. For an example of the difference between \texttt{c::r}ed code and ad hoc developed code, we turn to the \texttt{varameta::} package, which comprises estimators for the variance of the sample median.
+
+In Figure \ref{fig:codebrainbad}, we represent the estimators provided by \texttt{varameta::}, as we might think of them as we code. We have an understanding, from the perspective of any given estimator, of the inputs and outputs, but less understanding as to how the estimators relate to each other.
+
+\begin{figure}
+
+{\centering \includegraphics{when-is-done-done_files/figure-latex/codebrainbad-1} 
+
+}
+
+\caption{`code::brain` before `c::r`: in the `varameta::` package there are various estimators that take different summary statistics as inputs. This is a visual representation of how we might conceptualise each function; we're aware of what goes in and what comes out, but it is hard to understand how the functions relate to each other.}\label{fig:codebrainbad}
+\end{figure}
+
+\begin{verbatim}
+## NULL
+\end{verbatim}
+
+However, if we \texttt{c::r} our analysis, we are forced to identify the inputs and outputs for each function. This enables us to have a clearer understanding of where code should be shared, and how the functions relate to each other.
+
+\begin{figure}
+
+{\centering \includegraphics{when-is-done-done_files/figure-latex/codebraingood-1} 
+
+}
+
+\caption{code::brain after `c::r`: by outlining the outputs and inputs, we have a clearer understanding of the codeflow of the package. We can see the inputs vary, but overlap, as do the outputs.}\label{fig:codebraingood}
+\end{figure}
 
 \hypertarget{codeproof-workflow-for-coding-to-doneness}{%
 \subsection{\texorpdfstring{\texttt{code::proof} workflow for coding to doneness}{code::proof workflow for coding to doneness}}\label{codeproof-workflow-for-coding-to-doneness}}
@@ -383,18 +426,42 @@ The tests vary each time in complexity, so that the complete model cycle consist
 \tightlist
 \item
   \texttt{c::r}
+\end{enumerate}
+
+First cycle:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
 \item
   neet tests, one per function
 \item
   code
 \item
   \texttt{c::r}
+\end{enumerate}
+
+Second cycle:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
 \item
   neet tests, for all inputs for each function
 \item
   code
 \item
   \texttt{c::r}
+\end{enumerate}
+
+Third cycle:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\tightlist
 \item
   tests, and the rest, i.e., any other cases to test for
 \item
@@ -403,7 +470,7 @@ The tests vary each time in complexity, so that the complete model cycle consist
   \texttt{c::r}
 \end{enumerate}
 
-We use \emph{model} cycle to denote the workflow may be adapted for different use-cases. Our next section steps through each phase of work.
+However, this workflow may be adapted for different use-cases, with more or less cycles, depending on the complexity of the algorithm. Thus, we will consider this a model workflow designed with not the intent of blind adherence, but to contribute to ruminations in computational metaresearch. The following section steps through each phase of work, comparing and contrasting across the example analyses.
 
 \hypertarget{coding-to-codeproof-toolchain-walkthrough}{%
 \subsection{\texorpdfstring{Coding to \texttt{code::proof} toolchain walkthrough}{Coding to code::proof toolchain walkthrough}}\label{coding-to-codeproof-toolchain-walkthrough}}
@@ -423,7 +490,7 @@ In this section we step through the Coding to \texttt{code::proof} for\ldots{}
 \hypertarget{coderegistration-cr}{%
 \section{\texorpdfstring{\texttt{code::registration} (\texttt{c::r})}{code::registration (c::r)}}\label{coderegistration-cr}}
 
-\begin{center}\includegraphics{when-is-done-done_files/figure-latex/unnamed-chunk-3-1} \end{center}
+\begin{center}\includegraphics{when-is-done-done_files/figure-latex/unnamed-chunk-4-1} \end{center}
 
 We begin with a sketch outline of a \texttt{code::registration} (\texttt{c::r}), which we then populate with description in prose, provide some detail of neet testing, before providing case-studies.
 
@@ -460,7 +527,7 @@ For the examples below, in the interest of brevity, we will drop the tick boxes,
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{when-is-done-done_files/figure-latex/unnamed-chunk-4-1} \end{center}
+\begin{center}\includegraphics{when-is-done-done_files/figure-latex/unnamed-chunk-5-1} \end{center}
 
 The \texttt{varameta::} package has the least complex structure of the examples we are considering.
 
@@ -548,17 +615,53 @@ For the first \texttt{code::proof} cycle, we follow the steps:
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  A rough, first-draft \texttt{c::r}.
-\item
   Write one \texttt{neet} test per function.
 \item
   Write code to make those \texttt{neet} tests pass, for each function.
+\item
+  Update \texttt{c::r}.
 \end{enumerate}
 
 If functions are already written, then we only need to \emph{confirm} the functions pass the \texttt{neet} tests.
 
-\hypertarget{second-codeproof-cycle}{%
-\section{\texorpdfstring{Second \texttt{code::proof} cycle}{Second code::proof cycle}}\label{second-codeproof-cycle}}
+\hypertarget{one-neet-test-per-function}{%
+\subsection{\texorpdfstring{One \texttt{neet} test per function}{One neet test per function}}\label{one-neet-test-per-function}}
+
+In the following code example, we provide some of the \texttt{neet} tests associated with the \texttt{aggreCAT::} package. The methods have been replaced with \texttt{\textless{}\ n\ \textgreater{}}, as a condition of this research is to keep the other teams blinded to the aggregation calculations. Once the project is completed, the software and analyses will be open source.
+
+\begin{quote}
+todo: update testing datasets
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{context}\NormalTok{(}\StringTok{"neet:: {-} non{-}empty thing of expected type"}\NormalTok{)}
+
+\KeywordTok{library}\NormalTok{(neet)}
+
+
+\CommentTok{\# wrapper {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+
+\KeywordTok{test\_neet}\NormalTok{(}\KeywordTok{aggregate\_cs}\NormalTok{(expert\_judgements\_comp\_subset), }\StringTok{"data.frame"}\NormalTok{)}
+
+\CommentTok{\# methods {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+
+\KeywordTok{test\_neet}\NormalTok{(}\OperatorTok{<}\StringTok{ }\DecValTok{1} \OperatorTok{>}\StringTok{ }\NormalTok{(expert\_judgements\_comp\_subset), }\StringTok{"data.frame"}\NormalTok{)}
+\KeywordTok{test\_neet}\NormalTok{(}\OperatorTok{<}\StringTok{ }\DecValTok{2} \OperatorTok{>}\StringTok{ }\NormalTok{(expert\_judgements\_comp\_subset), }\StringTok{"data.frame"}\NormalTok{)}
+\KeywordTok{test\_neet}\NormalTok{(}\OperatorTok{<}\StringTok{ }\DecValTok{3} \OperatorTok{>}\StringTok{ }\NormalTok{(expert\_judgements\_comp\_subset), }\StringTok{"data.frame"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{second-codeproof-cycle-all-neets}{%
+\section{\texorpdfstring{Second \texttt{code::proof} cycle: all neets}{Second code::proof cycle: all neets}}\label{second-codeproof-cycle-all-neets}}
+
+One \texttt{neet} confirms the function runs on one input. All \texttt{neet}s is for confirming the functions run on all possible inputs. In the \texttt{aggreCAT::} package, there is very little variation on inputs for the functions, so the single \texttt{neet}s effectively cover all \texttt{neet}s. In \texttt{varameta::}, the different cases are handled by different functions, with the exception of \texttt{::effect\_se}, which handles various inputs, and performs different calculations for each. For \texttt{simeta::} this is considerably more involved.
+
+\hypertarget{all-neets-for-varametaeffect_se}{%
+\subsection{\texorpdfstring{All \texttt{neet}s for \texttt{varameta::effect\_se}}{All neets for varameta::effect\_se}}\label{all-neets-for-varametaeffect_se}}
+
+\hypertarget{testing-functions-as-input-for-simetametasims}{%
+\subsection{\texorpdfstring{Testing functions as input for \texttt{simeta::metasims}}{Testing functions as input for simeta::metasims}}\label{testing-functions-as-input-for-simetametasims}}
 
 \hypertarget{third-codeproof-cycle-and-the-rest}{%
 \section{\texorpdfstring{Third \texttt{code::proof} cycle: and the rest}{Third code::proof cycle: and the rest}}\label{third-codeproof-cycle-and-the-rest}}
@@ -646,9 +749,16 @@ All packages benefit from the use of tools such as \texttt{covr::} and Travis.
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{comparison-with-others-analyses}{%
-\subsection{Comparison with others' analyses}\label{comparison-with-others-analyses}}
+\hypertarget{analysis-comparison-in-aggrecat}{%
+\subsection{\texorpdfstring{Analysis comparison in \texttt{aggreCAT::}}{Analysis comparison in aggreCAT::}}\label{analysis-comparison-in-aggrecat}}
 
+A luxury afforded in a large-scale collaborative research, such as The RepliCATS Project, is that the software is implemented by different analysts than those who developed the statistical algorithms. Different analysts developed different algorithms, and thus, when the research software engineers on the Reproducibility Team came to implement the algorithms there is a wealth of pre-existing analyses to benchmark the software against.
+
+For a small-scale analysis, the method and implementation are often developed by one person, with minimal hands-on input from others, as is the case with the \texttt{simeta::} and \texttt{varameta::} packages also discussed. However, when the development and implementation are divided between people, an opportunity for quality assurance presents itself.
+
+This is analogous to the quality assurance for data entry suggested by Yenni \emph{et al.} (Yenni et al. 2019). To update a living data set, collected in the field, the authors suggest two researchers perform the data entry into different spreadsheets, which are then put through text comparison algorithms to identify typos and inconsistencies.
+
+In the case of \texttt{aggreCAT::}, there are nineteen aggregation methods, each of which has been contributed by a researcher. Thus, each researcher who developed a method has provided a testing dataset for the Reproducibility Team to compare the results of the software implementing the aggregation methods.
 In Figure \ref{fig:aggregators}, we present the results of in-development tests on the aggregation methods developed for The RepliCATS project.
 
 \begin{Shaded}
@@ -732,16 +842,8 @@ Then \texttt{covr::package\_coverage} fails.
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{aggrecat-from-the-replicats-project}{%
-\subsection{\texorpdfstring{\texttt{aggreCAT::} from the repliCATS Project}{aggreCAT:: from the repliCATS Project}}\label{aggrecat-from-the-replicats-project}}
-
-A luxury afforded in this large-scale collaborative project is that the software implementation is implemented by different analysts than those who developed the statistical algorithms. Different analysts developed different algorithms, and thus, when the research software engineers on the Reproducibility Team came to implement the algorithms there is a wealth of pre-existing analyses to benchmark the software against.
-
-For a small-scale analysis, the method and implementation are often developed by one person, with minimal hands-on input from others, as is the case with the \texttt{simeta::} and \texttt{varameta::} packages also discussed. However, when the development and implementation are divided between people, an opportunity for quality assurance presents itself.
-
-This is analogous to the quality assurance for data entry suggested by Yenni \emph{et al.} (Yenni et al. 2019). To update a living data set, collected in the field, the authors suggest two researchers perform the data entry into different spreadsheets, which are then put through text comparison algorithms to identify typos and inconsistencies.
-
-In the case of \texttt{aggreCAT::}, there are nineteen aggregation methods, each of which has been contributed by a researcher. Thus, each researcher who developed a method has provided a testing dataset for the Reproducibility Team to compare the results of the software implementing the aggregation methods.
+\hypertarget{integrated-testing-with-travis}{%
+\subsection{Integrated testing with Travis}\label{integrated-testing-with-travis}}
 
 \hypertarget{cr-of-doneness}{%
 \subsection{\texorpdfstring{\texttt{c::r} of doneness}{c::r of doneness}}\label{cr-of-doneness}}
@@ -752,7 +854,7 @@ In the case of \texttt{aggreCAT::}, there are nineteen aggregation methods, each
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{when-is-done-done_files/figure-latex/unnamed-chunk-11-1} \end{center}
+\begin{center}\includegraphics{when-is-done-done_files/figure-latex/unnamed-chunk-12-1} \end{center}
 
 Under this workflow, the \texttt{c::r} is the project overview any developer can return to. So, this final registration not only summarises what has been tested, but also notes any idiosyncrasies for other developers, \emph{especially} the future self of the developer who recalls so little of the code they may as well be a different developer.
 
@@ -851,19 +953,6 @@ the brain, not finger callisthenics (Chang 2009).
 In the \texttt{varameta::} package, we wish to compare various estimators. There are inputs, an estimator, which is to say a computational process and a similar output, however the devil is in the details, as
 
 Here are the relationships between inputs, and just some of the estimators, and outputs in \texttt{varameta}, presented as a randomised \emph{graph}, a visual representation of a set of nodes, \(V\), and the edges, \(V \times V\), between them. We understand each function's inputs and outputs, but understanding the way they relate to each other, is often muddled without planning. Our \texttt{code::brain}, the way we conceptualise the code, is disorganised.
-
-\begin{figure}
-
-{\centering \includegraphics{when-is-done-done_files/figure-latex/codebrain-1} 
-
-}
-
-\caption{`code::brain` before `c::r`.}\label{fig:codebrain}
-\end{figure}
-
-\begin{verbatim}
-## NULL
-\end{verbatim}
 
 The Center for Open Science recommend \emph{pre-registering} an experiment, stating what the hypothesis is and how the analyst intends to assess the hypothesis as one safeguard against inadvertent questionable research practices. Analogously, we might think of pre-registering our code as providing some \texttt{code::proof} of the implementation of our algorithm. In this manuscript, we will think of \emph{c::r}, stating what the intention of an algorithm is, as - todo: complete
 
@@ -982,43 +1071,6 @@ Edges are specified by a two-column dataframe, \texttt{edges}, where each row co
 \end{verbatim}
 
 These two dataframes can be converted into a graph object that is compatible with the \texttt{igraph::} package and \texttt{tidyverse::} syntax.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{graph <{-}}\StringTok{ }\KeywordTok{tbl\_graph}\NormalTok{(nodes, edges)}
-\end{Highlighting}
-\end{Shaded}
-
-These can be
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{graph }\OperatorTok{\%>\%}\StringTok{ }
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{state =} \KeywordTok{fct\_relevel}\NormalTok{(state, }\StringTok{"output"}\NormalTok{)) }\OperatorTok{\%>\%}\StringTok{ }
-\StringTok{  }\KeywordTok{ggraph}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom\_edge\_link}\NormalTok{(}\DataTypeTok{arrow =} \KeywordTok{arrow}\NormalTok{(), }\DataTypeTok{colour =} \StringTok{"lightgrey"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom\_node\_label}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{label =}\NormalTok{ node, }\DataTypeTok{colour =}\NormalTok{ state),  }
-                  \DataTypeTok{size =} \DecValTok{5}\NormalTok{,}
-                  \DataTypeTok{fill =} \StringTok{"lightgrey"}\NormalTok{,}
-                  \DataTypeTok{alpha =} \FloatTok{0.6}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme\_graph}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\NormalTok{hrbrthemes}\OperatorTok{::}\KeywordTok{scale\_color\_ipsum}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"none"}\NormalTok{,}
-        \DataTypeTok{panel.background =} \KeywordTok{element\_rect}\NormalTok{(}\DataTypeTok{colour =} \StringTok{"\#ffffe0"}\NormalTok{),}
-        \DataTypeTok{plot.background =} \KeywordTok{element\_rect}\NormalTok{(}\DataTypeTok{colour =} \StringTok{"\#ffffe0"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{scale\_y\_reverse}\NormalTok{() }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{coord\_flip}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-
-{\centering \includegraphics{when-is-done-done_files/figure-latex/unnamed-chunk-15-1} 
-
-}
-
-\caption{`code::brain` after `c::r`.}\label{fig:unnamed-chunk-15}
-\end{figure}
 
 \hypertarget{workflow-for-algorithmic-structure}{%
 \section{Workflow for algorithmic structure}\label{workflow-for-algorithmic-structure}}
