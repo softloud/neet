@@ -25,19 +25,7 @@ output:
 
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE,
-                      fig.height = 2.3,
-                      fig.width = 5,
-                      fig.align = "center",
-                      message=FALSE)
 
-library(tufte)
-library(ggplot2)
-
-# David's affiliation
-# Quantitative and Applied Ecology Group, School of BioSciences, University of Melbourne. And orcID: 0000-0002-9560-6499
-```
 
 [^1]: Special thanks to Emily Riederer for her ongoing correspondence throughout the writing of this manuscript. Thanks, also, to Hannah Fraser, Fiona Fidler, and Daniel Fryer. Also, appreciation for Danielle Navarro, Thomas Pedersen and others on twitter who helped with the visualisation. 
 
@@ -137,7 +125,8 @@ The workflow described in this toolchain walkthrough differentiates between ...
 
 ## The `neet::` package
 
-```{r}
+
+```r
 library(neet)
 ```
 
@@ -175,7 +164,8 @@ devtools::install_github("softloud/neet")
 
 This is a basic example which shows you how to solve a common problem:
 
-```{r example}
+
+```r
 library(testthat)
 library(neet)
 
@@ -188,19 +178,34 @@ expect_neet(mtcars, "data.frame") # test data frame
 
 # Assertions check inputs of code in function scripts
 assert_neet(3, "numeric") # test numeric
+```
+
+```
+## [1] TRUE
+```
+
+```r
 assert_neet("cat", "character") # test character string
+```
+
+```
+## [1] TRUE
+```
+
+```r
 assert_neet(mtcars, "data.frame") # test data frame
+```
+
+```
+## [1] TRUE
 ```
 
 # `code::proof` test-driven workflow 
 
 In order to... doneness ... propose test driven ... implemented as...
 
-```{r, message=FALSE,echo=FALSE}
-library(neet)
 
-workflow(0)
-```
+\begin{center}\includegraphics{when-is-done-done_files/figure-latex/unnamed-chunk-2-1} \end{center}
 
 The model begins with a `code::registration`, an outline of the intended algorithm, its inputs, and outputs. 
 
@@ -239,9 +244,8 @@ In this section we step through the Coding to `code::proof` for...
 
 # `code::registration` (`c::r`)
 
-```{r, message=FALSE,echo=FALSE}
-neet::workflow(1)
-```
+
+\begin{center}\includegraphics{when-is-done-done_files/figure-latex/unnamed-chunk-3-1} \end{center}
 
 We begin with a sketch outline of a `code::registration` (`c::r`), which we then populate with description in prose, provide some detail of neet testing, before providing case-studies.
 
@@ -273,9 +277,14 @@ For the examples below, in the interest of brevity, we will drop the tick boxes,
 
 ## `varameta:: c::r`
 
-```{r}
+
+```r
 neet::workflow(1)
 ```
+
+
+
+\begin{center}\includegraphics{when-is-done-done_files/figure-latex/unnamed-chunk-4-1} \end{center}
 
 The `varameta::` package has the least complex structure of the examples we are considering.
 
@@ -361,7 +370,8 @@ All packages benefit from the use of tools such as `covr::` and Travis.
 
 ## Testing via explicit calculations in `varameta::`
 
-```{r eval=FALSE}
+
+```r
 context("estimators")
 
 library(varameta)
@@ -437,10 +447,19 @@ ts <-
 
 In Figure \@ref(fig:aggregators), we present the results of in-development tests on the aggregation methods developed for The RepliCATS project.
 
-```{r aggregators, fig.cap="\\label{aggregators} After neet tests are written, a comparison of aggregation methods with other researchers' analyses. Methods such as 1,6, 10, are in close agreement. There are some methods that are relatively close, such as 9 and 17. These may be deemed close enough, in consultation with the researchers who developed the methods. Then there are methods to investigate, such as 18 and 16, where there is variability between the two analyses. The aggregation methods are deidentified and the code for this visualisation will not be available until the repliCATS Project is complete, to blind the other research teams on the SCORE Program to the methods used for analysis."}
-knitr::include_graphics("cs_diff_by_method_id.png")
 
+```r
+knitr::include_graphics("cs_diff_by_method_id.png")
 ```
+
+\begin{figure}
+
+{\centering \includegraphics[width=26.68in]{cs_diff_by_method_id} 
+
+}
+
+\caption{\label{aggregators} After neet tests are written, a comparison of aggregation methods with other researchers' analyses. Methods such as 1,6, 10, are in close agreement. There are some methods that are relatively close, such as 9 and 17. These may be deemed close enough, in consultation with the researchers who developed the methods. Then there are methods to investigate, such as 18 and 16, where there is variability between the two analyses. The aggregation methods are deidentified and the code for this visualisation will not be available until the repliCATS Project is complete, to blind the other research teams on the SCORE Program to the methods used for analysis.}(\#fig:aggregators)
+\end{figure}
 
 ## Test coverage with `covr::`
 
@@ -448,16 +467,17 @@ The `covr::` function, `::package_coverage`, provides the percentage of the line
 
 Consider a function that takes a number $x$, and outputs $2\log(x)$. To demonstrate this we make a toy package `testtest::` comprising this single function.
 
-```{r}
+
+```r
 logfn <- function(x) {
   2 * log(x)
 }
-
 ```
 
 Now, we write a test that checks the function returns a numeric.
 
-```{r}
+
+```r
 library(testthat)
 
 test_that("function returns numeric", {
@@ -467,23 +487,25 @@ test_that("function returns numeric", {
 
 And if we run `covr::package_coverage`, we get `100%` for overall package coverage.
 
-```{r, eval=FALSE}
+
+```r
 testtest Coverage: 100.00%
 R/logfn.R: 100.00%
 ```
 
 But if we were to add this test, for negative numbers. 
 
-```{r error=TRUE}
+
+```r
 test_that("log function works", {
   expect_is(logfn(-1), "numeric")
 })
-
 ```
 
 Then `covr::package_coverage` fails.
 
-```{r eval=FALSE}
+
+```r
 ── 1. Failure: log function works (@test-logfn.R#10)  ──────────────────────────
 any(is.na(thing_to_test)) isn't false.
 
@@ -511,9 +533,14 @@ In the case of `aggreCAT::`, there are nineteen aggregation methods, each of whi
 
 ## `c::r` of doneness
 
-```{r}
+
+```r
 workflow(10)
 ```
+
+
+
+\begin{center}\includegraphics{when-is-done-done_files/figure-latex/unnamed-chunk-11-1} \end{center}
 
 Under this workflow, the `c::r` is the project overview any developer can return to. So, this final registration not only summarises what has been tested, but also notes any idiosyncrasies for other developers, _especially_ the future self of the developer who recalls so little of the code they may as well be a different developer.
 
@@ -603,31 +630,17 @@ In the `varameta::` package, we wish to compare various estimators. There are in
 
 Here are the relationships between inputs, and just some of the estimators, and outputs in `varameta`, presented as a randomised *graph*, a visual representation of a set of nodes, $V$, and the edges, $V \times V$, between them. We understand each function's inputs and outputs, but understanding the way they relate to each other, is often muddled without planning. Our `code::brain`, the way we conceptualise the code, is disorganised.
 
-```{r codebrain,echo=FALSE,message=FALSE,fig.height=5,fig.cap="`code::brain` before `c::r`."}
-library(igraph)
+\begin{figure}
 
-confusing_relationships <- make_graph(~ 
-a-+hozo, b-+hozo, m-+hozo, n-+hozo, hozo-+s, hozo-+mean,
-a-+wan1, b-+wan1, m-+wan1, n-+wan1, wan1-+s, wan1-+mean,
-a-+pren, b-+pren, m-+pren, n-+pren, pren-+s,
-q1-+wan3, q3-+wan3, m-+wan3, n-+wan3, wan3-+s, wan3-+s,
-q1-+pren, q3-+pren, m-+pren, n-+pren, pren-+s,
-a-+wan2, b-+wan2, q1-+wan2, q3-+wan2, m-+wan2, n-+wan2, wan2-+s, wan2-+mean,
-a-+bland, b-+bland, q1-+bland, q3-+bland, m-+bland, n-+bland, bland-+s, bland-+mean
-           ) 
+{\centering \includegraphics{when-is-done-done_files/figure-latex/codebrain-1} 
 
-confusing_relationships %>% plot(
-             vertex.color = "grey",
-             vertex.frame.color = "darkgrey",
-             alpha=0.3,
-             vertex.size = 10,
-             vertex.label.cex = 0.8,
-             edge.arrow.size = 0.4 
-             ) +         
-  theme(panel.background = element_rect(colour = "#ffffe0"),
-        plot.background = element_rect(colour = "#ffffe0")) 
+}
 
+\caption{`code::brain` before `c::r`.}(\#fig:codebrain)
+\end{figure}
 
+```
+## NULL
 ```
 
 
@@ -664,7 +677,8 @@ An image or diagram is very helpful, if not burdensomely time consuming (but it 
 
 For those comfortable with *graphs* understood as mathematical objects as a set of vertices from $V$, and a set of edges $V \times V$, there are visualisation options where the vertices can be tagged with attributes. The code for constructing the following `nodes` and `edges` dataframes has been omitted for brevity, but all code can be found in this manuscript's associated repository [`neet`](https://github.com/softloud/neet) on GitHub.     
 
-```{r load graphing pkgs, message=FALSE}
+
+```r
 library(tidyverse)
 library(ggraph)
 library(tidygraph)
@@ -672,186 +686,67 @@ library(tidygraph)
 
 By tagging the nodes in this graph with the attribute `state` in the algorithm: starting with `input` for the estimators, sample quartiles (which we denote $a, q1, m, q3, b$, in order from smallest to largest); `estimator`, a collection of functions that provide statistical methods for preparing summary medians for meta-analysis; and the `output` of the estimator.
 
-```{r nodes,echo=FALSE}
-
-  nodes <- tribble(
-  ~node, ~state,
-  "a", "input",
-  "b", "input",
-  "q1", "input",
-  "q3", "input",
-    "m", "input",
-  "n","input",
-  "hozo", "estimator",
-  "pren_c3", "estimator",
-  "pren_c1", "estimator",
-  "bland", "estimator",
-  "wan_c1", "estimator",
-  "wan_c2", "estimator",
-  "wan_c3", "estimator",
-  "se_median", "output",
-  "mean", "output",
-  "sd", "output",
-  "g_cauchy_c1", "estimator",
-  "g_cauchy_c3", "estimator",
-  "g_exp_c1", "estimator",
-  "g_exp_c3", "estimator",
-  "g_norm_c1", "estimator",
-  "g_norm_c3", "estimator",
-  "g_lnorm_c1", "estimator",
-  "g_lnorm_c3", "estimator"
-) %>% 
-  mutate(state = fct_relevel(state, "input"))
 
 
+
+```r
+nodes
 ```
 
-```{r}
-nodes
+```
+## # A tibble: 24 x 2
+##    node    state    
+##    <chr>   <fct>    
+##  1 a       input    
+##  2 b       input    
+##  3 q1      input    
+##  4 q3      input    
+##  5 m       input    
+##  6 n       input    
+##  7 hozo    estimator
+##  8 pren_c3 estimator
+##  9 pren_c1 estimator
+## 10 bland   estimator
+## # ... with 14 more rows
 ```
 
 
 Edges are specified by a two-column dataframe, `edges`, where each row contains a `to` and `from` vertex identifier, the row number of the `nodes` dataframe.
 
-```{r edges, echo=FALSE}
 
 
-  edges <- tribble(
-  ~from, ~to,
-  # hozo estimator
-  5,7, 
-  6,7,
-  1,7,
-  2,7,
-  7,15,
-  7,16,
-
-  # wan1 estimator
-  5,11, 
-  6,11,
-  1,11,
-  2,11,
-  11,15,
-  11,16,
-  
-  # pren1 estimator
-  5,9, 
-  6,9,
-  1,9,
-  2,9,
-  9,14,
-  
-  # bland estimator
-  5,10,
-  6,10,
-  1,10,
-  2,10,
-  3,10,
-  4,10,
-  10,15,
-  10,16,
-  
-  # wan2 estimator
-  5,12,
-  6,12,
-  1,12,
-  2,12,
-  3,12,
-  4,12,
-  12,15,
-  12,16,
-
-  # wan3 estimator
-  5,13, 
-  6,13,
-  3,13,
-  4,13,
-  13,15,
-  13,16,
-
-  # pren3
-  5,8, 
-  6,8,
-  3,8,
-  4,8,
-  8,14,
-
-  # g_cauchy_c1
-  5,17, 
-  6,17,
-  1,17,
-  2,17,
-  17,14,
-  
-  # g_cauchy_c3
-  5,18, 
-  6,18,
-  3,18,
-  4,18,
-  18,14,
-
-  # g_exp_c1
-  5,19, 
-  6,19,
-  1,19,
-  2,19,
-  19,14,
-  
-  # g_exp_c3
-  5,20, 
-  6,20,
-  3,20,
-  4,20,
-  20,14,
-
-  # g_norm_c1
-  5,21, 
-  6,21,
-  1,21,
-  2,21,
-  21,14,
-  
-  # g_norm_c3
-  5,22, 
-  6,22,
-  3,22,
-  4,22,
-  22,14,
-  
-  # g_lnorm_c1
-  5,23, 
-  6,23,
-  1,23,
-  2,23,
-  23,14,
-  
-  # g_lnorm_c3
-  5,24, 
-  6,24,
-  3,24,
-  4,24,
-  24,14
-  
-)
+```r
+edges
+```
 
 ```
-```{r}
-edges
+## # A tibble: 84 x 2
+##     from    to
+##    <dbl> <dbl>
+##  1     5     7
+##  2     6     7
+##  3     1     7
+##  4     2     7
+##  5     7    15
+##  6     7    16
+##  7     5    11
+##  8     6    11
+##  9     1    11
+## 10     2    11
+## # ... with 74 more rows
 ```
 
 These two dataframes can be converted into a graph object that is compatible with the `igraph::` package and `tidyverse::` syntax.
 
-```{r}
 
+```r
 graph <- tbl_graph(nodes, edges)
-
 ```
 
 These can be 
 
-```{r message=FALSE, fig.width=15, fig.height=5, fig.cap="`code::brain` after `c::r`."}
 
-
+```r
 graph %>% 
   mutate(state = fct_relevel(state, "output")) %>% 
   ggraph() +
@@ -867,8 +762,16 @@ graph %>%
         plot.background = element_rect(colour = "#ffffe0")) + 
   scale_y_reverse() + 
   coord_flip()
-
 ```
+
+\begin{figure}
+
+{\centering \includegraphics{when-is-done-done_files/figure-latex/unnamed-chunk-15-1} 
+
+}
+
+\caption{`code::brain` after `c::r`.}(\#fig:unnamed-chunk-15)
+\end{figure}
 
 # Workflow for algorithmic structure
 
@@ -877,13 +780,13 @@ graph %>%
 The `neet::` package is part of this manuscript's research compendia, we think of compendia, a collection of components that form a research project. In the case of this manuscript, there is an extension package of `testthat::`.
 
 
-```{r eval=FALSE}
+
+```r
 # install devtools
 install.packages(devtools) 
 
 # use devtools to install package from github
 devtools::install_github("softloud/neet")
-
 ```
 
 
