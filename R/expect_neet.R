@@ -76,6 +76,9 @@ assert_neet <- function(thing_to_test, expected_type) {
   # thing of expected type
   assertthat::assert_that(
     expected_type %in% class(thing_to_test),
-    msg = paste("thing_to_test not of expected type - ", expected_type)
+    msg = paste0("Input argument '",
+      deparse(substitute(thing_to_test)),
+                "' not of expected type: ",
+                expected_type, ".")
   )
 }

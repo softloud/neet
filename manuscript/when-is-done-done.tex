@@ -260,16 +260,18 @@ Moar words words words
 \hypertarget{neet-tests}{%
 \section{\texorpdfstring{\texttt{neet::} tests}{neet:: tests}}\label{neet-tests}}
 
-The workflow described in this toolchain walkthrough differentiates between \ldots{}
+The workflow described in this toolchain walkthrough differentiates explicitly between code that produces a \textbf{non-empty} thing of \textbf{expected type} (\textbf{neet}), for example, a logical, character string, or numeric, and the other expectations one has of the output, that is \emph{correct}, works for any given input, errors on input it should, and so forth. To support this workfow, the \texttt{neet::} package provides three components:
 
-\hypertarget{the-neet-package}{%
-\subsection{\texorpdfstring{The \texttt{neet::} package}{The neet:: package}}\label{the-neet-package}}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(neet)}
-\end{Highlighting}
-\end{Shaded}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \texttt{::test\_neet} for testing outputs.
+\item
+  \texttt{::assert\_neet} for checking inputs.
+\item
+  \texttt{::workflow} for diagrammatically indicating stage of codeflow.
+\end{enumerate}
 
 A \textbf{neet test} checks a function outputs a \textbf{non-empty} thing of \textbf{expected type}. This is what is referred to as a \textbf{boundary condition} test in RStudio's primers (todo: citation).
 
@@ -286,8 +288,6 @@ A `list`` is checked for being of length \textgreater{} 1.
 
 A \texttt{data.frame} is checked for having at least one row.
 
-A \texttt{ggplot} object is checked for successfully running.
-
 \hypertarget{installation}{%
 \subsection{Installation}\label{installation}}
 
@@ -298,23 +298,34 @@ You can install the released version of \texttt{neet} from GitHub with:
 \CommentTok{\# Install devtools}
 \KeywordTok{install.packages}\NormalTok{(devtools) }
 
+\CommentTok{\# Install dependencies}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"assertthat"}\NormalTok{)}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"testthat"}\NormalTok{)}
+
 \CommentTok{\# Use devtools to install package from GitHub}
 \NormalTok{devtools}\OperatorTok{::}\KeywordTok{install\_github}\NormalTok{(}\StringTok{"softloud/neet"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{example}{%
-\subsubsection{Example}\label{example}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# load the neet:: package}
+\KeywordTok{library}\NormalTok{(neet)}
+\end{Highlighting}
+\end{Shaded}
 
-This is a basic example which shows you how to solve a common problem:
+The \texttt{neet::} package extends on \texttt{testthat::} and \texttt{assertthat::} infrastructure, to provide workflow-specific tools for the first two phases of codeflow. \texttt{neet::} tests can be performed on both inputs and outputs.
+
+\hypertarget{inputs}{%
+\subsection{Inputs}\label{inputs}}
+
+Assertions are checks on inputs for a function.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(testthat)}
-
-\CommentTok{\#\# Basic example code}
-
 \CommentTok{\# Assertions check inputs of code in function scripts}
+
+\CommentTok{\# Examples on raw objects}
 \KeywordTok{assert\_neet}\NormalTok{(}\DecValTok{3}\NormalTok{, }\StringTok{"numeric"}\NormalTok{) }\CommentTok{\# test numeric}
 \end{Highlighting}
 \end{Shaded}
@@ -343,6 +354,61 @@ This is a basic example which shows you how to solve a common problem:
 ## [1] TRUE
 \end{verbatim}
 
+To illustrate how asserts work in practice, we turn to a toy function that outputs a printed message.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# a function that quacks like a duck}
+\NormalTok{quack <{-}}\StringTok{ }\ControlFlowTok{function}\NormalTok{(times) \{}
+  \KeywordTok{assert\_neet}\NormalTok{(times, }\StringTok{"numeric"}\NormalTok{)}
+  
+\NormalTok{  duck\_says <{-}}\StringTok{ }\KeywordTok{rep}\NormalTok{(}\StringTok{"quack"}\NormalTok{, times) }\OperatorTok{\%>\%}\StringTok{ }
+\StringTok{    }\KeywordTok{paste}\NormalTok{(}\DataTypeTok{collapse =} \StringTok{", "}\NormalTok{)}
+  
+  \CommentTok{\# codeblock of function}
+\NormalTok{  output <{-}}\StringTok{ }\KeywordTok{paste0}\NormalTok{(}\StringTok{"\textquotesingle{}"}\NormalTok{, duck\_says, }\StringTok{"\textquotesingle{}, said the duck.}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+  
+  \KeywordTok{cat}\NormalTok{(output)}
+  
+\NormalTok{\}}
+
+\CommentTok{\# try out our function}
+\KeywordTok{quack}\NormalTok{(}\DataTypeTok{times =} \DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'quack, quack, quack', said the duck.
+\end{verbatim}
+
+This code will provide an informative error if argument for number of \texttt{times} the duck should quack is not a number.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# this code will error}
+\KeywordTok{quack}\NormalTok{(}\DataTypeTok{times =} \StringTok{"i am not a duck"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Error: Input argument 'times' not of expected type: numeric.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{quack}\NormalTok{(}\DataTypeTok{times =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Error: Input argument 'times' not of expected type: numeric.
+\end{verbatim}
+
+\hypertarget{outputs}{%
+\subsection{Outputs}\label{outputs}}
+
+Tests\ldots{}
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Expectations check output of code in testthat files}
@@ -351,11 +417,7 @@ This is a basic example which shows you how to solve a common problem:
 \KeywordTok{test\_neet}\NormalTok{(mtcars, }\StringTok{"data.frame"}\NormalTok{) }\CommentTok{\# test data frame}
 
 \CommentTok{\# test the output of a function}
-\NormalTok{quack <{-}}\StringTok{ }\ControlFlowTok{function}\NormalTok{() \{}
-  \StringTok{"quack"}
-\NormalTok{\}}
-
-\KeywordTok{test\_neet}\NormalTok{(}\KeywordTok{quack}\NormalTok{(), }\StringTok{"character"}\NormalTok{)}
+\CommentTok{\# test\_neet(quack(2), "character")}
 \end{Highlighting}
 \end{Shaded}
 
@@ -490,13 +552,13 @@ In this section we step through the Coding to \texttt{code::proof} for\ldots{}
 \hypertarget{coderegistration-cr}{%
 \section{\texorpdfstring{\texttt{code::registration} (\texttt{c::r})}{code::registration (c::r)}}\label{coderegistration-cr}}
 
-\begin{center}\includegraphics{when-is-done-done_files/figure-latex/unnamed-chunk-4-1} \end{center}
+\begin{center}\includegraphics{when-is-done-done_files/figure-latex/unnamed-chunk-7-1} \end{center}
 
-We begin with a sketch outline of a \texttt{code::registration} (\texttt{c::r}), which we then populate with description in prose, provide some detail of neet testing, before providing case-studies.
+We begin with a sketch outline of a \texttt{code::registration} (\texttt{c::r}), which we then populate with description in prose, provide some detail of neet testing, before discussing how this differed across our example packaged analyses, \texttt{aggreCAT::}, \texttt{simeta::}, and \texttt{varmeta::}.
 
-As our first testing objective is one neet test per function, we need not necessarily work out the details of all possible things to check for. We simply ask, what will it take to check that each function required for the algorithm produces a non-empty thing of expected type? For the second \texttt{code::proof} cycle, we consider all possible inputs, and write tests, and then code for those.
+As our first testing objective is one neet test per function, we need not necessarily work out the details of all possible things to check for, as we will update \texttt{c::r} three more times. We simply ask, what will it take to check that each function required for the algorithm produces a non-empty thing of expected type? For the second \texttt{code::proof} cycle, we consider all possible inputs, and write tests, and then code for those.
 
-The final phase, which we need not detail immediately, covers testing for anything else we may wish to check. This might be checking there are positive numbers output by the function. Or it might be rigorously checking that the algorithm matches the output of another person's instantiation of the algorithm, as is the case with the \texttt{aggreCAT::} package.
+The final phase, which we need not detail immediately, covers testing for anything else we may wish to check. This might be checking there are positive numbers output by the function. Or it might be rigorously checking that the algorithm matches the output of another person's instantiation of the algorithm, as is the case with the \texttt{aggreCAT::} package. The following template provides a guide for \texttt{c::r}ing an analysis\footnote{Note that \texttt{-\ {[}\ {]}} will create an unchecked tickbox and \texttt{-\ {[}x{]}} will create a tickbox in both GitHub and RMarkdown.}.
 
 \begin{verbatim}
 1. Objective:
@@ -514,10 +576,6 @@ The final phase, which we need not detail immediately, covers testing for anythi
 - [ ] and the rest
 \end{verbatim}
 
-Note that \texttt{-\ {[}\ {]}} will create an unchecked tickbox and \texttt{-\ {[}x{]}} will create a tickbox in both GitHub and RMarkdown.
-
-For the examples below, in the interest of brevity, we will drop the tick boxes, and provide the roughly descriptive prose for the three sections of each \texttt{c::r}. Under this workflow, we expect to update the \texttt{c::r} as our understanding of the algorithmic structure becomes more nuanced.
-
 \hypertarget{varameta-cr}{%
 \subsection{\texorpdfstring{\texttt{varameta::\ c::r}}{varameta:: c::r}}\label{varameta-cr}}
 
@@ -527,9 +585,9 @@ For the examples below, in the interest of brevity, we will drop the tick boxes,
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{when-is-done-done_files/figure-latex/unnamed-chunk-5-1} \end{center}
+\begin{center}\includegraphics{when-is-done-done_files/figure-latex/unnamed-chunk-8-1} \end{center}
 
-The \texttt{varameta::} package has the least complex structure of the examples we are considering.
+The \texttt{varameta::} package has the least complex structure of the examples we are considering. This is the intiial \texttt{c::r}.
 
 \textbf{Objective}
 
@@ -563,10 +621,10 @@ Each estimator outputs an estimate of spread and centre. Some are approximations
   and the rest
 \end{itemize}
 
-\hypertarget{simeta-cr}{%
-\subsection{\texorpdfstring{\texttt{simeta::\ c::r}}{simeta:: c::r}}\label{simeta-cr}}
+\hypertarget{considerations-in-cr}{%
+\subsection{\texorpdfstring{Considerations in \texttt{c::r}}{Considerations in c::r}}\label{considerations-in-cr}}
 
-The \texttt{simeta::} package is being developed to evaluate the efficacy of the estimators provided in the \texttt{varameta::} package.
+The objective of the \texttt{simeta::} package is twofold, and will be implemented in two phases, but there is no reason we cannot explicitly state this in the \texttt{c::r}, which is deliberately broad to allow various use-cases.
 
 \textbf{Objective:}
 
@@ -581,18 +639,7 @@ Summarise and provide a dataframe of coverage for different sample sizes, group 
   Secondary objective: allow the user to specify the estimator.
 \end{itemize}
 
-\textbf{Inputs:}
-
-User inputs: default to \emph{just} the estimator.
-
-\textbf{Outputs}
-
-A dataframe of coverage probabilities.
-
-\hypertarget{aggrecat}{%
-\subsection{\texorpdfstring{\texttt{aggreCAT::}}{aggreCAT::}}\label{aggrecat}}
-
-As the \texttt{aggreCAT::} package forms part of a pipeline of packages designed to build a continuously integrated analysis for living data, there are more detailed supplementary materials detailing requirements for inputs and outputs to turn to, thus the \texttt{c::r} is somewhat brief on first pass.
+As the \texttt{aggreCAT::} package forms part of a pipeline of packages designed to build a continuously integrated analysis for living data, there are more detailed supplementary materials detailing requirements for inputs and outputs to turn to, thus the \texttt{c::r} is somewhat brief on first pass. Being a collaborative project with multiple developers it useful to have a clear statement of the objectives of the analysis to prevent feature creep, that is, the introduction of complexities that do not further the intention of the analysis.
 
 \textbf{Objective}
 
@@ -854,7 +901,7 @@ Then \texttt{covr::package\_coverage} fails.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{when-is-done-done_files/figure-latex/unnamed-chunk-12-1} \end{center}
+\begin{center}\includegraphics{when-is-done-done_files/figure-latex/unnamed-chunk-15-1} \end{center}
 
 Under this workflow, the \texttt{c::r} is the project overview any developer can return to. So, this final registration not only summarises what has been tested, but also notes any idiosyncrasies for other developers, \emph{especially} the future self of the developer who recalls so little of the code they may as well be a different developer.
 

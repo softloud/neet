@@ -133,13 +133,11 @@ Moar words words words
 
 # `neet::` tests
 
-The workflow described in this toolchain walkthrough differentiates between ...
+The workflow described in this toolchain walkthrough differentiates explicitly between code that produces a **non-empty** thing of **expected type** (**neet**), for example, a logical, character string, or numeric, and the other expectations one has of the output, that is *correct*, works for any given input, errors on input it should, and so forth. To support this workfow, the `neet::` package provides three components:
 
-## The `neet::` package
-
-```{r}
-library(neet)
-```
+1. `::test_neet` for testing outputs.
+2. `::assert_neet` for checking inputs.
+3. `::workflow` for diagrammatically indicating stage of codeflow.
 
 A **neet test** checks a function outputs a **non-empty** thing of **expected type**. This is what is referred to as a **boundary condition** test in RStudio's primers (todo: citation).
 
@@ -156,8 +154,6 @@ A `list`` is checked for being of length > 1.
 
 A `data.frame` is checked for having at least one row.
 
-A `ggplot` object is checked for successfully running.
-
 ## Installation
 
 You can install the released version of `neet` from GitHub with:
@@ -166,32 +162,85 @@ You can install the released version of `neet` from GitHub with:
 # Install devtools
 install.packages(devtools) 
 
+# Install dependencies
+install.packages("assertthat")
+install.packages("testthat")
+
 # Use devtools to install package from GitHub
 devtools::install_github("softloud/neet")
-
 ```
 
-### Example
+```{r}
+# load the neet:: package
+library(neet)
+```
+
+The `neet::` package extends on `testthat::` and `assertthat::` infrastructure, to provide workflow-specific tools for the first two phases of codeflow. `neet::` tests can be performed on both inputs and outputs.
+
+## Inputs
+
+Assertions are checks on inputs for a function. 
 
 ```{r example}
-library(testthat)
-
 # Assertions check inputs of code in function scripts
+
+# Examples on raw objects
 assert_neet(3, "numeric") # test numeric
 assert_neet("cat", "character") # test character string
 assert_neet(mtcars, "data.frame") # test data frame
 
+```
+
+To illustrate how asserts work in practice, we turn to a toy function that outputs a printed message.
+
+```{r}
+
+# a function that quacks like a duck
+quack <- function(times) {
+  
+  # neet check the input argument
+  # multiple asserts may be written for multiple arguments
+  assert_neet(times, "numeric")
+  
+  # operational codeblock of function
+  duck_says <- rep("quack", times) %>% 
+    paste(collapse = ", ")
+  
+  output <- paste0("'", duck_says, "', said the duck.\n")
+  
+  cat(output)
+  
+}
+
+# try out our function
+quack(times = 3)
+
+```
+
+This code will provide an informative error if argument for number of `times` the duck should quack is not a number. 
+
+```{r error=TRUE}
+# this code will error
+quack(times = "i am not a duck")
+
+quack(times = TRUE)
+
+```
+
+These messages are for the developer; this is for the _practice_ of code, as opposed to the end-user's experience. For this, more informative asserts might be written with more information for user of the package. However, these considerations can be left for the final code cycle, when `and the rest` tests are written. A note might be made to update the `c::r` to address this later in the codeflow. 
+
+## Outputs
+
+Tests...
+
+``` {r }
 # Expectations check output of code in testthat files
 test_neet(3, "numeric") # test numeric
 test_neet("cat", "character") # test character string
 test_neet(mtcars, "data.frame") # test data frame
 
 # test the output of a function
-quack <- function() {
-  "quack"
-}
-
-test_neet(quack(), "character")
+# test_neet(quack(2), "character")
 
 ```
 
@@ -465,11 +514,11 @@ In this section we step through the Coding to `code::proof` for...
 neet::workflow(1)
 ```
 
-We begin with a sketch outline of a `code::registration` (`c::r`), which we then populate with description in prose, provide some detail of neet testing, before providing case-studies.
+We begin with a sketch outline of a `code::registration` (`c::r`), which we then populate with description in prose, provide some detail of neet testing, before discussing how this differed across our example packaged analyses, `aggreCAT::`, `simeta::`, and `varmeta::`.
 
-As our first testing objective is one neet test per function, we need not necessarily work out the details of all possible things to check for. We simply ask, what will it take to check that each function required for the algorithm produces a non-empty thing of expected type? For the second `code::proof` cycle, we consider all possible inputs, and write tests, and then code for those. 
+As our first testing objective is one neet test per function, we need not necessarily work out the details of all possible things to check for, as we will update `c::r` three more times. We simply ask, what will it take to check that each function required for the algorithm produces a non-empty thing of expected type? For the second `code::proof` cycle, we consider all possible inputs, and write tests, and then code for those. 
 
-The final phase, which we need not detail immediately, covers testing for anything else we may wish to check. This might be checking there are positive numbers output by the function. Or it might be rigorously checking that the algorithm matches the output of another person's instantiation of the algorithm, as is the case with the `aggreCAT::` package.
+The final phase, which we need not detail immediately, covers testing for anything else we may wish to check. This might be checking there are positive numbers output by the function. Or it might be rigorously checking that the algorithm matches the output of another person's instantiation of the algorithm, as is the case with the `aggreCAT::` package. The following template provides a guide for `c::r`ing an analysis[^4].
 
 ```
 
@@ -489,9 +538,7 @@ The final phase, which we need not detail immediately, covers testing for anythi
 
 ```
 
-Note that `- [ ]` will create an unchecked tickbox and `- [x]` will create a tickbox in both GitHub and RMarkdown.
-
-For the examples below, in the interest of brevity, we will drop the tick boxes, and provide the roughly descriptive prose for the three sections of each `c::r`. Under this workflow, we expect to update the `c::r` as our understanding of the algorithmic structure becomes more nuanced. 
+[^4]: Note that `- [ ]` will create an unchecked tickbox and `- [x]` will create a tickbox in both GitHub and RMarkdown.
 
 ## `varameta:: c::r`
 
@@ -499,7 +546,7 @@ For the examples below, in the interest of brevity, we will drop the tick boxes,
 neet::workflow(1)
 ```
 
-The `varameta::` package has the least complex structure of the examples we are considering.
+The `varameta::` package has the least complex structure of the examples we are considering. This is the intiial `c::r`.
 
 **Objective**
 
@@ -521,9 +568,9 @@ Each estimator outputs an estimate of spread and centre. Some are approximations
 - [ ] all neets
 - [ ] and the rest
 
-## `simeta:: c::r`
+## Considerations in `c::r`
 
-The `simeta::` package is being developed to evaluate the efficacy of the estimators provided in the `varameta::` package. 
+The objective of the `simeta::` package is twofold, and will be implemented in two phases, but there is no reason we cannot explicitly state this in the `c::r`, which is deliberately broad to allow various use-cases.   
 
 **Objective:**
 
@@ -535,17 +582,7 @@ Summarise and provide a dataframe of coverage for different sample sizes, group 
 
 - [ ] Secondary objective: allow the user to specify the estimator. 
 
-**Inputs:**
-
-User inputs: default to *just* the estimator.  
-
-**Outputs**
-
-A dataframe of coverage probabilities. 
-
-## `aggreCAT::`
-
-As the  `aggreCAT::` package forms part of a pipeline of packages designed to build a continuously integrated analysis for living data, there are more detailed supplementary materials detailing requirements for inputs and outputs to turn to, thus the `c::r` is somewhat brief on first pass. 
+As the  `aggreCAT::` package forms part of a pipeline of packages designed to build a continuously integrated analysis for living data, there are more detailed supplementary materials detailing requirements for inputs and outputs to turn to, thus the `c::r` is somewhat brief on first pass. Being a collaborative project with multiple developers it useful to have a clear statement of the objectives of the analysis to prevent feature creep, that is, the introduction of complexities that do not further the intention of the analysis.  
 
 **Objective**
 
