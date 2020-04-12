@@ -211,51 +211,32 @@ Reproducible research compendia provide a means by which analysts can share thei
 \hypertarget{a-toolchain-walkthrough-for-test-driven-analysis-workflow}{%
 \section{A toolchain walkthrough for test-driven analysis workflow}\label{a-toolchain-walkthrough-for-test-driven-analysis-workflow}}
 
-From this section, we now consider the practicality of implementing tests through a \textbf{toolchain walkthrough}, an opinionated documentation of a scientific workflow, towards a measure of \texttt{code::proof}, or confidence in the algorithm implementation (Gray 2019). In particular, a toolchain walkthrough is a reflection of \emph{one} workflow, whilst other, potentially better, workflows might exist. This is in contrast to a comprehensive review of tools. Instead, a toolchain walkthrough ruminates on considerations \emph{given} a set of tools have been chosen.
+From this section, we now consider the practicality of implementing tests through a \textbf{toolchain walkthrough}, an opinionated documentation of a scientific workflow, towards a measure of \texttt{code::proof}, confidence in the algorithm implementation (Gray 2019). In particular, a toolchain walkthrough is a reflection of \emph{one} workflow, using specific tools. This is in contrast to a comprehensive review of tools and approaches. Instead, a toolchain walkthrough ruminates on considerations \emph{given} a set of tools and an approach.
 
 Toolchain walkthroughs aim to identify obstacles and advantages in implementation of scientific workflows. By necessity, a toolchain walkthrough is language specific, but, ideally, observations emerge that are useful for any appropriate language employed for data analysis, such as Python. This toolchain walkthrough examines the \emph{process}, analogous to piano \emph{practice}, of implementing tests, as opposed to defining comprehensively the nature of \emph{good enough} tests, analogous to guidance on pianistic technique.
 
 \hypertarget{objective-of-this-toolchain-walkthrough}{%
 \subsection{Objective of this toolchain walkthrough}\label{objective-of-this-toolchain-walkthrough}}
 
-This toolchain walkthrough aims to provide guidance on implementing a test-driven workflow for an in-development analysis. Many analyses begin as scripts that develop {[}todo expan{]} (Riederer 2019). The central question of this manuscript is what constitutes a minimal level of testing for in-development analysis, where code is still being written and features implemented. Automated tests assist in time-consuming debugging tasks (Wickham 2015), but also in providing information for a developer who is unfamiliar with the code (including new users \emph{and} existing developers returning after some level of temporal distancing).
+This toolchain walkthrough aims to provide guidance on implementing a test-driven workflow for an in-development analysis. Many analyses begin as scripts that do many things that evolve into an organised set of testable documented functions (Riederer 2019). The central question of this manuscript is what constitutes a minimal level of testing for in-development analysis, where code is still being written and features implemented. Automated tests assist in time-consuming debugging tasks (Wickham 2015), but also in providing information for a developer who is unfamiliar with the code (including new users \emph{and} existing developers returning after some level of temporal distancing).
 
 This is a first effort in identifying the fundamentals of automated testing for the collaborative process of developing an analysis in R. Analogous to Riederer's \emph{RMarkdown-driven development} (Riederer 2019), which de-constructs the workflow of developing an analysis from .Rmd notebook-style reports to packaged analyses, we consider a set a computational tools that form a workflow to assist in the coherent development of automated tests for data analysis. This is an extension of the workflow suggestions provided in \emph{R Packages}, with a specific focus on collaborative workflows in research.
 
 \hypertarget{devops-and-assumed-expertise}{%
 \subsection{Devops and assumed expertise}\label{devops-and-assumed-expertise}}
 
-This toolchain walkthrough assumes a knowledge of R advanced enough to be using the language to answer scientific research claims.
+This toolchain walkthrough assumes a knowledge of R advanced enough to be using the language to answer scientific research claims. The explict examples are given using the R programming language, however, the workflow described could be adapted to any language and any number of tools.
 
-\begin{itemize}
-\tightlist
-\item
-  tools used: testthat, neet, covr
-\item
-  GitHub
-\end{itemize}
+Assumed level is researcher developers who are not primarily computer scientists, but whose domains are in ecology, social science, medical science, etc. A working understanding of R is assumed, as described in texts such as \emph{R Cookbook} (Long and Teetor 2019) or \emph{Learning Statistics with R} (Navarro 2019) as is a little familiarity with testing, as described in the Testing chapter of \emph{R Packages} (Wickham 2015).
 
-\hypertarget{a-toolchain-walkthrough-for-cr-of}{%
-\subsection{\texorpdfstring{A toolchain walkthrough for \texttt{c::r} of\ldots{}}{A toolchain walkthrough for c::r of\ldots{}}}\label{a-toolchain-walkthrough-for-cr-of}}
+\hypertarget{case-study-packaged-analyses}{%
+\subsection{Case study packaged analyses}\label{case-study-packaged-analyses}}
 
 This toolchain walkthrough for \texttt{c::r} reflects on the in-development practice of code to completion on several different research projects. Consideration of sufficient \texttt{code::proof} of packages \texttt{varameta::} and \texttt{simeta::}, developed for the oeuvre of doctoral work this manuscript contributes to. Another example project is considered, The repliCATS Project software of statistical aggregation methods, in particular \texttt{CATnap::} and \texttt{aggreCAT::}.
 
 For The repliCATS Project, the algorithms are not available until the research is complete, in order to blind the other team to the methodology. Although we cannot provide explicit code examples, the process is considered with respect to this project, as it is an example of collaborative in-development \texttt{c::r}.
 
-\hypertarget{varameta}{%
-\subsubsection{\texorpdfstring{\texttt{varameta::}}{varameta::}}\label{varameta}}
-
-The \texttt{varameta::} package is in-development analysis support software for a forthcoming manuscript, Meta-analysis of Medians.
-
-\hypertarget{simeta}{%
-\subsubsection{\texorpdfstring{\texttt{simeta::}}{simeta::}}\label{simeta}}
-
-Words words words
-
-\hypertarget{replicats-project}{%
-\subsubsection{repliCATS Project}\label{replicats-project}}
-
-Moar words words words
+The \texttt{varameta::} and \texttt{simeta::} packages are being devloped for a compartive analysis of estimators for meta-analysis of medians. The \texttt{varameta::} package provides computational implmentation of existing methods, as well as a new approach, and the \texttt{simeta::} package provides tools for simulations that mimic meta-anlaytic data.
 
 \hypertarget{neet-tests}{%
 \section{\texorpdfstring{\texttt{neet::} tests}{neet:: tests}}\label{neet-tests}}
@@ -360,12 +341,15 @@ To illustrate how asserts work in practice, we turn to a toy function that outpu
 \begin{Highlighting}[]
 \CommentTok{\# a function that quacks like a duck}
 \NormalTok{quack <{-}}\StringTok{ }\ControlFlowTok{function}\NormalTok{(times) \{}
+  
+  \CommentTok{\# neet check the input argument}
+  \CommentTok{\# multiple asserts may be written for multiple arguments}
   \KeywordTok{assert\_neet}\NormalTok{(times, }\StringTok{"numeric"}\NormalTok{)}
   
+  \CommentTok{\# operational codeblock of function}
 \NormalTok{  duck\_says <{-}}\StringTok{ }\KeywordTok{rep}\NormalTok{(}\StringTok{"quack"}\NormalTok{, times) }\OperatorTok{\%>\%}\StringTok{ }
 \StringTok{    }\KeywordTok{paste}\NormalTok{(}\DataTypeTok{collapse =} \StringTok{", "}\NormalTok{)}
   
-  \CommentTok{\# codeblock of function}
 \NormalTok{  output <{-}}\StringTok{ }\KeywordTok{paste0}\NormalTok{(}\StringTok{"\textquotesingle{}"}\NormalTok{, duck\_says, }\StringTok{"\textquotesingle{}, said the duck.}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
   
   \KeywordTok{cat}\NormalTok{(output)}
@@ -396,6 +380,7 @@ This code will provide an informative error if argument for number of \texttt{ti
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# this code will also error}
 \KeywordTok{quack}\NormalTok{(}\DataTypeTok{times =} \OtherTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -403,6 +388,8 @@ This code will provide an informative error if argument for number of \texttt{ti
 \begin{verbatim}
 ## Error: Input argument 'times' not of expected type: numeric.
 \end{verbatim}
+
+These messages are for the developer; this is for the \emph{practice} of code, as opposed to the end-user's experience. For this, more informative asserts might be written with more information for user of the package. However, these considerations can be left for the final code cycle, when \texttt{and\ the\ rest} tests are written. A note might be made to update the \texttt{c::r} to address this later in the codeflow.
 
 \hypertarget{outputs}{%
 \subsection{Outputs}\label{outputs}}
@@ -1194,6 +1181,9 @@ Hester, Jim. 2016. ``Covr: Bringing Test Coverage to R.''
 \leavevmode\hypertarget{ref-karp_robodebtfederalcourt_2019}{}%
 Karp, Paul. 2019. ``Robodebt: The Federal Court Ruling and What It Means for Targeted Welfare Recipients.'' \emph{The Guardian}, November.
 
+\leavevmode\hypertarget{ref-longCookbook2ndEdition2019}{}%
+Long, James (JD), and Paul Teetor. 2019. \emph{R Cookbook, 2nd Edition}. \url{https://rc2e.com/}.
+
 \leavevmode\hypertarget{ref-marwick_packaging_2018}{}%
 Marwick, Ben, Carl Boettiger, and Lincoln Mullen. 2018. ``Packaging Data Analytical Work Reproducibly Using R (and Friends).'' e3192v2. PeerJ Inc. \url{https://doi.org/10.7287/peerj.preprints.3192v2}.
 
@@ -1202,6 +1192,9 @@ McElreath, Richard. 2016. \emph{Statistical Rethinking: A Bayesian Course with E
 
 \leavevmode\hypertarget{ref-mcilroy201720}{}%
 McIlroy, T. 2017. ``20,000 People Sent Centrelink `Robo-Debt' Notices Found to Owe Less or Nothing.'' \emph{Canberra Times} 13.
+
+\leavevmode\hypertarget{ref-navarro_learningstatistics_2019}{}%
+Navarro, Danielle. 2019. \emph{Learning Statistics with R}. \url{https://learningstatisticswithr.com}.
 
 \leavevmode\hypertarget{ref-riederer_rmarkdowndrivendevelopment_2019}{}%
 Riederer, Emily. 2019. ``RMarkdown Driven Development (RmdDD).'' \emph{Emily Riederer}.
