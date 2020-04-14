@@ -229,6 +229,8 @@ This toolchain walkthrough assumes a knowledge of R advanced enough to be using 
 
 Assumed level is researcher developers who are not primarily computer scientists, but whose domains are in ecology, social science, medical science, etc. A working understanding of R is assumed, as described in texts such as \emph{R Cookbook} (Long and Teetor 2019) or \emph{Learning Statistics with R} (Navarro 2019) as is a little familiarity with testing, as described in the Testing chapter of \emph{R Packages} (Wickham 2015).
 
+Another assumption is that the code is shared openly via a repository hosting serevice, such as \href{https://github.com/}{GitHub}, where subprojects, in this case, \textbf{issues}, can be tracked.
+
 \hypertarget{case-study-packaged-analyses}{%
 \subsection{Case study packaged analyses}\label{case-study-packaged-analyses}}
 
@@ -254,10 +256,10 @@ The workflow described in this toolchain walkthrough differentiates explicitly b
   \texttt{::workflow} for diagrammatically indicating stage of codeflow.
 \end{enumerate}
 
-A \textbf{neet test} checks a function outputs a \textbf{non-empty} thing of \textbf{expected type}. This is what is referred to as a \textbf{boundary condition} test in RStudio's primers (todo: citation).
+A \textbf{neet test} checks a function outputs a \textbf{non-empty} thing of \textbf{expected type}. This is what is referred to as a \textbf{boundary condition} test in RStudio's primers (Wilson 2018).
 
 These expectations are intended to integrate into minimal testing workflow
-\emph{for the development} of data analyses. When developing a function, we will need parameters, and structure of the pipeline. These tests
+for the \emph{development} of data analyses. When developing a function, we will need parameters, and structure of the pipeline. These tests
 enable the developer to feel reassured the pipeline's functions are
 outputting non-empty things of expected type, while the developer decides the best structure for an analysis pipeline.
 
@@ -282,6 +284,7 @@ You can install the released version of \texttt{neet} from GitHub with:
 \CommentTok{\# Install dependencies}
 \KeywordTok{install.packages}\NormalTok{(}\StringTok{"assertthat"}\NormalTok{)}
 \KeywordTok{install.packages}\NormalTok{(}\StringTok{"testthat"}\NormalTok{)}
+\KeywordTok{install.package}\NormalTok{(}\StringTok{"ggplot"}\NormalTok{)}
 
 \CommentTok{\# Use devtools to install package from GitHub}
 \NormalTok{devtools}\OperatorTok{::}\KeywordTok{install\_github}\NormalTok{(}\StringTok{"softloud/neet"}\NormalTok{)}
@@ -394,7 +397,7 @@ These messages are for the developer; this is for the \emph{practice} of code, a
 \hypertarget{outputs}{%
 \subsection{Outputs}\label{outputs}}
 
-Tests\ldots{}
+These tests are intended as a first step in developing an analysis. These enable the developer to write a single test for each function they intend to write, to check the code flows from one function to the next in the intended type at each step. This is explicitly with debugging in mind, expecting that in-development code will produce unexpected bugs and fail in unexpected places. By modularising the code into packaged functions, each of which do one explicit, documented thing, the researcher can identify where the algorithm fails.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -407,6 +410,30 @@ Tests\ldots{}
 \CommentTok{\# test\_neet(quack(2), "character")}
 \end{Highlighting}
 \end{Shaded}
+
+\hypertarget{workflow}{%
+\subsection{Workflow}\label{workflow}}
+
+The \texttt{neet::} package also provides a visual representation of where in development notes on an algorithm is. This can be copied to the clipboard and pasted into GitHub issues.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# blank workflow}
+\KeywordTok{workflow}\NormalTok{(}\DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{when-is-done-done_files/figure-latex/unnamed-chunk-6-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# representing progress in workflow}
+\CommentTok{\# this displays the fifth step in the workflow}
+\KeywordTok{workflow}\NormalTok{(}\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{when-is-done-done_files/figure-latex/unnamed-chunk-6-2} \end{center}
 
 \hypertarget{test-driven-workflow-to-codeproof}{%
 \section{\texorpdfstring{test-driven workflow to \texttt{code::proof}}{test-driven workflow to code::proof}}\label{test-driven-workflow-to-codeproof}}
@@ -539,7 +566,7 @@ In this section we step through the Coding to \texttt{code::proof} for\ldots{}
 \hypertarget{coderegistration-cr}{%
 \section{\texorpdfstring{\texttt{code::registration} (\texttt{c::r})}{code::registration (c::r)}}\label{coderegistration-cr}}
 
-\begin{center}\includegraphics{when-is-done-done_files/figure-latex/unnamed-chunk-7-1} \end{center}
+\begin{center}\includegraphics{when-is-done-done_files/figure-latex/unnamed-chunk-9-1} \end{center}
 
 We begin with a sketch outline of a \texttt{code::registration} (\texttt{c::r}), which we then populate with description in prose, provide some detail of neet testing, before discussing how this differed across our example packaged analyses, \texttt{aggreCAT::}, \texttt{simeta::}, and \texttt{varmeta::}.
 
@@ -572,7 +599,7 @@ The final phase, which we need not detail immediately, covers testing for anythi
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{when-is-done-done_files/figure-latex/unnamed-chunk-8-1} \end{center}
+\begin{center}\includegraphics{when-is-done-done_files/figure-latex/unnamed-chunk-10-1} \end{center}
 
 The \texttt{varameta::} package has the least complex structure of the examples we are considering. This is the intiial \texttt{c::r}.
 
@@ -658,33 +685,47 @@ For the first \texttt{code::proof} cycle, we follow the steps:
 
 If functions are already written, then we only need to \emph{confirm} the functions pass the \texttt{neet} tests.
 
-\hypertarget{one-neet-test-per-function}{%
-\subsection{\texorpdfstring{One \texttt{neet} test per function}{One neet test per function}}\label{one-neet-test-per-function}}
-
-In the following code example, we provide some of the \texttt{neet} tests associated with the \texttt{aggreCAT::} package. The methods have been replaced with \texttt{\textless{}\ n\ \textgreater{}}, as a condition of this research is to keep the other teams blinded to the aggregation calculations. Once the project is completed, the software and analyses will be open source.
-
-\begin{quote}
-todo: update testing datasets
-\end{quote}
+In the following code snippets, we provide some of the \texttt{neet} tests associated with the \texttt{aggreCAT::} package.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{context}\NormalTok{(}\StringTok{"neet:: {-} non{-}empty thing of expected type"}\NormalTok{)}
 
 \KeywordTok{library}\NormalTok{(neet)}
+\end{Highlighting}
+\end{Shaded}
 
+These tests check that a dataframe is produced from raw data, \texttt{expert\_judgements}, passed into various aggregation methods. The methods have been replaced with \texttt{method\_n}, as a condition of this research is to keep the other teams blinded to the aggregation calculations. Once the project is completed, the software and analyses will be open source.
 
+\begin{Shaded}
+\begin{Highlighting}[]
 \CommentTok{\# wrapper {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 
-\KeywordTok{test\_neet}\NormalTok{(}\KeywordTok{aggregate\_cs}\NormalTok{(expert\_judgements\_comp\_subset), }\StringTok{"data.frame"}\NormalTok{)}
+\KeywordTok{test\_neet}\NormalTok{(}\KeywordTok{aggregate\_cs}\NormalTok{(expert\_judgements), }\StringTok{"data.frame"}\NormalTok{)}
 
 \CommentTok{\# methods {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 
-\KeywordTok{test\_neet}\NormalTok{(}\OperatorTok{<}\StringTok{ }\DecValTok{1} \OperatorTok{>}\StringTok{ }\NormalTok{(expert\_judgements\_comp\_subset), }\StringTok{"data.frame"}\NormalTok{)}
-\KeywordTok{test\_neet}\NormalTok{(}\OperatorTok{<}\StringTok{ }\DecValTok{2} \OperatorTok{>}\StringTok{ }\NormalTok{(expert\_judgements\_comp\_subset), }\StringTok{"data.frame"}\NormalTok{)}
-\KeywordTok{test\_neet}\NormalTok{(}\OperatorTok{<}\StringTok{ }\DecValTok{3} \OperatorTok{>}\StringTok{ }\NormalTok{(expert\_judgements\_comp\_subset), }\StringTok{"data.frame"}\NormalTok{)}
+\CommentTok{\# the methods are masked to preserve blinding between research teams }
+\CommentTok{\# in this ongoing project}
+\KeywordTok{test\_neet}\NormalTok{(}\KeywordTok{method\_1}\NormalTok{(expert\_judgements), }\StringTok{"data.frame"}\NormalTok{)}
+\KeywordTok{test\_neet}\NormalTok{(}\KeywordTok{method\_2}\NormalTok{(expert\_judgements), }\StringTok{"data.frame"}\NormalTok{)}
+\KeywordTok{test\_neet}\NormalTok{(}\KeywordTok{method\_3}\NormalTok{(expert\_judgements), }\StringTok{"data.frame"}\NormalTok{)}
+
+\NormalTok{...}
 \end{Highlighting}
 \end{Shaded}
+
+The \texttt{varameta::} package has a similar structure to the \texttt{aggreCAT::} package, in providing estimators for a particular statistical purpose.
+
+\begin{quote}
+todo: provide example
+\end{quote}
+
+The \texttt{simeta::} package has several distinct moving parts.
+
+\begin{quote}
+todo: provide example
+\end{quote}
 
 \hypertarget{second-codeproof-cycle-all-neets}{%
 \section{\texorpdfstring{Second \texttt{code::proof} cycle: all neets}{Second code::proof cycle: all neets}}\label{second-codeproof-cycle-all-neets}}
@@ -888,7 +929,7 @@ Then \texttt{covr::package\_coverage} fails.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{when-is-done-done_files/figure-latex/unnamed-chunk-15-1} \end{center}
+\begin{center}\includegraphics{when-is-done-done_files/figure-latex/unnamed-chunk-18-1} \end{center}
 
 Under this workflow, the \texttt{c::r} is the project overview any developer can return to. So, this final registration not only summarises what has been tested, but also notes any idiosyncrasies for other developers, \emph{especially} the future self of the developer who recalls so little of the code they may as well be a different developer.
 
@@ -1207,6 +1248,9 @@ Stodden, Victoria, Jonathan Borwein, and David H. Bailey. 2013. ``"Setting the D
 
 \leavevmode\hypertarget{ref-wickham_r_2015}{}%
 Wickham, H. 2015. \emph{R Packages: Organize, Test, Document, and Share Your Code}. O'Reilly Media.
+
+\leavevmode\hypertarget{ref-wilson_rstudiocloud_2018}{}%
+Wilson, Greg. 2018. ``RStudio Cloud.'' 2018. \url{https://rstudio.cloud/learn/primers}.
 
 \leavevmode\hypertarget{ref-wilson_best_2014}{}%
 Wilson, Greg, D. A. Aruliah, C. Titus Brown, Neil P. Chue Hong, Matt Davis, Richard T. Guy, Steven H. D. Haddock, et al. 2014. ``Best Practices for Scientific Computing.'' Edited by Jonathan A. Eisen. \emph{PLoS Biology} 12 (1): e1001745. \url{https://doi.org/10.1371/journal.pbio.1001745}.
