@@ -17,7 +17,9 @@
 #'
 #' A `character` string will be checked for being of string-length > 1.
 #'
-#' A `numeric` is checked for not being `NA`, `NULL`, `Inf`, or `-Inf`.
+#' A `numeric` is checked for being non-empty.
+#'
+#' A `numint` is checked for being numeric or integer.
 #'
 #' An `integer` is checked for being of length > 1.
 #'
@@ -40,8 +42,14 @@
 expect_neet <- function(thing_to_test, expected_type) {
   # we expect non-empty
   expect_nonempty(thing_to_test)
-  # thing of expected type
-  testthat::expect_is(thing_to_test, expected_type)
+
+  if (expect_type == "numint") {
+    testthat::expect_true(is.numeric(thing_to_test) | is.integer(thing_to_test))
+  } else {
+    # thing of expected type
+    testthat::expect_type(thing_to_test, expected_type)
+
+  }
 }
 
 
@@ -74,8 +82,13 @@ assert_neet <- function(thing_to_test, expected_type) {
   # we expect non-empty
   assertthat::not_empty(thing_to_test)
   # thing of expected type
+  #
+  if (expected_type == "numint") {
+    expected_type <- c("numeric", "integer")
+  }
+
   assertthat::assert_that(
-    expected_type %in% class(thing_to_test),
+    sum(expected_type %in% class(thing_to_test)) >= 1,
     msg = paste0("Input argument '",
       deparse(substitute(thing_to_test)),
                 "' not of expected type: ",

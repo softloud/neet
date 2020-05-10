@@ -25,7 +25,9 @@ the best structure for an analysis pipeline.
 
 A \code{character} string will be checked for being of string-length > 1.
 
-A \code{numeric} is checked for not being \code{NA}, \code{NULL}, \code{Inf}, or \code{-Inf}.
+A \code{numeric} is checked for being non-empty.
+
+A \code{numint} is checked for being numeric or integer.
 
 An \code{integer} is checked for being of length > 1.
 

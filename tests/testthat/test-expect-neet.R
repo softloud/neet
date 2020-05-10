@@ -30,3 +30,8 @@ test_that("neet list", {
   expect_success(expect_neet(a_list, "list"))
   expect_error(expect_neet(a_list, "numeric"))
 })
+
+test_that("neet numint", {
+  expect_success(expect_neet(3, "numint"))
+  expect_success(expect_neet(3L, "numint"))
+})
