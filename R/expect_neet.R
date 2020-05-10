@@ -43,7 +43,7 @@ expect_neet <- function(thing_to_test, expected_type) {
   # we expect non-empty
   expect_nonempty(thing_to_test)
 
-  if (expect_type == "numint") {
+  if (expected_type == "numint") {
     testthat::expect_true(is.numeric(thing_to_test) | is.integer(thing_to_test))
   } else {
     # thing of expected type
@@ -88,7 +88,8 @@ assert_neet <- function(thing_to_test, expected_type) {
   }
 
   assertthat::assert_that(
-    sum(expected_type %in% class(thing_to_test)) >= 1,
+    sum(expected_type %in% class(thing_to_test))
+    >= 1,
     msg = paste0("Input argument '",
       deparse(substitute(thing_to_test)),
                 "' not of expected type: ",
