@@ -45,6 +45,8 @@ expect_neet <- function(thing_to_test, expected_type) {
 
   if (expected_type == "numint") {
     testthat::expect_true(is.numeric(thing_to_test) | is.integer(thing_to_test))
+  } else if (expected_type == "ggplot") {
+    testthat::expect_s3_class(thing_to_test, "ggplot")
   } else {
     # thing of expected type
     testthat::expect_type(thing_to_test, expected_type)
