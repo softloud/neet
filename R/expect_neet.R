@@ -2,7 +2,7 @@
 #'
 #' @param thing_to_test An object to test, such as a numeric, character, list,
 #' etc.
-#' @param expected_type Expected output of `class(thing_to_test)`.
+#' @param expected_class Expected output of `class(thing_to_test)`.
 #'
 #' A *neet test* tests for **non-empty** thing of **expected type**. This
 #' is what is referred to as a *boundary condition* test in RStudio's primers
@@ -39,17 +39,17 @@
 #'
 #' @export
 
-expect_neet <- function(thing_to_test, expected_type) {
+expect_neet <- function(thing_to_test, expected_class) {
   # we expect non-empty
   expect_nonempty(thing_to_test)
 
-  if (expected_type == "numint") {
+  if (expected_class == "numint") {
     testthat::expect_true(is.numeric(thing_to_test) | is.integer(thing_to_test))
-  } else if (expected_type == "ggplot") {
+  } else if (expected_class == "ggplot") {
     testthat::expect_s3_class(thing_to_test, "ggplot")
   } else {
     # thing of expected type
-    testthat::expect_type(thing_to_test, expected_type)
+    testthat::expect_true(expected_class %in% class(thing_to_test))
 
   }
 }
@@ -65,9 +65,9 @@ expect_neet <- function(thing_to_test, expected_type) {
 
 test_neet <-
   function(thing_to_test,
-           expected_type) {
+           expected_class) {
     testthat::test_that("neet", {
-      expect_neet(thing_to_test, expected_type)
+      expect_neet(thing_to_test, expected_class)
     })
   }
 
@@ -80,21 +80,21 @@ test_neet <-
 #'
 #' @export
 
-assert_neet <- function(thing_to_test, expected_type) {
+assert_neet <- function(thing_to_test, expected_class) {
   # we expect non-empty
   assertthat::not_empty(thing_to_test)
   # thing of expected type
   #
-  if (expected_type == "numint") {
-    expected_type <- c("numeric", "integer")
+  if (expected_class == "numint") {
+    expected_class <- c("numeric", "integer")
   }
 
   assertthat::assert_that(
-    sum(expected_type %in% class(thing_to_test))
+    sum(expected_class %in% class(thing_to_test))
     >= 1,
     msg = paste0("Input argument '",
       deparse(substitute(thing_to_test)),
                 "' not of expected type: ",
-                expected_type, ".")
+                expected_class, ".")
   )
 }

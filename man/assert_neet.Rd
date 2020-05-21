@@ -4,13 +4,13 @@
 \alias{assert_neet}
 \title{Check input is non-empty and expected type}
 \usage{
-assert_neet(thing_to_test, expected_type)
+assert_neet(thing_to_test, expected_class)
 }
 \arguments{
 \item{thing_to_test}{An object to test, such as a numeric, character, list,
 etc.}
 
-\item{expected_type}{Expected output of \code{class(thing_to_test)}.
+\item{expected_class}{Expected output of \code{class(thing_to_test)}.
 
 A \emph{neet test} tests for \strong{non-empty} thing of \strong{expected type}. This
 is what is referred to as a \emph{boundary condition} test in RStudio's primers

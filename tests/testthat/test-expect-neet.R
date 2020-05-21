@@ -46,4 +46,5 @@ test_that("neet ggplot", {
     geom_point()
 
   expect_success(expect_neet(testplot, "ggplot"))
+  expect_error(expect_neet(3, "ggplot"))
 })
