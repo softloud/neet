@@ -19,6 +19,11 @@ knitr::opts_chunk$set(
 [![Travis build status](https://travis-ci.com/softloud/neet.svg?branch=master)](https://travis-ci.com/softloud/neet)
 <!-- badges: end -->
 
+# thoughts on using it so far
+
+Still not convinced of the utlity of this code. Perhaps better simply to write an expect success as a neet. Trying it out, however, has been very useful for adopting some level of [test-driven development](https://en.wikipedia.org/wiki/Test-driven_development).  
+One particular drawback of this code is that it messes up the error line when reporting, and that's a massive drag when debugging. However, I learnt a lot from building it. 
+
 # `neet::` Test for non-empty thing of expected type
 
 A *neet test* tests for **non-empty** thing of **expected type**. This
